@@ -12,9 +12,33 @@ const { errorHandler, notFound } = require("./middleware/errorHandler");
 
 const app = express();
 const PORT = process.env.PORT || 5001;
-const CLIENT_ORIGIN = process.env.CLIENT_ORIGIN || "http://localhost:5173";
 
-app.use(cors({ origin: CLIENT_ORIGIN }));
+// Origins allowed to call this API, in addition to the always-allowed ones below.
+// Accepts a single URL or a comma-separated list, e.g. "https://a.com,https://b.com".
+const EXTRA_ORIGINS = (process.env.CLIENT_ORIGIN || "")
+  .split(",")
+  .map((origin) => origin.trim())
+  .filter(Boolean);
+
+function isAllowedOrigin(origin) {
+  if (!origin) return true; // same-origin requests, curl, server-to-server, etc.
+  if (EXTRA_ORIGINS.includes(origin)) return true;
+  if (/^https?:\/\/localhost(:\d+)?$/.test(origin)) return true;
+  if (/\.vercel\.app$/.test(new URL(origin).hostname)) return true;
+  return false;
+}
+
+app.use(
+  cors({
+    origin(origin, callback) {
+      if (isAllowedOrigin(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error(`Not allowed by CORS: ${origin}`));
+      }
+    },
+  })
+);
 app.use(express.json());
 
 app.get("/api/health", (req, res) => {

@@ -1,5 +1,6 @@
 // Small wrapper around fetch() for talking to the Energize the Future backend.
-const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5001/api";
+// Trailing slash stripped so "https://host/api/" and "https://host/api" behave the same.
+const API_BASE_URL = (import.meta.env.VITE_API_URL || "http://localhost:5001/api").replace(/\/+$/, "");
 
 async function request(path, options = {}) {
   let response;

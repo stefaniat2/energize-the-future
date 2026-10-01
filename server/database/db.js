@@ -60,4 +60,16 @@ db.exec(`
   );
 `);
 
+// Auto-seed facts/game_scenarios if they're empty. This matters on hosts with an
+// ephemeral filesystem (e.g. Render's free tier can wipe local files on a cold
+// restart) — without this, the live site could silently end up with no facts or
+// game levels until someone manually re-ran the seed script.
+const { seedDatabase } = require("./seedData");
+const seedResult = seedDatabase(db);
+if (seedResult.factsInserted || seedResult.scenariosInserted) {
+  console.log(
+    `Auto-seeded database (facts: ${seedResult.factsInserted}, scenarios: ${seedResult.scenariosInserted}).`
+  );
+}
+
 module.exports = db;
