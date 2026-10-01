@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Poppins", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Visible focus states everywhere, for keyboard navigation */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid #F5C518;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #2F9E44;
+  border-radius: 8px;
+}
+
+.container-page {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-2 rounded-full bg-sdg7-green px-6 py-3 font-semibold text-white shadow-lg shadow-green-900/10 transition-all duration-200 hover:bg-sdg7-green-dark hover:scale-105 active:scale-95;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 font-semibold text-sdg7-blue border-2 border-sdg7-blue shadow-md transition-all duration-200 hover:bg-sdg7-blue hover:text-white hover:scale-105 active:scale-95;
+}
+
+.btn-accent {
+  @apply inline-flex items-center justify-center gap-2 rounded-full bg-sdg7-yellow px-6 py-3 font-semibold text-slate-900 shadow-lg shadow-yellow-900/10 transition-all duration-200 hover:bg-sdg7-yellow-dark hover:scale-105 active:scale-95;
+}
+
+.card {
+  @apply rounded-2xl bg-white shadow-md border border-slate-100 transition-all duration-300 hover:shadow-xl;
+}
+
+.section-title {
+  @apply text-3xl sm:text-4xl font-extrabold text-slate-800 tracking-tight;
+}
+
+.section-subtitle {
+  @apply text-slate-500 max-w-2xl mx-auto mt-3 text-lg;
+}
+
+.input {
+  @apply w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-800 focus:border-sdg7-green outline-none transition-colors;
+}
+
+.textarea {
+  @apply w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-800 focus:border-sdg7-green outline-none transition-colors resize-y min-h-[120px];
+}
+
+.select {
+  @apply w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-800 focus:border-sdg7-green outline-none transition-colors bg-white;
+}
