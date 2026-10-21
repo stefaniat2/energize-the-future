@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 
-require("./database/db"); // makes sure tables exist (and are seeded) before the app starts
+const db = require("./database/db");
 
 const factsRoutes = require("./routes/facts");
 const gameRoutes = require("./routes/game");
@@ -51,6 +51,11 @@ app.use(
   })
 );
 app.use(express.json({ limit: "10kb" }));
+
+// Every request waits until the tables exist and are seeded (a no-op once ready).
+app.use((req, res, next) => {
+  db.ready.then(() => next(), next);
+});
 
 app.get("/api/health", (req, res) => {
   res.json({ success: true, message: "Energize the Future API is running." });

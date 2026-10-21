@@ -2,16 +2,19 @@
 // Uses Node's built-in test runner and an in-memory SQLite database, so it never touches real data.
 process.env.DB_PATH = ":memory:";
 process.env.CLIENT_ORIGIN = "";
+process.env.TURSO_DATABASE_URL = ""; // always test against the in-memory database
 
 const { test, before, after } = require("node:test");
 const assert = require("node:assert/strict");
 
 const app = require("../app");
+const db = require("../database/db");
 
 let server;
 let base;
 
 before(async () => {
+  await db.ready;
   await new Promise((resolve) => {
     server = app.listen(0, resolve);
   });

@@ -1,20 +1,25 @@
-// Sets up the SQLite database connection and creates tables if they don't exist yet.
+// Database access layer built on the libSQL client (SQLite-compatible).
+//   - TURSO_DATABASE_URL set  -> hosted Turso database (permanent, survives host restarts)
+//   - otherwise               -> local SQLite file (DB_PATH) or ":memory:" for tests
+// All helpers are async so both modes share one code path.
 require("dotenv").config();
 const path = require("path");
-const Database = require("better-sqlite3");
+const { createClient } = require("@libsql/client");
+const { seedDatabase } = require("./seedData");
 
-// DB_PATH may be relative to server/, absolute, or ":memory:" (used by the test suite).
-const dbPath =
-  process.env.DB_PATH === ":memory:"
-    ? ":memory:"
-    : path.resolve(__dirname, "..", process.env.DB_PATH || "./database/energize.db");
-const db = new Database(dbPath);
+function connectionOptions() {
+  if (process.env.TURSO_DATABASE_URL) {
+    return { url: process.env.TURSO_DATABASE_URL, authToken: process.env.TURSO_AUTH_TOKEN };
+  }
+  if (process.env.DB_PATH === ":memory:") return { url: ":memory:" };
+  // DB_PATH may be relative to server/ or absolute.
+  const file = path.resolve(__dirname, "..", process.env.DB_PATH || "./database/energize.db");
+  return { url: `file:${file}` };
+}
 
-db.pragma("journal_mode = WAL");
-db.pragma("foreign_keys = ON");
+const client = createClient(connectionOptions());
 
-// Create all tables required by the application.
-db.exec(`
+const SCHEMA = `
   CREATE TABLE IF NOT EXISTS facts (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     category TEXT NOT NULL,
@@ -62,18 +67,46 @@ db.exec(`
     message TEXT NOT NULL,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
   );
-`);
+`;
 
-// Auto-seed facts/game_scenarios if they're empty. This matters on hosts with an
-// ephemeral filesystem (e.g. Render's free tier can wipe local files on a cold
-// restart) — without this, the live site could silently end up with no facts or
-// game levels until someone manually re-ran the seed script.
-const { seedDatabase } = require("./seedData");
-const seedResult = seedDatabase(db);
-if (seedResult.factsInserted || seedResult.scenariosInserted) {
-  console.log(
-    `Auto-seeded database (facts: ${seedResult.factsInserted}, scenarios: ${seedResult.scenariosInserted}).`
-  );
-}
+const db = {
+  client,
+  isRemote: Boolean(process.env.TURSO_DATABASE_URL),
+
+  // SELECT many rows -> array of row objects
+  async all(sql, args = []) {
+    return (await client.execute({ sql, args })).rows;
+  },
+
+  // SELECT one row -> row object or undefined
+  async get(sql, args = []) {
+    return (await client.execute({ sql, args })).rows[0];
+  },
+
+  // INSERT / UPDATE / DELETE -> { lastInsertRowid, changes } (ids as plain numbers, not BigInt)
+  async run(sql, args = []) {
+    const result = await client.execute({ sql, args });
+    return { lastInsertRowid: Number(result.lastInsertRowid), changes: result.rowsAffected };
+  },
+
+  // Several statements in one transaction: [{ sql, args }, ...]
+  batch(statements) {
+    return client.batch(statements, "write");
+  },
+};
+
+// Resolves once the tables exist and are seeded. server.js waits for it before listening,
+// and app.js makes every request wait for it, so nothing can query a half-built database.
+db.ready = (async () => {
+  await client.executeMultiple(SCHEMA);
+  const seeded = await seedDatabase(db);
+  if (seeded.factsInserted || seeded.scenariosInserted) {
+    console.log(
+      `Auto-seeded database (facts: ${seeded.factsInserted}, scenarios: ${seeded.scenariosInserted}).`
+    );
+  }
+})();
+// Avoid a crash from an unhandled rejection; callers that await db.ready still see the error.
+db.ready.catch(() => {});
 
 module.exports = db;

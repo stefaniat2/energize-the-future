@@ -1,18 +1,19 @@
 const db = require("../database/db");
+const { asyncHandler } = require("../middleware/asyncHandler");
 
-function createContactMessage(req, res) {
+const createContactMessage = asyncHandler(async (req, res) => {
   const { name, email, subject, message } = req.body;
 
-  const stmt = db.prepare(
-    "INSERT INTO contact_messages (name, email, subject, message) VALUES (?, ?, ?, ?)"
+  const result = await db.run(
+    "INSERT INTO contact_messages (name, email, subject, message) VALUES (?, ?, ?, ?)",
+    [name, email, subject, message]
   );
-  const result = stmt.run(name, email, subject, message);
 
   res.status(201).json({
     success: true,
     message: "Thank you! Your message has been received.",
     data: { id: result.lastInsertRowid },
   });
-}
+});
 
 module.exports = { createContactMessage };

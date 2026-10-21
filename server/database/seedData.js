@@ -355,58 +355,49 @@ const scenarios = [
   },
 ];
 
-function insertFacts(db, rows) {
-  const insertFact = db.prepare(
-    "INSERT INTO facts (category, text_en, text_ro, text_ru) VALUES (?, ?, ?, ?)"
+async function insertFacts(db, rows) {
+  await db.batch(
+    rows.map((f) => ({
+      sql: "INSERT INTO facts (category, text_en, text_ro, text_ru) VALUES (?, ?, ?, ?)",
+      args: [f.category, f.en, f.ro, f.ru],
+    }))
   );
-  const run = db.transaction((items) => {
-    for (const f of items) insertFact.run(f.category, f.en, f.ro, f.ru);
-  });
-  run(rows);
 }
 
-function insertScenarios(db, rows) {
-  const insertScenario = db.prepare(
-    `INSERT INTO game_scenarios
-      (level, title_en, title_ro, title_ru, description_en, description_ro, description_ru, options_json)
-     VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
+async function insertScenarios(db, rows) {
+  await db.batch(
+    rows.map((s) => ({
+      sql: `INSERT INTO game_scenarios
+        (level, title_en, title_ro, title_ru, description_en, description_ro, description_ru, options_json)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+      args: [
+        s.level, s.title.en, s.title.ro, s.title.ru,
+        s.description.en, s.description.ro, s.description.ru,
+        JSON.stringify(s.options),
+      ],
+    }))
   );
-  const run = db.transaction((items) => {
-    for (const s of items) {
-      insertScenario.run(
-        s.level,
-        s.title.en,
-        s.title.ro,
-        s.title.ru,
-        s.description.en,
-        s.description.ro,
-        s.description.ru,
-        JSON.stringify(s.options)
-      );
-    }
-  });
-  run(rows);
 }
 
 // force = true: always wipe and reinsert (used by the manual `npm run seed` command).
-// force = false (default): only insert into tables that are currently empty — safe to
+// force = false (default): only insert into tables that are currently empty - safe to
 // call on every server startup, since it never touches tables that already have data.
-function seedDatabase(db, { force = false } = {}) {
+async function seedDatabase(db, { force = false } = {}) {
   if (force) {
-    db.exec("DELETE FROM facts; DELETE FROM game_scenarios;");
+    await db.client.executeMultiple("DELETE FROM facts; DELETE FROM game_scenarios;");
   }
 
   let factsInserted = 0;
-  const factCount = db.prepare("SELECT COUNT(*) AS count FROM facts").get().count;
+  const { count: factCount } = await db.get("SELECT COUNT(*) AS count FROM facts");
   if (force || factCount === 0) {
-    insertFacts(db, facts);
+    await insertFacts(db, facts);
     factsInserted = facts.length;
   }
 
   let scenariosInserted = 0;
-  const scenarioCount = db.prepare("SELECT COUNT(*) AS count FROM game_scenarios").get().count;
+  const { count: scenarioCount } = await db.get("SELECT COUNT(*) AS count FROM game_scenarios");
   if (force || scenarioCount === 0) {
-    insertScenarios(db, scenarios);
+    await insertScenarios(db, scenarios);
     scenariosInserted = scenarios.length;
   }
 
