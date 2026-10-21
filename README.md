@@ -10,7 +10,7 @@ an energy-cost and CO₂ calculator, a habit tracker and a community suggestion 
 | | |
 |---|---|
 | 🌐 **Live website** | https://energize-the-future.vercel.app |
-| 🔌 **Live API** | https://energize-the-future.onrender.com/api/health |
+| 🔌 **Live API** | https://energize-the-future-wuln.onrender.com/api/health |
 | 💻 **Source code** | https://github.com/stefaniat2/energize-the-future |
 
 > The API runs on a free hosting tier and sleeps after 15 minutes of inactivity — the first
@@ -161,7 +161,7 @@ is only needed to force-reset the facts and game levels.
 
 | Variable | Default | Meaning |
 |---|---|---|
-| `VITE_API_URL` | `http://localhost:5001/api` | Base URL of the API (baked in at build time) |
+| `VITE_API_URL` | *(empty)* | Optional override of the API base URL, baked in at build time. Empty = `http://localhost:5001/api` in development and the live API in production builds |
 
 ## Testing
 
@@ -191,7 +191,7 @@ The manual checks done in a real browser are listed in
 
 ## API reference
 
-Base URL: `http://localhost:5001/api` (production: `https://energize-the-future.onrender.com/api`).
+Base URL: `http://localhost:5001/api` (production: `https://energize-the-future-wuln.onrender.com/api`).
 Responses are JSON: `{ "success": true, "data": ... }` or
 `{ "success": false, "message": "...", "errors": ["..."] }`.
 

@@ -74,7 +74,7 @@ Tip: the numbers above are deterministic — if yours differ, something is wrong
 
 ### Pre-flight checklist (do it 10 minutes before)
 
-- [ ] Open `https://energize-the-future.onrender.com/api/health` **to wake the free server** (first request can take ~50 s!)
+- [ ] Open `https://energize-the-future-wuln.onrender.com/api/health` **to wake the free server** (first request can take ~50 s!)
 - [ ] Open the site, play one level, then reload — confirm facts and game load
 - [ ] Phone on hotspot: scan the QR from the poster
 - [ ] Laptop charged; browser zoom 100 %; notifications off; a second tab with the repo's README

@@ -1,6 +1,14 @@
 // Small wrapper around fetch() for talking to the Energize the Future backend.
+// Which API to call:
+//   1. VITE_API_URL if it was set when the app was built (use it to point at another server)
+//   2. otherwise the live API in production builds, so the deployed site works even if the
+//      variable was forgotten in the hosting dashboard (a build can't read it later)
+//   3. otherwise the local backend during development
+const PRODUCTION_API_URL = "https://energize-the-future-wuln.onrender.com/api";
+const DEFAULT_API_URL = import.meta.env.PROD ? PRODUCTION_API_URL : "http://localhost:5001/api";
+
 // Trailing slash stripped so "https://host/api/" and "https://host/api" behave the same.
-const API_BASE_URL = (import.meta.env.VITE_API_URL || "http://localhost:5001/api").replace(/\/+$/, "");
+const API_BASE_URL = (import.meta.env.VITE_API_URL || DEFAULT_API_URL).replace(/\/+$/, "");
 
 async function request(path, options = {}) {
   let response;

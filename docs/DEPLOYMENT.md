@@ -5,7 +5,7 @@ Frontend on **Vercel**, API on **Render**. Both auto-deploy every time you push 
 
 ```
 GitHub (main) ──► Vercel  → https://energize-the-future.vercel.app        (client/)
-              └─► Render  → https://energize-the-future.onrender.com/api  (server/)
+              └─► Render  → https://energize-the-future-wuln.onrender.com/api  (server/)
 ```
 
 ## 1. Push the code to GitHub
@@ -51,7 +51,9 @@ The database creates and seeds itself on startup (no shell commands needed). Nod
 
 4. Deploy. `client/vercel.json` makes direct links like `/mini-game` work on refresh.
 
-> `VITE_API_URL` is baked in at **build time** — after changing it, redeploy the frontend.
+> `VITE_API_URL` is baked in at **build time** — after changing it, redeploy the frontend. It is optional:
+> production builds default to the live API (`client/src/services/api.js`), so a forgotten variable no longer
+> breaks the site. Set it only when you point the site at a different API.
 
 ## 4. Checklist after every deploy
 
@@ -71,7 +73,7 @@ The database creates and seeds itself on startup (no shell commands needed). Nod
 | Browser console: *blocked by CORS policy … 'localhost:5173'* | API only allowed localhost | API now allows `localhost`, `*.vercel.app` and `CLIENT_ORIGIN` |
 | Facts/game empty after the API had been idle | Free-tier disk is wiped on restart | Server re-seeds empty tables on every start |
 | First request very slow | Free instance was asleep (~50 s wake-up) | Expected on the free tier; optional uptime pinger or paid plan |
-| Frontend still calls `localhost:5001` | `VITE_API_URL` missing at build time | Set it for all environments and **redeploy** |
+| Frontend calls `localhost:5001` (every data page says "Something went wrong") | An older build without `VITE_API_URL` (it is read at build time, not at runtime) | Redeploy a version that includes the production default, or set the variable for all environments and **redeploy** |
 
 ## 6. Make data permanent: Turso (free)
 

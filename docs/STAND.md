@@ -68,7 +68,7 @@ Then, depending on the visitor:
 
 - [ ] Poster hung, QR checked with a phone
 - [ ] Laptop and tablet charged, chargers and a power strip packed
-- [ ] **Wake the server:** open `https://energize-the-future.onrender.com/api/health` (first request can take ~50 s)
+- [ ] **Wake the server:** open `https://energize-the-future-wuln.onrender.com/api/health` (first request can take ~50 s)
 - [ ] Both devices connected to reliable internet (own hotspot as backup)
 - [ ] Site loaded and a test score submitted (then it appears on the leaderboard)
 - [ ] **Offline backup:** project running locally on the laptop (`npm run dev` in `server/` and `client/`)
