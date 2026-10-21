@@ -118,9 +118,9 @@ const facts = [
   // Energy efficiency
   {
     category: "efficiency",
-    en: "LED light bulbs use up to 90% less energy than traditional incandescent bulbs.",
-    ro: "Becurile LED folosesc cu până la 90% mai puțină energie decât becurile incandescente tradiționale.",
-    ru: "Светодиодные лампы потребляют до 90% меньше энергии, чем традиционные лампы накаливания.",
+    en: "LED light bulbs use at least 75% less energy than traditional incandescent bulbs and last up to 25 times longer.",
+    ro: "Becurile LED consumă cu cel puțin 75% mai puțină energie decât becurile incandescente tradiționale și durează de până la 25 de ori mai mult.",
+    ru: "Светодиодные лампы потребляют как минимум на 75% меньше энергии, чем традиционные лампы накаливания, и служат до 25 раз дольше.",
   },
   {
     category: "efficiency",
@@ -216,9 +216,9 @@ const facts = [
   },
   {
     category: "technology",
-    en: "Around 700 million people worldwide still lack access to electricity, and clean, decentralized technologies like solar mini-grids can help reach them faster.",
-    ro: "Aproximativ 700 de milioane de oameni din întreaga lume nu au încă acces la electricitate, iar tehnologiile curate și descentralizate, precum micro-rețelele solare, îi pot ajuta să obțină acces mai rapid.",
-    ru: "Около 700 миллионов человек в мире всё ещё не имеют доступа к электричеству, и чистые децентрализованные технологии, такие как солнечные мини-сети, могут быстрее обеспечить им доступ.",
+    en: "Around 655 million people worldwide still lacked access to electricity in 2024, and clean, decentralized technologies like solar mini-grids can help reach them faster.",
+    ro: "Aproximativ 655 de milioane de oameni din întreaga lume nu aveau încă acces la electricitate în 2024, iar tehnologiile curate și descentralizate, precum micro-rețelele solare, îi pot ajuta să obțină acces mai rapid.",
+    ru: "Около 655 миллионов человек в мире всё ещё не имели доступа к электричеству в 2024 году, и чистые децентрализованные технологии, такие как солнечные мини-сети, могут быстрее обеспечить им доступ.",
   },
 ];
 
@@ -355,53 +355,55 @@ const scenarios = [
   },
 ];
 
-async function insertFacts(db, rows) {
-  await db.batch(
-    rows.map((f) => ({
-      sql: "INSERT INTO facts (category, text_en, text_ro, text_ru) VALUES (?, ?, ?, ?)",
-      args: [f.category, f.en, f.ro, f.ru],
-    }))
-  );
+// Bump this number whenever the facts or scenarios above change. On the next start the server
+// replaces just those two tables with the new content (scores, suggestions and contact messages
+// are never touched), which is how corrections reach a hosted database that was seeded earlier.
+const SEED_VERSION = 2;
+
+function factStatements() {
+  return facts.map((f) => ({
+    sql: "INSERT INTO facts (category, text_en, text_ro, text_ru) VALUES (?, ?, ?, ?)",
+    args: [f.category, f.en, f.ro, f.ru],
+  }));
 }
 
-async function insertScenarios(db, rows) {
-  await db.batch(
-    rows.map((s) => ({
-      sql: `INSERT INTO game_scenarios
-        (level, title_en, title_ro, title_ru, description_en, description_ro, description_ru, options_json)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
-      args: [
-        s.level, s.title.en, s.title.ro, s.title.ru,
-        s.description.en, s.description.ro, s.description.ru,
-        JSON.stringify(s.options),
-      ],
-    }))
-  );
+function scenarioStatements() {
+  return scenarios.map((s) => ({
+    sql: `INSERT INTO game_scenarios
+      (level, title_en, title_ro, title_ru, description_en, description_ro, description_ru, options_json)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+    args: [
+      s.level, s.title.en, s.title.ro, s.title.ru,
+      s.description.en, s.description.ro, s.description.ru,
+      JSON.stringify(s.options),
+    ],
+  }));
 }
 
-// force = true: always wipe and reinsert (used by the manual `npm run seed` command).
-// force = false (default): only insert into tables that are currently empty - safe to
-// call on every server startup, since it never touches tables that already have data.
+// Seeds when the content is missing or outdated (or when force = true, used by `npm run seed`).
+// Runs as ONE transaction, and restarts the ids at 1 so favourites saved in visitors' browsers
+// (which store fact ids) keep pointing at the same facts.
 async function seedDatabase(db, { force = false } = {}) {
-  if (force) {
-    await db.client.executeMultiple("DELETE FROM facts; DELETE FROM game_scenarios;");
-  }
-
-  let factsInserted = 0;
+  const stored = await db.get("SELECT value FROM meta WHERE key = 'seed_version'");
   const { count: factCount } = await db.get("SELECT COUNT(*) AS count FROM facts");
-  if (force || factCount === 0) {
-    await insertFacts(db, facts);
-    factsInserted = facts.length;
-  }
-
-  let scenariosInserted = 0;
   const { count: scenarioCount } = await db.get("SELECT COUNT(*) AS count FROM game_scenarios");
-  if (force || scenarioCount === 0) {
-    await insertScenarios(db, scenarios);
-    scenariosInserted = scenarios.length;
-  }
 
-  return { factsInserted, scenariosInserted };
+  const upToDate = Boolean(stored) && Number(stored.value) === SEED_VERSION && factCount > 0 && scenarioCount > 0;
+  if (upToDate && !force) return { factsInserted: 0, scenariosInserted: 0 };
+
+  await db.batch([
+    { sql: "DELETE FROM facts", args: [] },
+    { sql: "DELETE FROM game_scenarios", args: [] },
+    { sql: "DELETE FROM sqlite_sequence WHERE name IN ('facts', 'game_scenarios')", args: [] },
+    ...factStatements(),
+    ...scenarioStatements(),
+    {
+      sql: "INSERT INTO meta (key, value) VALUES ('seed_version', ?) ON CONFLICT(key) DO UPDATE SET value = excluded.value",
+      args: [String(SEED_VERSION)],
+    },
+  ]);
+
+  return { factsInserted: facts.length, scenariosInserted: scenarios.length };
 }
 
-module.exports = { facts, scenarios, seedDatabase };
+module.exports = { facts, scenarios, seedDatabase, SEED_VERSION };
