@@ -91,8 +91,9 @@ levels cannot — the server re-seeds them). A free [Turso](https://turso.tech) 
 | `TURSO_DATABASE_URL` | the `libsql://…` URL |
 | `TURSO_AUTH_TOKEN` | the token |
 
-4. Save (Render redeploys). In the service logs you should now see `Database: Turso (remote, persistent)`;
-   the tables are created and seeded automatically on first start.
+4. Save (Render redeploys). Open `https://<your-service>.onrender.com/api/health`: it must now say
+   `"database":"turso"` (it says `"local-file"` when Turso is not connected). The service logs also show
+   `Database: Turso (remote, persistent)`; the tables are created and seeded automatically on first start.
 5. Submit a game score, then use *Manual Deploy → Restart*: the score must still be on the leaderboard.
 
 Never commit the token; it belongs only in Render's environment settings.

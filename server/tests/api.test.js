@@ -34,7 +34,9 @@ const post = (path, body) => json(path, { method: "POST", body: JSON.stringify(b
 test("health check responds", async () => {
   const res = await json("/health");
   assert.equal(res.status, 200);
-  assert.equal((await res.json()).success, true);
+  const body = await res.json();
+  assert.equal(body.success, true);
+  assert.equal(body.database, "local-file", "tests must run against the local/in-memory database");
 });
 
 test("security headers are set and x-powered-by is hidden", async () => {

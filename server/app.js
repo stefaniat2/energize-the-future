@@ -58,7 +58,11 @@ app.use((req, res, next) => {
 });
 
 app.get("/api/health", (req, res) => {
-  res.json({ success: true, message: "Energize the Future API is running." });
+  res.json({
+    success: true,
+    message: "Energize the Future API is running.",
+    database: db.isRemote ? "turso" : "local-file",
+  });
 });
 
 // Only write endpoints are rate limited; reading facts/scenarios stays unrestricted.
