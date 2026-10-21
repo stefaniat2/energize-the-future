@@ -30,8 +30,8 @@ git push -u origin main
 | Start Command | `node server.js` |
 | Instance type | Free |
 
-3. Environment variables (all optional): `CLIENT_ORIGIN` (only for a custom domain),
-   `RATE_LIMIT_MAX`. Render provides `PORT` itself — don't set it.
+3. Environment variables (all optional): `TURSO_DATABASE_URL` + `TURSO_AUTH_TOKEN` (permanent data, see §6),
+   `CLIENT_ORIGIN` (only for a custom domain), `RATE_LIMIT_MAX`. Render provides `PORT` itself — don't set it.
 4. Deploy. Check `https://<your-service>.onrender.com/api/health` → `{"success":true,…}`.
 
 The database creates and seeds itself on startup (no shell commands needed). Node 20 is selected by
@@ -66,15 +66,40 @@ The database creates and seeds itself on startup (no shell commands needed). Nod
 |---|---|---|
 | Vercel `404 NOT_FOUND` on any page except `/` | Single-page app needs a rewrite | `client/vercel.json` rewrites everything to `index.html` |
 | Render: `Cannot find module '/opt/render/project/src/server.js'` | Root Directory not set | Set **Root Directory = `server`**, redeploy |
-| Render: crash `Assertion failed: (env) != nullptr` / exit 134 | Native SQLite module vs. newest Node | Pin Node 20 (`engines` + `.node-version`), clear build cache |
+| Render: crash `Assertion failed: (env) != nullptr` / exit 134 (seen with the earlier native SQLite driver) | Native module vs. newest Node | Node 20 is pinned (`engines` + `.node-version`); clear the build cache if it ever recurs |
+| Render log: `Could not start: database connection failed` | Wrong `TURSO_DATABASE_URL` / `TURSO_AUTH_TOKEN` | Re-copy both values from the Turso dashboard, or remove them to use the local file |
 | Browser console: *blocked by CORS policy … 'localhost:5173'* | API only allowed localhost | API now allows `localhost`, `*.vercel.app` and `CLIENT_ORIGIN` |
 | Facts/game empty after the API had been idle | Free-tier disk is wiped on restart | Server re-seeds empty tables on every start |
 | First request very slow | Free instance was asleep (~50 s wake-up) | Expected on the free tier; optional uptime pinger or paid plan |
 | Frontend still calls `localhost:5001` | `VITE_API_URL` missing at build time | Set it for all environments and **redeploy** |
 
-## 6. Making data permanent (optional upgrade)
+## 6. Make data permanent: Turso (free)
 
-On Render's free tier submitted scores, suggestions and contact messages live on a disk that can
-be reset. For permanent storage replace the SQLite file with a hosted database — e.g.
-[Turso](https://turso.tech) (SQLite-compatible, free tier) or Postgres — by changing only
-`server/database/db.js` and the controllers' SQL calls; the API contract stays the same.
+Without this step the API uses a local SQLite file. On Render's free tier that file lives on a disk that
+can be reset, so **submitted scores, suggestions and contact messages can disappear** (facts and game
+levels cannot — the server re-seeds them). A free [Turso](https://turso.tech) database fixes that:
+
+1. Create a Turso account and a database (name it e.g. `energize-the-future`).
+2. Copy its **URL** (looks like `libsql://energize-the-future-<you>.turso.io`) and create an **auth token**
+   (Turso dashboard → your database → *Create token*).
+3. In Render → your service → **Environment**, add:
+
+| Key | Value |
+|---|---|
+| `TURSO_DATABASE_URL` | the `libsql://…` URL |
+| `TURSO_AUTH_TOKEN` | the token |
+
+4. Save (Render redeploys). In the service logs you should now see `Database: Turso (remote, persistent)`;
+   the tables are created and seeded automatically on first start.
+5. Submit a game score, then use *Manual Deploy → Restart*: the score must still be on the leaderboard.
+
+Never commit the token; it belongs only in Render's environment settings.
+
+## 7. Automation (GitHub Actions)
+
+- **`ci.yml`** runs both test suites and a production build on every push — a red cross on GitHub means
+  something broke before it reaches users. No setup needed.
+- **`keep-alive.yml`** (optional) pings the API every 10 minutes so the free instance does not fall asleep
+  (no 50-second wait for the first visitor — useful on competition day). Enable it with a repository
+  variable: Settings → Secrets and variables → Actions → **Variables** → New variable
+  `API_URL` = `https://<your-service>.onrender.com/api`. Without the variable the workflow does nothing.

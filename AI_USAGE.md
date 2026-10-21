@@ -45,6 +45,8 @@ The prompts that shaped the project are kept in the repository so the process is
    - *"tell me how can i publish this website for free"* → free-hosting plan (Vercel + Render).
    - *"no, make it work and make fix all the other bugs you can find, after that push the changes"* → CORS fix, self-seeding database, defensive API URL handling.
    - *"make this project eligible for 45 points based on the graph above"* (competition rubric) → this round of work: automated tests, security hardening, game consequences and enforced budget, efficiency comparison tool, accessibility, documentation, this document.
+   - *"i need to migrate the project to a new git hub account , and changing the person doing the commits"* → history re-authored and pushed to the new repository (a backup was made first).
+   - *"do everything you can"* (to finish the remaining improvements) → optional permanent database (Turso), Lighthouse audit and fixes, licence, CI, screenshots and documentation updates.
 
 ## 4. How the AI's output was verified
 
@@ -58,7 +60,10 @@ The AI was not trusted blindly. Every feature was checked in several ways:
    the app was checked against these numbers, not just "looks plausible".
 3. **Real browser testing** of every page, the whole game from level 1 to the leaderboard,
    language switching, and phone-width layout.
-4. **Real deployment testing**, which found problems that local testing could not (below).
+4. **Lighthouse audit** (Chrome's accessibility / performance / SEO checker) on all 10 pages of the production
+   build: it initially reported accessibility 89–92 and, after fixes, **100 for Accessibility, Best Practices
+   and SEO on every page** (Performance 95–98 on throttled mobile).
+5. **Real deployment testing**, which found problems that local testing could not (below).
 
 ### Mistakes made by the AI that testing caught
 
@@ -74,6 +79,8 @@ Being transparent about errors is part of using AI responsibly:
 | Free host wipes the database on restart → empty facts and game | Reasoning about the host, then reproduced locally | Server seeds itself when tables are empty |
 | 404 page and some ARIA labels were only in English | Automated scan for hard-coded strings | All translated; scan found nothing left |
 | Calculator lacked the "compare efficient appliances" feature required by the brief | Checking the result against the brief | Real comparison tool built |
+| A blanket "make grey text darker" change made the **footer** text *less* readable (3.75:1 on the dark background) | Lighthouse colour-contrast audit | Footer text lightened; every badge/chip colour pair now measured, not guessed |
+| Logo link had no accessible name on phones; footer headings skipped a level; `robots.txt` was invalid; pages jumped ~0.7 layout-shift units while data loaded | Lighthouse | `aria-label`, heading levels fixed, real `robots.txt`, page header rendered immediately with data loading inside it |
 
 ## 5. Data, privacy and licensing
 
@@ -87,7 +94,7 @@ Being transparent about errors is part of using AI responsibly:
 - **No copyrighted media.** Illustrations are CSS/SVG made for this project; icons are
   [Lucide](https://lucide.dev) (ISC).
 - **Open-source software:** React, Vite, Tailwind CSS, React Router, i18next / react-i18next,
-  Express, better-sqlite3 (MIT) · lucide-react (ISC) · Poppins typeface (SIL Open Font License 1.1).
+  Express, @libsql/client (MIT) · lucide-react (ISC) · Poppins typeface (SIL Open Font License 1.1).
   The full list is shown in the app on the *AI & Credits* page.
 - **AI-generated code and text** were produced for this project under the team's instructions
   and are the team's to publish; no third-party code was pasted in beyond the dependencies above.

@@ -73,13 +73,23 @@ keyboard navigation, skip link, translated page titles, reduced-motion support. 
 uses the SDG 7 palette (green · blue · yellow) and the Poppins typeface; all illustrations are
 drawn with CSS/SVG, so no copyrighted images are used. See the [user guide](docs/USER_GUIDE.md).
 
+## Screenshots
+
+| Home | Energy Hero — consequences of a decision |
+|---|---|
+| ![Home page](docs/screenshots/home.jpg) | ![Game consequences panel](docs/screenshots/game-consequences.jpg) |
+
+| Calculator with totals and trees equivalent | Phone layout, Romanian, menu open |
+|---|---|
+| ![Energy calculator](docs/screenshots/calculator.jpg) | ![Mobile Romanian menu](docs/screenshots/mobile-romanian-menu.jpg) |
+
 ## Technology
 
 **Frontend** — React 18 · Vite · React Router 6 · Tailwind CSS · i18next / react-i18next · lucide-react icons
 
-**Backend** — Node.js 20 · Express 4 · SQLite (`better-sqlite3`) · dotenv
+**Backend** — Node.js 20 · Express 4 · SQLite via the libSQL client (`@libsql/client`): a local file for development, optionally a free hosted **Turso** database for permanent data · dotenv
 
-**Quality** — Node's built-in test runner (28 automated tests), in-memory database for tests
+**Quality** — Node's built-in test runner (28 automated tests), in-memory database for tests, GitHub Actions CI, Lighthouse audited
 
 **Hosting (free tiers)** — Vercel (frontend) · Render (API)
 
@@ -89,7 +99,7 @@ drawn with CSS/SVG, so no copyrighted images are used. See the [user guide](docs
 flowchart LR
     U[Visitor's browser] -->|static files| V[Vercel<br/>React + Vite build]
     U -->|fetch JSON over HTTPS| R[Render<br/>Express API]
-    R --> D[(SQLite<br/>facts · game_scenarios<br/>game_scores · suggestions<br/>contact_messages)]
+    R --> D[(SQLite / Turso<br/>facts · game_scenarios<br/>game_scores · suggestions<br/>contact_messages)]
     U -.->|localStorage| L[(Language · tips progress<br/>favorites · appliances · player name)]
 ```
 
@@ -142,7 +152,9 @@ is only needed to force-reset the facts and game levels.
 |---|---|---|
 | `PORT` | `5001` | Port the API listens on (hosts like Render set it automatically) |
 | `CLIENT_ORIGIN` | *(empty)* | Extra allowed website origins, comma-separated. `localhost` and `*.vercel.app` are always allowed |
-| `DB_PATH` | `./database/energize.db` | SQLite file (relative to `server/`, absolute, or `:memory:`) |
+| `DB_PATH` | `./database/energize.db` | Local SQLite file (relative to `server/`, absolute, or `:memory:`), used when `TURSO_DATABASE_URL` is empty |
+| `TURSO_DATABASE_URL` | *(empty)* | Hosted Turso database (`libsql://…`) for **permanent** data — see [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md#6-make-data-permanent-turso-free) |
+| `TURSO_AUTH_TOKEN` | *(empty)* | Access token for that Turso database |
 | `RATE_LIMIT_MAX` | `20` | Max write requests per IP per minute |
 
 **`client/.env`** (copy `client/.env.example`)
@@ -166,6 +178,13 @@ cd client && npm test     # formulas, game rules, translation parity
   without a choice), achievement thresholds, and that the seeded scenarios are winnable.
 - **Translations** — English, Romanian and Russian have identical keys, no empty strings,
   matching `{{placeholders}}`, and no long text left identical to English.
+
+**Continuous integration:** `.github/workflows/ci.yml` runs both test suites and a production build on every push.
+
+**Lighthouse audit** (mobile emulation with throttling, production build, all 10 pages, October 2026):
+Accessibility **100** · Best Practices **100** · SEO **100** · Performance **95–98**. The audit found real
+problems (low-contrast text, a nameless logo link, skipped heading levels, layout shift while data loaded, an
+invalid `robots.txt`) which were fixed — see [AI_USAGE.md](AI_USAGE.md#mistakes-made-by-the-ai-that-testing-caught).
 
 The manual checks done in a real browser are listed in
 [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md#testing-strategy).
@@ -243,8 +262,10 @@ energize-the-future/
 │   ├── middleware/                 validators, rateLimit, security, errorHandler
 │   ├── database/                   db.js (schema + auto-seed), seedData.js, seed.js
 │   └── tests/api.test.js
-├── docs/                           architecture, user guide, deployment, presentation, stand kit
+├── docs/                           architecture, user guide, deployment, presentation, stand kit, screenshots
+├── .github/workflows/              ci.yml (tests + build), keep-alive.yml (optional API ping)
 ├── AI_USAGE.md                     how AI was used, prompts, human review
+├── LICENSE                         MIT
 └── README.md
 ```
 
@@ -256,20 +277,26 @@ did, how results were verified, and the licences of everything used are document
 **[AI_USAGE.md](AI_USAGE.md)** and summarised inside the app on the *AI & Credits* page.
 
 Facts are based on public UN, IEA and IRENA information. Open-source libraries: React, Vite,
-Tailwind CSS, React Router, i18next, lucide-react (ISC), Express, better-sqlite3 (MIT) and the
+Tailwind CSS, React Router, i18next, lucide-react (ISC), Express, @libsql/client (MIT) and the
 Poppins font (SIL OFL).
 
 ## Known limitations
 
-- **Free hosting:** the API sleeps when idle (slow first request) and its disk is not
-  persistent, so submitted scores/suggestions can be lost when the host restarts. Facts and game
-  levels are unaffected because the server re-seeds itself. A hosted database (e.g. Turso or
-  Postgres) is the straightforward upgrade for permanent storage.
+- **Free hosting:** the API sleeps when idle (slow first request; the optional `keep-alive` workflow
+  prevents it). Without a hosted database its disk is not persistent, so submitted scores and
+  suggestions can be lost when the host restarts. Facts and game levels are unaffected because the
+  server re-seeds itself. Setting the two `TURSO_*` variables switches to a free hosted database and
+  makes all data permanent (the Turso path was verified for connection handling and fails fast on bad
+  credentials; the local-file path is the one covered by the automated tests).
 - CO₂ figures use one average emission factor (0.45 kg/kWh); real values depend on each country's
   electricity mix, as the app states.
 - Statistics are approximate and change; always check the official sources.
 - `npm audit` reports moderate advisories in dev tooling (Vite/esbuild, React Router) that need
   breaking major upgrades; they do not affect the built, deployed site.
+
+## License
+
+[MIT](LICENSE) — free to use, study and adapt, with attribution.
 
 ## Further documentation
 

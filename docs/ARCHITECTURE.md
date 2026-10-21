@@ -29,7 +29,7 @@ replaced or redeployed without changing the other as long as the API contract (R
 | Routes | `routes/*.js` | Map URL + method to a controller and attach middleware |
 | Middleware | `middleware/` | `validators` (input checks), `rateLimit`, `security` (headers), `errorHandler` |
 | Controllers | `controllers/*.js` | Read/write the database and shape the JSON response |
-| Database | `database/db.js` | Opens SQLite, creates tables, auto-seeds empty ones |
+| Database | `database/db.js` | Connects (local file or Turso), creates tables, auto-seeds empty ones; exposes async `all / get / run / batch` helpers |
 
 ### Data model
 
@@ -43,9 +43,13 @@ replaced or redeployed without changing the other as long as the API contract (R
 
 ### Decisions and reasons
 
-- **SQLite via `better-sqlite3`.** Zero-setup (no database server to install), synchronous API
-  that is easy to read for beginners, and fast enough for this scale. Trade-off: on free hosting
-  the file is not persistent — see "Self-seeding" and the README's known limitations.
+- **SQLite through the libSQL client (`@libsql/client`).** libSQL is SQLite-compatible, so the SQL is
+  plain SQLite, but the same client talks to a **local file** (development, tests) or to a hosted
+  **Turso** database (`TURSO_DATABASE_URL` + `TURSO_AUTH_TOKEN`). Local use needs no installation;
+  production can use a free hosted database whose data survives host restarts. All database access is
+  `async`, wrapped by `asyncHandler` so errors reach the error middleware, and the server only starts
+  listening after `db.ready` resolves (so a wrong connection string fails loudly at boot, not on the
+  first visitor).
 - **Translations stored in columns (`text_en/ro/ru`)** instead of separate tables: one query
   returns everything and the API picks the language, which keeps controllers tiny.
 - **Self-seeding database.** `db.js` calls `seedDatabase()` after creating tables; it inserts the
@@ -63,8 +67,8 @@ replaced or redeployed without changing the other as long as the API contract (R
   behind Render's proxy. Reads are unrestricted.
 - **Error handling.** Expected errors (`4xx`) return their message; unexpected errors (`5xx`)
   are logged with a stack trace but the client only sees a generic message.
-- **Node 20 pinned** (`engines`, `.node-version`) because the native SQLite module crashed on
-  the newest Node release on the host.
+- **Node 20 pinned** (`engines`, `.node-version`): an earlier native SQLite driver crashed on the newest
+  Node release on the host; the pin keeps builds reproducible.
 
 ## 3. Client
 

@@ -1,0 +1,33 @@
+name: CI
+
+# Runs the automated tests and a production build on every push and pull request.
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: |
+            server/package-lock.json
+            client/package-lock.json
+
+      - name: Server - install and test (15 API tests)
+        working-directory: server
+        run: |
+          npm ci
+          npm test
+
+      - name: Client - install, test (13 unit tests) and build
+        working-directory: client
+        run: |
+          npm ci
+          npm test
+          npm run build

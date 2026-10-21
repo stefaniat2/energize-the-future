@@ -1,0 +1,22 @@
+name: Keep API awake
+
+# Free hosts put the API to sleep after ~15 minutes without traffic (the next visitor then waits
+# ~50 seconds). This pings the health endpoint every 10 minutes so it stays awake.
+#
+# Setup: repository Settings > Secrets and variables > Actions > Variables > New variable
+#   Name: API_URL     Value: https://<your-service>.onrender.com/api
+# Without that variable this workflow does nothing.
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+
+jobs:
+  ping:
+    if: ${{ vars.API_URL != '' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping the health endpoint
+        env:
+          API_URL: ${{ vars.API_URL }}
+        run: curl --fail --silent --show-error --max-time 90 --retry 2 "$API_URL/health"

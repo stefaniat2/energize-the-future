@@ -9,7 +9,7 @@ in your talk or demo**, gives you a script, a demo route and prepared answers.
 |---|---|---|
 | 01 Originality | Not a brochure: a *strategy game* with a real budget that forces trade-offs, a calculator that turns watts into money, CO₂ **and trees**, an old-vs-efficient comparison, 3 languages | Demo, min 2–4 |
 | 02 Practicality | Real use: check your own appliance, see what an LED saves with *your* price, habit tracker, ideas box; works on phone | Demo, min 3–4 |
-| 03 UI/UX | Consistent SDG-colour design, one burger menu, instant language switch, clear feedback after every decision, loading/error states, keyboard + screen-reader support | Demo throughout |
+| 03 UI/UX | Consistent SDG-colour design, one burger menu, instant language switch, clear feedback after every decision, loading/error states, keyboard + screen-reader support, Lighthouse Accessibility/Best Practices/SEO = 100 on all pages | Demo throughout |
 | 04 Functionality | Everything works live, including backend: leaderboard, forms. 28 automated tests pass | Demo + "how it works" |
 | 05 Technical skills | React/Vite, Express REST API, SQLite, i18n, CORS, rate limiting, validation, self-seeding database, pure tested logic, deployed on Vercel + Render | Min 4:30–5:30 |
 | 06 Oral presentation | Clear structure, a hook, a story, enthusiasm, eye contact, timing | Whole talk |
