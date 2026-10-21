@@ -7,7 +7,7 @@ results were checked**, so that another person could understand — and reproduc
 
 | | |
 |---|---|
-| **AI tool** | Claude Code (desktop app) by Anthropic — an AI coding assistant that reads, writes, runs and tests code in the project folder |
+| **AI tool** | Claude Code (desktop app) by Anthropic — an AI coding assistant that reads, writes, runs and tests code in the project folder. **It is the only AI tool used** (confirmed by the author). |
 | **Models** | Claude Sonnet 5 and Claude Sonnet 5.5 |
 | **Used for** | Writing code, drafting Romanian/Russian/English texts, writing tests, finding and fixing bugs, writing documentation, explaining deployment steps |
 | **Not used for** | Choosing the topic or rubric, deciding what the project should do, creating accounts, publishing the website (done by people), generating images (none used) |
@@ -126,7 +126,7 @@ matters more than a long list of ticks:
 | Proofreading of RO/RU texts by a human | ☐ author | Recommended: read the pages in each language once and report anything odd |
 | Author can explain the code | ☐ author | Study guide: [docs/CODE_WALKTHROUGH.md](docs/CODE_WALKTHROUGH.md) |
 | Use on a real phone and laptop | ☐ author | Phone layout was tested with browser mobile emulation and Lighthouse mobile only |
-| Confirm Claude Code was the only AI tool used | ☐ author | If another tool helped, add it to §1 |
+| Claude Code was the only AI tool used | ✅ confirmed by the author, 21 October 2026 | No other AI assistant, image generator or code generator was used |
 
 ### Second-pass translation review (21 October 2026)
 
