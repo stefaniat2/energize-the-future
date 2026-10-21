@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Energize the Future — stand poster (A3)</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  @page { size: A3 portrait; margin: 0; }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { width: 297mm; height: 420mm; }
+  body { font-family: "Poppins", system-ui, sans-serif; color: #0f172a; background: #f8fafc; line-height: 1.3; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .poster { width: 297mm; height: 420mm; display: flex; flex-direction: column; }
+  header { flex: none; background: linear-gradient(135deg, #124e89 0%, #1971c2 55%, #2f9e44 100%); color: #fff; padding: 12mm 20mm 10mm; position: relative; overflow: hidden; }
+  header::after { content: ""; position: absolute; right: -25mm; top: -25mm; width: 90mm; height: 90mm; border-radius: 50%; background: #f5c518; opacity: .95; box-shadow: 0 0 40mm rgba(245,197,24,.6); }
+  .tag { display: inline-block; background: rgba(255,255,255,.18); padding: 3mm 7mm; border-radius: 99mm; font-weight: 600; font-size: 15pt; letter-spacing: .4pt; margin-bottom: 6mm; position: relative; z-index: 1; }
+  h1 { font-size: 54pt; line-height: 1.02; font-weight: 800; position: relative; z-index: 1; max-width: 200mm; }
+  header p.sub { font-size: 18pt; margin-top: 4mm; max-width: 190mm; opacity: .95; position: relative; z-index: 1; }
+  main { flex: 1; min-height: 0; padding: 9mm 20mm 6mm; display: grid; grid-template-columns: 1fr 92mm; gap: 14mm; }
+  h2 { font-size: 22pt; font-weight: 800; margin-bottom: 4mm; color: #124e89; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5mm; margin-bottom: 7mm; }
+  .stat { background: #fff; border-radius: 6mm; padding: 6mm; border: .4mm solid #e2e8f0; box-shadow: 0 1mm 3mm rgba(0,0,0,.06); }
+  .stat b { display: block; font-size: 26pt; white-space: nowrap; color: #2f9e44; font-weight: 800; line-height: 1.1; }
+  .stat span { font-size: 11.5pt; color: #475569; }
+  .try { list-style: none; padding: 0; counter-reset: n; display: grid; gap: 5mm; }
+  .try li { counter-increment: n; display: flex; gap: 6mm; align-items: center; background: #fff; border-radius: 6mm; padding: 5mm 6mm; border: .4mm solid #e2e8f0; font-size: 14pt; }
+  .try li::before { content: counter(n); flex: none; width: 13mm; height: 13mm; border-radius: 50%; background: #f5c518; color: #0f172a; font-weight: 800; font-size: 20pt; display: grid; place-items: center; }
+  .try strong { display: block; font-size: 16.5pt; }
+  .try span { color: #475569; font-size: 12.5pt; display: block; }
+  aside { text-align: center; }
+  .qr { background: #fff; border-radius: 8mm; padding: 7mm; border: .6mm solid #e2e8f0; box-shadow: 0 1mm 4mm rgba(0,0,0,.08); }
+  .qr svg { width: 100%; height: auto; display: block; }
+  .scan { margin-top: 6mm; font-size: 21pt; font-weight: 800; color: #1e6b30; }
+  .url { font-size: 11pt; color: #475569; word-break: break-all; margin-top: 2mm; }
+  .langs { margin-top: 9mm; display: flex; justify-content: center; gap: 4mm; }
+  .langs span { background: #124e89; color: #fff; padding: 2.5mm 5mm; border-radius: 99mm; font-weight: 600; font-size: 12pt; }
+  footer { flex: none; background: #0f172a; color: #cbd5e1; padding: 9mm 20mm; display: flex; justify-content: space-between; gap: 12mm; font-size: 11pt; line-height: 1.5; }
+  footer b { color: #f5c518; }
+</style>
+</head>
+<body>
+<div class="poster">
+  <header>
+    <div class="tag">UN Sustainable Development Goal 7</div>
+    <h1>Energize<br>the Future</h1>
+    <p class="sub">Affordable and clean energy for everyone — play it, measure it, change it.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Why it matters</h2>
+      <div class="stats">
+        <div class="stat"><b>~660 M</b><span>people still have no electricity</span></div>
+        <div class="stat"><b>~2.1 B</b><span>cook without clean fuels</span></div>
+        <div class="stat"><b>~30%</b><span>of the world's power is renewable</span></div>
+      </div>
+
+      <h2>Try it at our stand</h2>
+      <ol class="try">
+        <li><div><strong>Play Energy Hero</strong><span>Run a polluted city on a tight budget. 10 levels, 25 seconds a decision. Can you beat 2,000 points?</span></div></li>
+        <li><div><strong>Check an appliance</strong><span>How much does your fridge cost per year — and how many trees would its CO₂ need?</span></div></li>
+        <li><div><strong>Compare old vs. efficient</strong><span>See what an LED bulb saves compared with an incandescent one.</span></div></li>
+        <li><div><strong>Switch language</strong><span>English, Română, Русский — everything changes instantly.</span></div></li>
+        <li><div><strong>Share your idea</strong><span>Tell us one way to make your community more sustainable.</span></div></li>
+      </ol>
+    </section>
+
+    <aside>
+      <div class="qr"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 31 31" shape-rendering="crispEdges"><path fill="#ffffff" d="M0 0h31v31H0z"/><path stroke="#0b3d2e" d="M1 1.5h7m5 0h1m2 0h1m3 0h1m2 0h7M1 2.5h1m5 0h1m1 0h4m1 0h1m1 0h5m2 0h1m5 0h1M1 3.5h1m1 0h3m1 0h1m2 0h1m1 0h1m2 0h1m1 0h1m2 0h1m2 0h1m1 0h3m1 0h1M1 4.5h1m1 0h3m1 0h1m5 0h1m1 0h2m2 0h2m2 0h1m1 0h3m1 0h1M1 5.5h1m1 0h3m1 0h1m1 0h2m1 0h2m2 0h1m3 0h1m2 0h1m1 0h3m1 0h1M1 6.5h1m5 0h1m2 0h5m1 0h1m1 0h4m1 0h1m5 0h1M1 7.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M10 8.5h1m1 0h3m2 0h2m1 0h2M1 9.5h1m1 0h1m1 0h1m1 0h1m3 0h1m3 0h4m1 0h2m3 0h1m2 0h1M2 10.5h3m1 0h1m1 0h2m1 0h3m4 0h2m2 0h2m2 0h1m2 0h1M2 11.5h7m5 0h1m2 0h1m4 0h2m3 0h3M2 12.5h2m1 0h2m1 0h1m7 0h6m1 0h2m3 0h1M2 13.5h4m1 0h4m1 0h2m2 0h3m2 0h4m1 0h1m1 0h2M3 14.5h4m1 0h3m2 0h2m2 0h3m1 0h3m2 0h1m2 0h1M1 15.5h3m2 0h3m4 0h1m1 0h1m2 0h2m1 0h1m2 0h3m1 0h2M2 16.5h2m1 0h1m2 0h1m1 0h1m2 0h6m1 0h1m5 0h1m1 0h1M3 17.5h2m2 0h2m2 0h1m1 0h1m1 0h1m1 0h2m1 0h4m2 0h1m1 0h2M2 18.5h4m7 0h1m1 0h1m1 0h2m2 0h1m1 0h1m2 0h2m1 0h1M1 19.5h1m2 0h2m1 0h1m1 0h1m2 0h3m6 0h1m6 0h2M2 20.5h5m3 0h2m6 0h6m1 0h2m1 0h1M1 21.5h1m2 0h1m1 0h4m1 0h2m4 0h3m1 0h5M9 22.5h2m1 0h1m1 0h1m2 0h1m3 0h1m3 0h1m1 0h3M1 23.5h7m3 0h3m1 0h1m1 0h2m1 0h2m1 0h1m1 0h2m1 0h2M1 24.5h1m5 0h1m2 0h3m1 0h2m2 0h1m2 0h1m3 0h2m1 0h2M1 25.5h1m1 0h3m1 0h1m1 0h1m3 0h1m1 0h1m2 0h1m2 0h5m2 0h2M1 26.5h1m1 0h3m1 0h1m3 0h1m1 0h1m1 0h1m1 0h3m4 0h2m1 0h3M1 27.5h1m1 0h3m1 0h1m1 0h2m2 0h1m4 0h1m1 0h1m3 0h3m2 0h1M1 28.5h1m5 0h1m2 0h2m2 0h5m1 0h2m6 0h1M1 29.5h7m1 0h4m4 0h2m2 0h5m2 0h2"/></svg>
+</div>
+      <div class="scan">Scan &amp; play</div>
+      <div class="url">energize-the-future.vercel.app</div>
+      <div class="langs"><span>EN</span><span>RO</span><span>RU</span></div>
+    </aside>
+  </main>
+
+  <footer>
+    <div><b>Built with:</b> React · Express · SQLite · 3 languages · 28 automated tests · fully responsive and keyboard accessible</div>
+    <div><b>Responsible AI:</b> built with the AI assistant Claude Code under our direction; prompts, checks and credits are public in the project's <i>AI &amp; Credits</i> page.<br>Figures are approximate (UN, IEA).</div>
+  </footer>
+</div>
+</body>
+</html>
