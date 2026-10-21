@@ -55,7 +55,10 @@ replaced or redeployed without changing the other as long as the API contract (R
 - **Self-seeding database.** `db.js` calls `seedDatabase()` after creating tables; it inserts the
   starter data *only into empty tables*. A fresh clone, a test run with `:memory:` and a free-tier
   host that restarts with a blank disk all start working without a manual step.
-  `npm run seed` forces a reset.
+  `npm run seed` forces a reset. Seeding is **versioned**: bumping `SEED_VERSION` in `seedData.js` makes the next
+  start replace the facts and game levels (in one transaction, with ids restarting at 1 so favourites saved in
+  visitors' browsers stay valid) while scores, suggestions and messages are never touched — this is how text
+  corrections reach a hosted database that was seeded earlier.
 - **Validation in middleware** keeps controllers free of checks and gives a uniform
   `{ success:false, errors:[…] }` response. Score validation also bounds the score (max 5000, while the
   theoretical game maximum is 2436) so leaderboard cheating via a hand-made request is rejected.
@@ -156,7 +159,7 @@ efficient version to the list.
 | Level | What | How |
 |---|---|---|
 | Unit | Calculator, game rules, translation files | `client/tests/logic.test.js` (13 tests) |
-| Integration | Every API endpoint on a real Express app with an in-memory database | `server/tests/api.test.js` (15 tests) |
+| Integration | Every API endpoint on a real Express app with an in-memory database | `server/tests/` — `api.test.js` (15) and `seed.test.js` (1) |
 | Manual (browser) | See checklist below | Done before each release |
 | Deployment | Live site against the live API | After each deploy |
 

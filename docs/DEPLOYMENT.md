@@ -62,7 +62,7 @@ The database creates and seeds itself on startup (no shell commands needed). Nod
 - [ ] Fun Facts and the game load data (proves CORS and `VITE_API_URL`)
 - [ ] Submit a suggestion and a game score; both succeed
 
-## 5. Troubleshooting (real problems we met)
+## 5. Troubleshooting (real problems met)
 
 | Symptom | Cause | Fix |
 |---|---|---|

@@ -10,7 +10,7 @@ in your talk or demo**, gives you a script, a demo route and prepared answers.
 | 01 Originality | Not a brochure: a *strategy game* with a real budget that forces trade-offs, a calculator that turns watts into money, CO₂ **and trees**, an old-vs-efficient comparison, 3 languages | Demo, min 2–4 |
 | 02 Practicality | Real use: check your own appliance, see what an LED saves with *your* price, habit tracker, ideas box; works on phone | Demo, min 3–4 |
 | 03 UI/UX | Consistent SDG-colour design, one burger menu, instant language switch, clear feedback after every decision, loading/error states, keyboard + screen-reader support, Lighthouse Accessibility/Best Practices/SEO = 100 on all pages | Demo throughout |
-| 04 Functionality | Everything works live, including backend: leaderboard, forms. 28 automated tests pass | Demo + "how it works" |
+| 04 Functionality | Everything works live, including backend: leaderboard, forms. 29 automated tests pass | Demo + "how it works" |
 | 05 Technical skills | React/Vite, Express REST API, SQLite, i18n, CORS, rate limiting, validation, self-seeding database, pure tested logic, deployed on Vercel + Render | Min 4:30–5:30 |
 | 06 Oral presentation | Clear structure, a hook, a story, enthusiasm, eye contact, timing | Whole talk |
 | 07 Documentation | README, architecture, user guide, deployment guide, API reference, tests documented | Show the repo, 20 s |
@@ -22,13 +22,13 @@ in your talk or demo**, gives you a script, a demo route and prepared answers.
 > Speak it in your own words — the script is a skeleton. Short sentences. Look at the jury, not the screen.
 
 **0:00 — Hook (30 s)**
-"About 660 million people on Earth still have no electricity. Two billion cook over smoke-filled
+"About 655 million people on Earth still have no electricity. Two billion cook over smoke-filled
 fires. And the energy we *do* have is heating the planet. The UN calls this Goal 7: affordable and
-clean energy for everyone by 2030. Our question was: how do we make young people *feel* that
+clean energy for everyone by 2030. My question was: how do I make young people *feel* that
 problem — and know what to do about it?"
 
 **0:30 — Idea (45 s)**
-"We built **Energize the Future**: not a page of facts, but a place with three things to do —
+"I built **Energize the Future**: not a page of facts, but a place with three things to do —
 *Learn* (SDG 7, six renewable technologies), *Play* (Energy Hero, a city strategy game), and
 *Measure* (an energy calculator with your own numbers). It speaks English, Romanian and Russian,
 because climate action can't wait for a translation."
@@ -37,23 +37,24 @@ because climate action can't wait for a translation."
 
 **4:15 — How it works (1 min 15 s)**
 "A React app talks to an Express API with a SQLite database. Three technical choices I'm proud of:
-*one* — the server **seeds itself**, so our free host can restart and still serve facts and game
-levels; *two* — game and calculator logic are **pure functions with unit tests**, 28 tests in
+*one* — the server **seeds itself**, so the site keeps working when the host restarts and the facts and game
+levels stay up to date; *two* — game and calculator logic are **pure functions with unit tests**, 29 tests in
 total, including one that fails if any language is missing a translation; *three* — security:
-validation, rate limiting, a CORS allow-list, no tracking."
+validation, rate limiting, a CORS allow-list, no tracking. And the data is permanent: it lives in a
+hosted Turso database, so the leaderboard survives restarts."
 
 **5:30 — Responsible AI (1 min)**
-"We built this with an AI coding assistant, Claude Code — and we're open about it. **We** chose the
-topic, wrote the brief, decided the features and reviewed everything. The AI wrote code and
+"I built this with an AI coding assistant, Claude Code — and I'm open about it. **I** chose the
+topic, wrote the brief, decided the features and reviewed the results. The AI wrote code and
 drafted translations. It also made mistakes — the game's budget wasn't actually enforced, a
-turbine animation was broken, the server crashed on the host — and our tests and our own
-checks caught them. Every prompt, tool and check is public in AI_USAGE.md and on the *AI & Credits*
+turbine animation was broken, the footer text became harder to read, the server crashed on the host —
+and automated tests, a Lighthouse audit and my own testing of the live site caught them. Every prompt, tool and check is public in AI_USAGE.md and on the *AI & Credits*
 page. The AI was a fast assistant; the judgement was ours."
 
 **6:30 — Impact and next steps (30 s)**
-"Next: a permanent database, more levels using real national data, and teacher mode for
-classrooms. Scan the QR code, beat 2,000 points in Energy Hero, and put your name on our
-leaderboard. Thank you!"
+"Next: more levels using real national energy data, a teacher mode for classrooms, and accounts so
+students can keep their progress. Scan the QR code, beat 2,000 points in Energy Hero, and put your
+name on the leaderboard. Thank you!"
 
 ## 3. Live demo route (≈3 minutes)
 
@@ -91,7 +92,7 @@ Answer in your own words and **honestly** — describe what *you* decided and ch
 | Who is it for and is it practical? | Students 12–18 and their families. They can enter their own appliances and electricity price and see real savings; it works on phones. |
 | How does the game work? | 5 stats 0–100; each level has two options with a cost and effects; +20 budget per level; 25 s timer; score rewards improvements, sustainability most. Unaffordable options lock, so the perfect score is impossible — you must prioritise. |
 | How do you know the calculator is right? | Formulas from the brief; unit tests; I checked by hand: 150 W × 24 h × 30 d = 108 kWh. CO₂ uses an average 0.45 kg/kWh and says it's an estimate. |
-| What did the AI do and what did you do? | See `AI_USAGE.md`: AI wrote code and drafted texts; we set the goals, reviewed every result, tested, deployed and decided. Name one thing **you** changed or caught. |
+| What did the AI do and what did you do? | See `AI_USAGE.md`: AI wrote code and drafted texts; I set the goals, reviewed the results, tested, deployed and decided. Name one thing **you** changed or caught. True examples: you asked for the burger-menu navigation; you caught the CORS error and the 404 from the browser console and deployment logs and sent them for fixing; you created and connected GitHub, Vercel, Render and Turso yourself. |
 | Could you build it without AI? | Be honest: slower. But I can explain every part — e.g. how a request goes from the browser to the database — and I fixed/changed [example]. |
 | What mistakes did the AI make? | Budget not enforced; broken turbine animation; crash on the host; missing comparison feature; untranslated 404 text. Tests and review caught them. |
 | How are translations checked? | Automated test: same keys in all languages, none empty, placeholders match, none left in English. Native-speaker review: [say who reviewed RO / RU]. |
@@ -106,7 +107,7 @@ Answer in your own words and **honestly** — describe what *you* decided and ch
 
 ## 5. Delivery tips (criterion 06)
 
-- Open with the question, not with "Hello, our project is…".
+- Open with the question, not with "Hello, my project is…".
 - One idea per sentence; pause after numbers.
 - Show, don't tell: spend ≥ 40 % of the time on the live demo.
 - Share the talk if you are more than one person: decide who does *hook + idea*, who *demo*, who

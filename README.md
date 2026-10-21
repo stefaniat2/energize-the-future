@@ -89,7 +89,7 @@ drawn with CSS/SVG, so no copyrighted images are used. See the [user guide](docs
 
 **Backend** — Node.js 20 · Express 4 · SQLite via the libSQL client (`@libsql/client`): a local file for development, optionally a free hosted **Turso** database for permanent data · dotenv
 
-**Quality** — Node's built-in test runner (28 automated tests), in-memory database for tests, GitHub Actions CI, Lighthouse audited
+**Quality** — Node's built-in test runner (29 automated tests), in-memory database for tests, GitHub Actions CI, Lighthouse audited
 
 **Hosting (free tiers)** — Vercel (frontend) · Render (API)
 
@@ -138,7 +138,7 @@ is only needed to force-reset the facts and game levels.
 |---|---|---|
 | `server/` | `npm run dev` | API with auto-restart |
 | `server/` | `npm start` | API (production) |
-| `server/` | `npm test` | 15 API integration tests |
+| `server/` | `npm test` | 16 tests (15 API integration tests + seeding) |
 | `server/` | `npm run seed` | Force re-seed facts and game levels |
 | `client/` | `npm run dev` | Vite dev server |
 | `client/` | `npm run build` | Production build into `client/dist` |
@@ -166,7 +166,7 @@ is only needed to force-reset the facts and game levels.
 ## Testing
 
 ```bash
-cd server && npm test     # API: endpoints, validation, CORS, rate limit, SQL-injection attempt
+cd server && npm test     # API: endpoints, validation, CORS, rate limit, SQL-injection attempt, seeding
 cd client && npm test     # formulas, game rules, translation parity
 ```
 
@@ -240,7 +240,7 @@ regions in the game · decorative icons hidden from screen readers · colour nev
 ## Deployment
 
 Deployed for free on **Vercel** (client) + **Render** (server). Step-by-step instructions, exact
-settings, and the problems we met and solved: [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md).
+settings, and the problems met and solved: [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md).
 
 ## Project structure
 
@@ -272,7 +272,7 @@ energize-the-future/
 ## Responsible AI use and credits
 
 This project was built with an AI coding assistant (**Claude Code**, Anthropic, Claude Sonnet
-models) under the team's direction. The tools, the prompts, what the AI did versus what people
+models) under the author's direction. The tools, the prompts, what the AI did versus what people
 did, how results were verified, and the licences of everything used are documented in
 **[AI_USAGE.md](AI_USAGE.md)** and summarised inside the app on the *AI & Credits* page.
 
@@ -294,6 +294,12 @@ Poppins font (SIL OFL).
 - `npm audit` reports moderate advisories in dev tooling (Vite/esbuild, React Router) that need
   breaking major upgrades; they do not affect the built, deployed site.
 
+## Author
+
+Created by **stefaniat2** as a solo project for the Informatix computer-science competition. Every
+change was requested, reviewed and approved by the author; AI assistance is documented in
+[AI_USAGE.md](AI_USAGE.md).
+
 ## License
 
 [MIT](LICENSE) — free to use, study and adapt, with attribution.
@@ -306,5 +312,7 @@ Poppins font (SIL OFL).
 | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | Design decisions, data model, game formulas, testing strategy |
 | [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) | Publishing for free and troubleshooting |
 | [AI_USAGE.md](AI_USAGE.md) | Responsible AI usage, prompts, review checklist |
+| [docs/FACT_CHECK.md](docs/FACT_CHECK.md) | Every statistic and claim, its source and how strongly it was verified |
+| [docs/CODE_WALKTHROUGH.md](docs/CODE_WALKTHROUGH.md) | Study guide: how every part of the code works |
 | [docs/PRESENTATION.md](docs/PRESENTATION.md) | Talk script, live demo, likely questions |
 | [docs/STAND.md](docs/STAND.md) | Stand layout and printable poster |

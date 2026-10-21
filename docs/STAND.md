@@ -48,7 +48,7 @@ The poster uses the same colours and typeface as the website (SDG 7 green `#2F9E
 ## 4. The 10-second pitch
 
 > "Can you save a city from pollution on a tight budget? Try Energy Hero — it takes two
-> minutes. Beat 2,000 points and you're on our leaderboard."
+> minutes. Beat 2,000 points and you're on the leaderboard."
 
 Then, depending on the visitor:
 
