@@ -47,7 +47,11 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-100 shadow-sm">
       <nav className="container-page flex items-center justify-between h-16" aria-label={t("a11y.mainNavigation")}>
-        <NavLink to="/" className="flex items-center gap-2 font-extrabold text-lg text-slate-800 shrink-0">
+        <NavLink
+          to="/"
+          aria-label={t("brand.name")}
+          className="flex items-center gap-2 font-extrabold text-lg text-slate-800 shrink-0"
+        >
           <span className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-sdg7-green via-sdg7-blue to-sdg7-yellow text-white shadow-md">
             <Zap size={20} fill="white" aria-hidden="true" />
           </span>

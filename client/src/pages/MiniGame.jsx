@@ -140,9 +140,6 @@ export default function MiniGame() {
     }
   }
 
-  if (status === "loading") return <Loading />;
-  if (status === "error") return <ErrorState message={t("common.error")} onRetry={loadScenarios} />;
-
   const achievements = earnedAchievements(stats, phase === "finished");
 
   return (
@@ -155,6 +152,11 @@ export default function MiniGame() {
         </div>
       </header>
 
+      {status === "loading" ? (
+        <Loading />
+      ) : status === "error" ? (
+        <ErrorState message={t("common.error")} onRetry={loadScenarios} />
+      ) : (
       <div className="container-page py-16">
         {phase === "intro" && (
           <div className="max-w-xl mx-auto space-y-8">
@@ -218,6 +220,7 @@ export default function MiniGame() {
           />
         )}
       </div>
+      )}
     </div>
   );
 }
@@ -252,7 +255,7 @@ function EffectChip({ icon: Icon, label, delta, good }) {
   return (
     <li
       className={`flex items-center justify-between gap-2 rounded-lg px-3 py-2 text-sm font-semibold ${
-        good ? "bg-green-50 text-green-700" : "bg-red-50 text-red-600"
+        good ? "bg-green-50 text-green-700" : "bg-red-50 text-red-700"
       }`}
     >
       <span className="flex items-center gap-2">
@@ -406,10 +409,10 @@ function GameLevel({
 function Leaderboard({ t, leaderboard }) {
   return (
     <div className="card p-6">
-      <h3 className="flex items-center gap-2 font-bold text-slate-800 text-lg mb-4">
+      <h2 className="flex items-center gap-2 font-bold text-slate-800 text-lg mb-4">
         <Trophy size={20} className="text-sdg7-yellow" aria-hidden="true" />
         {t("game.leaderboardTitle")}
-      </h3>
+      </h2>
       {leaderboard.length === 0 ? (
         <p className="text-slate-500 text-sm">{t("game.leaderboardEmpty")}</p>
       ) : (

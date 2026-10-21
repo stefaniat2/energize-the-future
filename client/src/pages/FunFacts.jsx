@@ -6,11 +6,11 @@ import { useLocalStorage } from "../hooks/useLocalStorage.js";
 import { Loading, ErrorState } from "../components/StatusMessage.jsx";
 
 const CATEGORY_META = {
-  solar: { icon: Sun, labelKey: "categorySolar", color: "text-sdg7-yellow", bg: "bg-yellow-50" },
+  solar: { icon: Sun, labelKey: "categorySolar", color: "text-yellow-700", bg: "bg-yellow-50" },
   wind: { icon: Wind, labelKey: "categoryWind", color: "text-sdg7-blue", bg: "bg-blue-50" },
-  climate: { icon: CloudSun, labelKey: "categoryClimate", color: "text-sky-600", bg: "bg-sky-50" },
+  climate: { icon: CloudSun, labelKey: "categoryClimate", color: "text-sky-700", bg: "bg-sky-50" },
   efficiency: { icon: Gauge, labelKey: "categoryEfficiency", color: "text-sdg7-green", bg: "bg-green-50" },
-  hydropower: { icon: Droplets, labelKey: "categoryHydropower", color: "text-cyan-600", bg: "bg-cyan-50" },
+  hydropower: { icon: Droplets, labelKey: "categoryHydropower", color: "text-cyan-700", bg: "bg-cyan-50" },
   technology: { icon: Cpu, labelKey: "categoryTechnology", color: "text-indigo-600", bg: "bg-indigo-50" },
 };
 
@@ -50,9 +50,6 @@ export default function FunFacts() {
   useEffect(() => {
     setCurrentIndex(0);
   }, [category, showFavoritesOnly]);
-
-  if (status === "loading") return <Loading />;
-  if (status === "error") return <ErrorState message={t("facts.loadError")} onRetry={loadFacts} />;
 
   const currentFact = filteredFacts[currentIndex];
 
@@ -101,6 +98,11 @@ export default function FunFacts() {
         </div>
       </header>
 
+      {status === "loading" ? (
+        <Loading />
+      ) : status === "error" ? (
+        <ErrorState message={t("facts.loadError")} onRetry={loadFacts} />
+      ) : (
       <div className="container-page py-16">
         {/* Filters */}
         <div className="flex flex-wrap items-center justify-center gap-2 mb-10">
@@ -196,6 +198,7 @@ export default function FunFacts() {
           </div>
         </div>
       </div>
+      )}
     </div>
   );
 }

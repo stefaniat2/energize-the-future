@@ -10,7 +10,7 @@ const OPEN_SOURCE = [
   ["i18next / react-i18next", "MIT"],
   ["Lucide icons", "ISC"],
   ["Express", "MIT"],
-  ["better-sqlite3", "MIT"],
+  ["@libsql/client", "MIT"],
   ["Poppins font", "SIL OFL 1.1"],
 ];
 

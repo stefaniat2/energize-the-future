@@ -31,11 +31,11 @@ export default function Footer() {
             </span>
             {t("brand.name")}
           </div>
-          <p className="text-sm leading-relaxed text-slate-500">{t("footer.about")}</p>
+          <p className="text-sm leading-relaxed text-slate-400">{t("footer.about")}</p>
         </div>
 
         <nav aria-label={t("a11y.footerQuickLinks")}>
-          <h3 className="text-white font-semibold mb-4">{t("footer.quickLinks")}</h3>
+          <h2 className="text-white font-semibold mb-4">{t("footer.quickLinks")}</h2>
           <ul className="space-y-2 text-sm">
             {quickLinks.map((link) => (
               <li key={link.to}>
@@ -48,7 +48,7 @@ export default function Footer() {
         </nav>
 
         <nav aria-label={t("a11y.footerResources")}>
-          <h3 className="text-white font-semibold mb-4">{t("footer.resources")}</h3>
+          <h2 className="text-white font-semibold mb-4">{t("footer.resources")}</h2>
           <ul className="space-y-2 text-sm">
             {resources.map((res) => (
               <li key={res.href}>
@@ -67,7 +67,7 @@ export default function Footer() {
         </nav>
 
         <div>
-          <h3 className="text-white font-semibold mb-4">{t("nav.contact")}</h3>
+          <h2 className="text-white font-semibold mb-4">{t("nav.contact")}</h2>
           <ul className="space-y-2 text-sm">
             <li>
               <Link to="/contact" className="hover:text-sdg7-yellow transition-colors">
@@ -84,7 +84,7 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-slate-800">
-        <div className="container-page py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500">
+        <div className="container-page py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-400">
           <p>{t("footer.rightsReserved")}</p>
           <p>{t("footer.madeWith")}</p>
         </div>

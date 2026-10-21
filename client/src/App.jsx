@@ -56,7 +56,7 @@ export default function App() {
       </a>
       <ScrollToTop />
       <Navbar />
-      <main id="main-content" tabIndex={-1} className="flex-1 outline-none">
+      <main id="main-content" tabIndex={-1} className="min-h-screen flex-1 outline-none">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<AboutSDG7 />} />
