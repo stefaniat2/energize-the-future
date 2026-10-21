@@ -3,7 +3,11 @@ require("dotenv").config();
 const path = require("path");
 const Database = require("better-sqlite3");
 
-const dbPath = path.join(__dirname, "..", process.env.DB_PATH || "./database/energize.db");
+// DB_PATH may be relative to server/, absolute, or ":memory:" (used by the test suite).
+const dbPath =
+  process.env.DB_PATH === ":memory:"
+    ? ":memory:"
+    : path.resolve(__dirname, "..", process.env.DB_PATH || "./database/energize.db");
 const db = new Database(dbPath);
 
 db.pragma("journal_mode = WAL");

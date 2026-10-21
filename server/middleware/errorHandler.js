@@ -1,10 +1,13 @@
 // Central error handler. Any error passed to next(err) ends up here.
 function errorHandler(err, req, res, next) {
-  console.error(err);
   const status = err.status || 500;
+  // Only unexpected server errors deserve a full stack trace in the logs.
+  if (status >= 500) console.error(err);
+
   res.status(status).json({
     success: false,
-    message: err.message || "Something went wrong on the server.",
+    // Never leak internal error details for unexpected failures.
+    message: status >= 500 ? "Something went wrong on the server." : err.message,
   });
 }
 
