@@ -59,7 +59,7 @@ export default function RenewableEnergy() {
                     <span className="text-lg font-bold text-slate-800">{data.name}</span>
                   </span>
                   <ChevronDown
-                    className={`text-slate-400 transition-transform ${isOpen ? "rotate-180" : ""}`}
+                    className={`text-slate-500 transition-transform ${isOpen ? "rotate-180" : ""}`}
                     aria-hidden="true"
                   />
                 </button>
@@ -69,7 +69,7 @@ export default function RenewableEnergy() {
                     <InfoBlock icon={Cog} label={t("common.howItWorks")} text={data.how} />
                     <InfoBlock icon={Globe} label={t("common.environmentalImpact")} text={data.impact} />
                     <InfoBlock icon={ThumbsUp} label={t("common.advantages")} text={data.pros} tone="text-sdg7-green" />
-                    <InfoBlock icon={ThumbsDown} label={t("common.disadvantages")} text={data.cons} tone="text-red-500" />
+                    <InfoBlock icon={ThumbsDown} label={t("common.disadvantages")} text={data.cons} tone="text-red-600" />
                     <InfoBlock icon={Lightbulb} label={t("common.realWorldUse")} text={data.uses} />
                     <InfoBlock icon={Lightbulb} label={t("common.funFact")} text={data.fact} tone="text-sdg7-blue" />
                   </div>

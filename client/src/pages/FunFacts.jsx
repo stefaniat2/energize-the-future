@@ -165,7 +165,7 @@ export default function FunFacts() {
                   <p className="text-xl sm:text-2xl font-medium text-slate-800 leading-relaxed mb-8">
                     {currentFact.text}
                   </p>
-                  <p className="text-sm text-slate-400 mb-6">
+                  <p className="text-sm text-slate-500 mb-6">
                     {t("facts.factCounter", { current: currentIndex + 1, total: filteredFacts.length })}
                   </p>
 

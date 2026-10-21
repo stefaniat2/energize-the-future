@@ -30,7 +30,7 @@ select:focus-visible,
   background: #f1f5f9;
 }
 ::-webkit-scrollbar-thumb {
-  background: #2F9E44;
+  background: #237a36;
   border-radius: 8px;
 }
 
@@ -72,4 +72,18 @@ select:focus-visible,
 
 .select {
   @apply w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-800 focus:border-sdg7-green outline-none transition-colors bg-white;
+}
+
+/* Respect users who ask their system for less motion. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

@@ -5,8 +5,8 @@ export default {
     extend: {
       colors: {
         sdg7: {
-          green: "#2F9E44",
-          "green-dark": "#1E6B30",
+          green: "#237a36",
+          "green-dark": "#185a29",
           blue: "#1971C2",
           "blue-dark": "#124E89",
           yellow: "#F5C518",

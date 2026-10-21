@@ -19,6 +19,7 @@ export default function Navbar() {
     { to: "/calculator", key: "calculator" },
     { to: "/community", key: "community" },
     { to: "/contact", key: "contact" },
+    { to: "/ai-usage", key: "ai" },
   ];
 
   useEffect(() => {
@@ -27,8 +28,15 @@ export default function Navbar() {
         setMenuOpen(false);
       }
     }
+    function handleEscape(event) {
+      if (event.key === "Escape") setMenuOpen(false);
+    }
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleEscape);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleEscape);
+    };
   }, []);
 
   const linkClass = ({ isActive }) =>
@@ -38,7 +46,7 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-100 shadow-sm">
-      <nav className="container-page flex items-center justify-between h-16" aria-label="Main navigation">
+      <nav className="container-page flex items-center justify-between h-16" aria-label={t("a11y.mainNavigation")}>
         <NavLink to="/" className="flex items-center gap-2 font-extrabold text-lg text-slate-800 shrink-0">
           <span className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-sdg7-green via-sdg7-blue to-sdg7-yellow text-white shadow-md">
             <Zap size={20} fill="white" aria-hidden="true" />
@@ -55,7 +63,7 @@ export default function Navbar() {
               onClick={() => setMenuOpen((prev) => !prev)}
               aria-haspopup="true"
               aria-expanded={menuOpen}
-              aria-label={menuOpen ? "Close menu" : "Open menu"}
+              aria-label={menuOpen ? t("a11y.closeMenu") : t("a11y.openMenu")}
               className="p-2 rounded-full text-slate-700 hover:bg-slate-100 transition-colors"
             >
               {menuOpen ? <X size={22} aria-hidden="true" /> : <Menu size={22} aria-hidden="true" />}

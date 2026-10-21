@@ -12,7 +12,8 @@
     "game": "Mini Game",
     "calculator": "Energy Calculator",
     "community": "Community",
-    "contact": "Contact"
+    "contact": "Contact",
+    "ai": "AI & Credits"
   },
   "common": {
     "loading": "Loading...",
@@ -20,11 +21,8 @@
     "retry": "Try again",
     "close": "Close",
     "learnMore": "Learn more",
-    "readMore": "Read more",
-    "showLess": "Show less",
     "back": "Back",
     "next": "Next",
-    "previous": "Previous",
     "submit": "Submit",
     "reset": "Reset",
     "save": "Save",
@@ -206,7 +204,6 @@
     },
     "consistencyHigh": "Very consistent",
     "consistencyMedium": "Variable",
-    "consistencyLow": "Site-dependent",
     "costDown": "Falling steadily",
     "costStable": "Stable",
     "bestUseSolar": "Homes, businesses, sunny regions",
@@ -232,26 +229,126 @@
     "markUndone": "Mark as not completed",
     "savingPotential": "Potential savings",
     "items": {
-      "home1": { "title": "Switch to LED bulbs", "text": "Replace incandescent bulbs with LED lights, which use up to 90% less energy and last much longer.", "saving": "Up to 90% less lighting energy", "difficulty": "easy" },
-      "home2": { "title": "Unplug idle electronics", "text": "Unplug chargers, TVs, and game consoles when they're not in use to avoid 'phantom' standby power draw.", "saving": "5-10% of home electricity use", "difficulty": "easy" },
-      "home3": { "title": "Wash clothes in cold water", "text": "Most of the energy used by a washing machine goes toward heating water — cold washes save energy and still clean effectively.", "saving": "Up to 90% of washing energy", "difficulty": "easy" },
-      "home4": { "title": "Improve home insulation", "text": "Seal drafts around windows and doors and add insulation to reduce the energy needed for heating and cooling.", "saving": "10-20% on heating/cooling", "difficulty": "medium" },
-      "home5": { "title": "Install a smart thermostat", "text": "Smart thermostats automatically adjust temperature based on your schedule, avoiding wasted heating or cooling.", "saving": "10-15% on heating/cooling", "difficulty": "medium" },
-      "home6": { "title": "Air-dry laundry when possible", "text": "Use a clothesline or drying rack instead of a tumble dryer to save a significant amount of electricity.", "saving": "High dryer-energy savings", "difficulty": "easy" },
-      "school1": { "title": "Turn off classroom lights", "text": "Switch off lights in empty classrooms, and make use of natural daylight whenever possible.", "saving": "Reduces daytime lighting use", "difficulty": "easy" },
-      "school2": { "title": "Start an energy-saving club", "text": "Organize a student group to track school energy use and suggest improvements to staff.", "saving": "Ongoing awareness & savings", "difficulty": "medium" },
-      "school3": { "title": "Shut down computers overnight", "text": "Make sure school computers and projectors are fully shut down, not just in sleep mode, at the end of the day.", "saving": "Cuts overnight standby waste", "difficulty": "easy" },
-      "school4": { "title": "Encourage recycling programs", "text": "Recycling paper, plastic, and electronics reduces the energy needed to manufacture new materials.", "saving": "Indirect energy savings", "difficulty": "easy" },
-      "transport1": { "title": "Walk or cycle for short trips", "text": "For trips under a couple of kilometers, walking or cycling saves fuel and is great exercise.", "saving": "100% of trip fuel use", "difficulty": "easy" },
-      "transport2": { "title": "Use public transportation", "text": "Buses and trains carry many passengers at once, using far less energy per person than individual cars.", "saving": "Significant per-person savings", "difficulty": "medium" },
-      "transport3": { "title": "Carpool with others", "text": "Sharing rides with classmates or coworkers reduces the number of cars on the road and fuel used per trip.", "saving": "Shared fuel costs", "difficulty": "medium" },
-      "transport4": { "title": "Keep tires properly inflated", "text": "Under-inflated tires increase fuel consumption — check tire pressure regularly for better efficiency.", "saving": "Up to 3% better fuel economy", "difficulty": "easy" },
-      "tech1": { "title": "Enable power-saving mode", "text": "Turn on power-saving or eco mode on laptops, phones, and monitors to automatically reduce energy use.", "saving": "10-20% device energy use", "difficulty": "easy" },
-      "tech2": { "title": "Lower screen brightness", "text": "Reducing screen brightness on phones, tablets, and computers noticeably extends battery life and saves energy.", "saving": "Reduces device power draw", "difficulty": "easy" },
-      "tech3": { "title": "Choose energy-efficient appliances", "text": "When buying new appliances, look for energy-efficiency labels to choose models that use less electricity.", "saving": "Long-term appliance savings", "difficulty": "medium" },
-      "public1": { "title": "Support solar-powered street lighting", "text": "Advocate for solar-powered streetlights and public lighting in your community to reduce grid electricity use.", "saving": "Reduces public grid demand", "difficulty": "hard" },
-      "public2": { "title": "Report broken or wasteful lighting", "text": "Let local authorities know about street lights or public lights that stay on unnecessarily during the day.", "saving": "Prevents daytime energy waste", "difficulty": "easy" },
-      "public3": { "title": "Use reusable water bottles and bags", "text": "Producing plastic items requires energy — reusable alternatives reduce that ongoing demand.", "saving": "Reduces manufacturing energy", "difficulty": "easy" }
+      "home1": {
+        "title": "Switch to LED bulbs",
+        "text": "Replace incandescent bulbs with LED lights, which use up to 90% less energy and last much longer.",
+        "saving": "Up to 90% less lighting energy",
+        "difficulty": "easy"
+      },
+      "home2": {
+        "title": "Unplug idle electronics",
+        "text": "Unplug chargers, TVs, and game consoles when they're not in use to avoid 'phantom' standby power draw.",
+        "saving": "5-10% of home electricity use",
+        "difficulty": "easy"
+      },
+      "home3": {
+        "title": "Wash clothes in cold water",
+        "text": "Most of the energy used by a washing machine goes toward heating water — cold washes save energy and still clean effectively.",
+        "saving": "Up to 90% of washing energy",
+        "difficulty": "easy"
+      },
+      "home4": {
+        "title": "Improve home insulation",
+        "text": "Seal drafts around windows and doors and add insulation to reduce the energy needed for heating and cooling.",
+        "saving": "10-20% on heating/cooling",
+        "difficulty": "medium"
+      },
+      "home5": {
+        "title": "Install a smart thermostat",
+        "text": "Smart thermostats automatically adjust temperature based on your schedule, avoiding wasted heating or cooling.",
+        "saving": "10-15% on heating/cooling",
+        "difficulty": "medium"
+      },
+      "home6": {
+        "title": "Air-dry laundry when possible",
+        "text": "Use a clothesline or drying rack instead of a tumble dryer to save a significant amount of electricity.",
+        "saving": "High dryer-energy savings",
+        "difficulty": "easy"
+      },
+      "school1": {
+        "title": "Turn off classroom lights",
+        "text": "Switch off lights in empty classrooms, and make use of natural daylight whenever possible.",
+        "saving": "Reduces daytime lighting use",
+        "difficulty": "easy"
+      },
+      "school2": {
+        "title": "Start an energy-saving club",
+        "text": "Organize a student group to track school energy use and suggest improvements to staff.",
+        "saving": "Ongoing awareness & savings",
+        "difficulty": "medium"
+      },
+      "school3": {
+        "title": "Shut down computers overnight",
+        "text": "Make sure school computers and projectors are fully shut down, not just in sleep mode, at the end of the day.",
+        "saving": "Cuts overnight standby waste",
+        "difficulty": "easy"
+      },
+      "school4": {
+        "title": "Encourage recycling programs",
+        "text": "Recycling paper, plastic, and electronics reduces the energy needed to manufacture new materials.",
+        "saving": "Indirect energy savings",
+        "difficulty": "easy"
+      },
+      "transport1": {
+        "title": "Walk or cycle for short trips",
+        "text": "For trips under a couple of kilometers, walking or cycling saves fuel and is great exercise.",
+        "saving": "100% of trip fuel use",
+        "difficulty": "easy"
+      },
+      "transport2": {
+        "title": "Use public transportation",
+        "text": "Buses and trains carry many passengers at once, using far less energy per person than individual cars.",
+        "saving": "Significant per-person savings",
+        "difficulty": "medium"
+      },
+      "transport3": {
+        "title": "Carpool with others",
+        "text": "Sharing rides with classmates or coworkers reduces the number of cars on the road and fuel used per trip.",
+        "saving": "Shared fuel costs",
+        "difficulty": "medium"
+      },
+      "transport4": {
+        "title": "Keep tires properly inflated",
+        "text": "Under-inflated tires increase fuel consumption — check tire pressure regularly for better efficiency.",
+        "saving": "Up to 3% better fuel economy",
+        "difficulty": "easy"
+      },
+      "tech1": {
+        "title": "Enable power-saving mode",
+        "text": "Turn on power-saving or eco mode on laptops, phones, and monitors to automatically reduce energy use.",
+        "saving": "10-20% device energy use",
+        "difficulty": "easy"
+      },
+      "tech2": {
+        "title": "Lower screen brightness",
+        "text": "Reducing screen brightness on phones, tablets, and computers noticeably extends battery life and saves energy.",
+        "saving": "Reduces device power draw",
+        "difficulty": "easy"
+      },
+      "tech3": {
+        "title": "Choose energy-efficient appliances",
+        "text": "When buying new appliances, look for energy-efficiency labels to choose models that use less electricity.",
+        "saving": "Long-term appliance savings",
+        "difficulty": "medium"
+      },
+      "public1": {
+        "title": "Support solar-powered street lighting",
+        "text": "Advocate for solar-powered streetlights and public lighting in your community to reduce grid electricity use.",
+        "saving": "Reduces public grid demand",
+        "difficulty": "hard"
+      },
+      "public2": {
+        "title": "Report broken or wasteful lighting",
+        "text": "Let local authorities know about street lights or public lights that stay on unnecessarily during the day.",
+        "saving": "Prevents daytime energy waste",
+        "difficulty": "easy"
+      },
+      "public3": {
+        "title": "Use reusable water bottles and bags",
+        "text": "Producing plastic items requires energy — reusable alternatives reduce that ongoing demand.",
+        "saving": "Reduces manufacturing energy",
+        "difficulty": "easy"
+      }
     }
   },
   "facts": {
@@ -264,8 +361,6 @@
     "unfavorite": "Remove from favorites",
     "shareCopied": "Fact copied to clipboard!",
     "factCounter": "Fact {{current}} of {{total}}",
-    "showingFavorites": "Showing your favorite facts",
-    "showAllFacts": "Show all facts",
     "noFavorites": "You haven't favorited any facts yet. Click the heart icon on a fact to save it here.",
     "categorySolar": "Solar Energy",
     "categoryWind": "Wind Energy",
@@ -313,7 +408,16 @@
     "achievement2": "Pollution Fighter — Reduced pollution below 20%",
     "achievement3": "People's Champion — Kept happiness above 70%",
     "achievement4": "Sustainability Master — Finished with a sustainability score above 80",
-    "achievement5": "Energy Hero — Completed all 10 levels"
+    "achievement5": "Energy Hero — Completed all 10 levels",
+    "anonymous": "Anonymous Hero",
+    "rulesBudget": "You start with a budget of {{start}} and the city earns +{{income}} more at every level. Spend wisely: expensive options need enough budget.",
+    "rulesTimer": "You have {{seconds}} seconds per decision — if time runs out, the cheapest option is chosen for you.",
+    "cost": "Cost",
+    "free": "Free",
+    "notEnoughBudget": "Not enough budget for this option.",
+    "timeUp": "Time's up! The cheapest option was chosen automatically.",
+    "yourDecision": "Your decision",
+    "consequences": "Consequences"
   },
   "calculator": {
     "pageTitle": "Energy Consumption Calculator",
@@ -343,12 +447,12 @@
     "totalCo2": "Total Estimated CO₂ (Monthly)",
     "resetAll": "Reset Calculator",
     "co2Disclaimer": "CO₂ estimates use an average grid emission factor and are approximate — actual emissions depend heavily on your local electricity mix (coal, gas, renewables, etc.).",
-    "efficiencyTipsTitle": "Compare Energy-Efficient Alternatives",
-    "efficiencyTipsText": "Try lowering the 'Power' value for an appliance to see how an energy-efficient model (like an LED bulb instead of an incandescent one) could reduce your consumption and cost.",
     "formError": "Please fill in all fields with valid, positive numbers.",
-    "perMonth": "/month",
     "perYear": "/year",
-    "perDay": "/day"
+    "editAppliance": "Edit appliance",
+    "currency": "Currency",
+    "treesEquivalent": "To absorb this CO₂ over a year, about {{trees}} trees would be needed.",
+    "treesNote": "A mature tree absorbs roughly 21 kg of CO₂ per year (estimate)."
   },
   "community": {
     "pageTitle": "Community & Suggestions",
@@ -412,5 +516,58 @@
     "ro": "Română",
     "ru": "Русский",
     "selectLanguage": "Select language"
+  },
+  "a11y": {
+    "skipToContent": "Skip to main content",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "mainNavigation": "Main navigation",
+    "footerQuickLinks": "Footer quick links",
+    "footerResources": "Footer resources"
+  },
+  "notFound": {
+    "message": "This page seems to have run out of power. Let's get you back to a brighter path."
+  },
+  "compare": {
+    "title": "Compare efficient alternatives",
+    "intro": "See how much an energy-efficient appliance saves compared to an older one, using your electricity price.",
+    "hoursPerDay": "{{hours}} h/day",
+    "saves": "Saves {{percent}}% of the power — {{kwh}} kWh, {{money}} and {{co2}} kg of CO₂ every year.",
+    "addToCalculator": "Add the efficient version to my calculator",
+    "illustrative": "Values are typical examples for illustration — check the energy label of your own appliance.",
+    "items": {
+      "bulb": {
+        "old": "Incandescent bulb",
+        "new": "LED bulb"
+      },
+      "fridge": {
+        "old": "Old refrigerator",
+        "new": "Efficient refrigerator (A+++)"
+      },
+      "tv": {
+        "old": "Old plasma TV",
+        "new": "Modern LED TV"
+      },
+      "ac": {
+        "old": "Old air conditioner",
+        "new": "Inverter air conditioner"
+      }
+    }
+  },
+  "ai": {
+    "pageTitle": "AI & Credits",
+    "pageSubtitle": "How this project was made, which AI tools helped, and where the information and assets come from.",
+    "toolsTitle": "AI tools used",
+    "toolsText": "This website was built with the help of an AI coding assistant: Claude Code by Anthropic (Claude Sonnet models). The AI wrote and revised code, drafted the English, Romanian and Russian texts, and helped find and fix bugs, always following instructions and prompts written by the team.",
+    "humanTitle": "Human oversight",
+    "humanText": "The team chose the topic, set the goals and features, reviewed the results, tested the website on different devices and approved every change before publishing. The full process and prompts are documented in the project repository (AI_USAGE.md).",
+    "factsTitle": "Facts and sources",
+    "factsText": "Educational content is based on public information from the United Nations (SDG 7), the International Energy Agency (IEA) and the International Renewable Energy Agency (IRENA). Statistics are approximate and change over time — always check the official sources linked in the footer.",
+    "licensesTitle": "Open-source credits",
+    "imagesText": "No copyrighted images are used: all illustrations are drawn with CSS and SVG, and all icons come from the open-source Lucide library.",
+    "privacyTitle": "Privacy",
+    "privacyText": "No accounts and no tracking. The site stores only what you choose to send (game name and score, suggestions, contact messages) and keeps your settings, favorites and progress in your own browser.",
+    "limitsTitle": "Known limits",
+    "limitsText": "AI can make mistakes. Translations and facts were reviewed by the team, but if you spot an error, please tell us through the Contact page. CO₂ results in the calculator are estimates."
   }
 }

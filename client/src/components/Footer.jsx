@@ -11,6 +11,7 @@ export default function Footer() {
     { to: "/energy-tips", key: "tips" },
     { to: "/mini-game", key: "game" },
     { to: "/calculator", key: "calculator" },
+    { to: "/ai-usage", key: "ai" },
   ];
 
   const resources = [
@@ -30,10 +31,10 @@ export default function Footer() {
             </span>
             {t("brand.name")}
           </div>
-          <p className="text-sm leading-relaxed text-slate-400">{t("footer.about")}</p>
+          <p className="text-sm leading-relaxed text-slate-500">{t("footer.about")}</p>
         </div>
 
-        <nav aria-label="Footer quick links">
+        <nav aria-label={t("a11y.footerQuickLinks")}>
           <h3 className="text-white font-semibold mb-4">{t("footer.quickLinks")}</h3>
           <ul className="space-y-2 text-sm">
             {quickLinks.map((link) => (
@@ -46,7 +47,7 @@ export default function Footer() {
           </ul>
         </nav>
 
-        <nav aria-label="Footer resources">
+        <nav aria-label={t("a11y.footerResources")}>
           <h3 className="text-white font-semibold mb-4">{t("footer.resources")}</h3>
           <ul className="space-y-2 text-sm">
             {resources.map((res) => (

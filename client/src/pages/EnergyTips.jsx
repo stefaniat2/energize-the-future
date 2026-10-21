@@ -57,7 +57,7 @@ export default function EnergyTips() {
                 cy="18"
                 r="16"
                 fill="none"
-                stroke="#2F9E44"
+                stroke="#237a36"
                 strokeWidth="4"
                 strokeDasharray={`${percent} 100`}
                 strokeLinecap="round"

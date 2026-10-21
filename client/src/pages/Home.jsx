@@ -148,7 +148,7 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <p className="mt-6 text-xs text-slate-400 max-w-2xl mx-auto">{t("home.statsNote")}</p>
+          <p className="mt-6 text-xs text-slate-500 max-w-2xl mx-auto">{t("home.statsNote")}</p>
         </div>
       </section>
 

@@ -8,9 +8,7 @@ export default function NotFound() {
     <div className="container-page py-24 text-center flex flex-col items-center gap-6">
       <Zap size={56} className="text-sdg7-yellow" aria-hidden="true" />
       <h1 className="text-5xl font-extrabold text-slate-800">404</h1>
-      <p className="text-slate-500 max-w-md">
-        This page seems to have run out of power. Let's get you back to a brighter path.
-      </p>
+      <p className="text-slate-500 max-w-md">{t("notFound.message")}</p>
       <Link to="/" className="btn-primary">
         <Home size={18} aria-hidden="true" />
         {t("nav.home")}

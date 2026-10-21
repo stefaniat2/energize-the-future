@@ -12,7 +12,8 @@
     "game": "Mini-joc",
     "calculator": "Calculator energetic",
     "community": "Comunitate",
-    "contact": "Contact"
+    "contact": "Contact",
+    "ai": "IA și credite"
   },
   "common": {
     "loading": "Se încarcă...",
@@ -20,11 +21,8 @@
     "retry": "Încearcă din nou",
     "close": "Închide",
     "learnMore": "Află mai multe",
-    "readMore": "Citește mai mult",
-    "showLess": "Arată mai puțin",
     "back": "Înapoi",
     "next": "Următorul",
-    "previous": "Anteriorul",
     "submit": "Trimite",
     "reset": "Resetează",
     "save": "Salvează",
@@ -206,7 +204,6 @@
     },
     "consistencyHigh": "Foarte constantă",
     "consistencyMedium": "Variabilă",
-    "consistencyLow": "Dependentă de amplasament",
     "costDown": "În scădere constantă",
     "costStable": "Stabilă",
     "bestUseSolar": "Locuințe, afaceri, regiuni însorite",
@@ -232,26 +229,126 @@
     "markUndone": "Marchează ca nefinalizat",
     "savingPotential": "Economie potențială",
     "items": {
-      "home1": { "title": "Trece la becuri LED", "text": "Înlocuiește becurile incandescente cu becuri LED, care folosesc cu până la 90% mai puțină energie și durează mult mai mult.", "saving": "Până la 90% mai puțină energie pentru iluminat", "difficulty": "easy" },
-      "home2": { "title": "Deconectează aparatele nefolosite", "text": "Deconectează încărcătoarele, televizoarele și consolele de jocuri atunci când nu sunt folosite, pentru a evita consumul 'fantomă' în standby.", "saving": "5-10% din electricitatea locuinței", "difficulty": "easy" },
-      "home3": { "title": "Spală hainele cu apă rece", "text": "Cea mai mare parte a energiei folosite de o mașină de spălat merge spre încălzirea apei — spălarea cu apă rece economisește energie și curăță eficient.", "saving": "Până la 90% din energia de spălare", "difficulty": "easy" },
-      "home4": { "title": "Îmbunătățește izolația locuinței", "text": "Etanșează curenții de aer din jurul ferestrelor și ușilor și adaugă izolație pentru a reduce energia necesară pentru încălzire și răcire.", "saving": "10-20% la încălzire/răcire", "difficulty": "medium" },
-      "home5": { "title": "Instalează un termostat inteligent", "text": "Termostatele inteligente ajustează automat temperatura în funcție de programul tău, evitând încălzirea sau răcirea inutilă.", "saving": "10-15% la încălzire/răcire", "difficulty": "medium" },
-      "home6": { "title": "Usucă rufele la aer, când e posibil", "text": "Folosește o sfoară de rufe sau un uscător cu rastel în loc de uscătorul electric pentru a economisi multă electricitate.", "saving": "Economii mari la uscător", "difficulty": "easy" },
-      "school1": { "title": "Stinge luminile din clase", "text": "Stinge luminile din clasele goale și folosește lumina naturală ori de câte ori este posibil.", "saving": "Reduce consumul de iluminat pe timp de zi", "difficulty": "easy" },
-      "school2": { "title": "Înființează un club de economisire a energiei", "text": "Organizează un grup de elevi care să urmărească consumul de energie al școlii și să propună îmbunătățiri personalului.", "saving": "Conștientizare și economii continue", "difficulty": "medium" },
-      "school3": { "title": "Oprește complet calculatoarele peste noapte", "text": "Asigură-te că, la sfârșitul zilei, calculatoarele și proiectoarele școlii sunt oprite complet, nu doar puse în stand-by.", "saving": "Reduce risipa de energie pe timpul nopții", "difficulty": "easy" },
-      "school4": { "title": "Încurajează programele de reciclare", "text": "Reciclarea hârtiei, plasticului și electronicelor reduce energia necesară pentru fabricarea de materiale noi.", "saving": "Economii energetice indirecte", "difficulty": "easy" },
-      "transport1": { "title": "Mergi pe jos sau cu bicicleta pe distanțe scurte", "text": "Pentru distanțe de sub câțiva kilometri, mersul pe jos sau cu bicicleta economisește combustibil și este un exercițiu excelent.", "saving": "100% din combustibilul pentru traseu", "difficulty": "easy" },
-      "transport2": { "title": "Folosește transportul public", "text": "Autobuzele și trenurile transportă mulți pasageri deodată, folosind mult mai puțină energie per persoană decât mașinile individuale.", "saving": "Economii semnificative per persoană", "difficulty": "medium" },
-      "transport3": { "title": "Practică transportul în comun (carpooling)", "text": "Împărțirea deplasărilor cu colegi sau prieteni reduce numărul de mașini de pe drum și combustibilul consumat pe traseu.", "saving": "Costuri de combustibil partajate", "difficulty": "medium" },
-      "transport4": { "title": "Menține presiunea corectă în anvelope", "text": "Anvelopele umflate insuficient cresc consumul de combustibil — verifică regulat presiunea pentru o eficiență mai bună.", "saving": "Până la 3% economie de combustibil", "difficulty": "easy" },
-      "tech1": { "title": "Activează modul de economisire a energiei", "text": "Activează modul eco sau de economisire a energiei pe laptopuri, telefoane și monitoare pentru a reduce automat consumul.", "saving": "10-20% din energia dispozitivului", "difficulty": "easy" },
-      "tech2": { "title": "Redu luminozitatea ecranului", "text": "Reducerea luminozității ecranului pe telefoane, tablete și calculatoare prelungește vizibil durata bateriei și economisește energie.", "saving": "Reduce consumul dispozitivului", "difficulty": "easy" },
-      "tech3": { "title": "Alege aparate eficiente energetic", "text": "Când cumperi aparate noi, caută etichetele de eficiență energetică pentru a alege modele care consumă mai puțină electricitate.", "saving": "Economii pe termen lung", "difficulty": "medium" },
-      "public1": { "title": "Susține iluminatul stradal pe bază de energie solară", "text": "Susține instalarea de lămpi stradale și iluminat public alimentate solar în comunitatea ta, pentru a reduce consumul din rețea.", "saving": "Reduce cererea din rețeaua publică", "difficulty": "hard" },
-      "public2": { "title": "Raportează iluminatul defect sau risipit", "text": "Anunță autoritățile locale despre lămpile stradale sau publice care rămân aprinse inutil în timpul zilei.", "saving": "Previne risipa de energie pe timpul zilei", "difficulty": "easy" },
-      "public3": { "title": "Folosește sticle și pungi reutilizabile", "text": "Producerea obiectelor din plastic necesită energie — alternativele reutilizabile reduc această cerere continuă.", "saving": "Reduce energia de fabricație", "difficulty": "easy" }
+      "home1": {
+        "title": "Trece la becuri LED",
+        "text": "Înlocuiește becurile incandescente cu becuri LED, care folosesc cu până la 90% mai puțină energie și durează mult mai mult.",
+        "saving": "Până la 90% mai puțină energie pentru iluminat",
+        "difficulty": "easy"
+      },
+      "home2": {
+        "title": "Deconectează aparatele nefolosite",
+        "text": "Deconectează încărcătoarele, televizoarele și consolele de jocuri atunci când nu sunt folosite, pentru a evita consumul 'fantomă' în standby.",
+        "saving": "5-10% din electricitatea locuinței",
+        "difficulty": "easy"
+      },
+      "home3": {
+        "title": "Spală hainele cu apă rece",
+        "text": "Cea mai mare parte a energiei folosite de o mașină de spălat merge spre încălzirea apei — spălarea cu apă rece economisește energie și curăță eficient.",
+        "saving": "Până la 90% din energia de spălare",
+        "difficulty": "easy"
+      },
+      "home4": {
+        "title": "Îmbunătățește izolația locuinței",
+        "text": "Etanșează curenții de aer din jurul ferestrelor și ușilor și adaugă izolație pentru a reduce energia necesară pentru încălzire și răcire.",
+        "saving": "10-20% la încălzire/răcire",
+        "difficulty": "medium"
+      },
+      "home5": {
+        "title": "Instalează un termostat inteligent",
+        "text": "Termostatele inteligente ajustează automat temperatura în funcție de programul tău, evitând încălzirea sau răcirea inutilă.",
+        "saving": "10-15% la încălzire/răcire",
+        "difficulty": "medium"
+      },
+      "home6": {
+        "title": "Usucă rufele la aer, când e posibil",
+        "text": "Folosește o sfoară de rufe sau un uscător cu rastel în loc de uscătorul electric pentru a economisi multă electricitate.",
+        "saving": "Economii mari la uscător",
+        "difficulty": "easy"
+      },
+      "school1": {
+        "title": "Stinge luminile din clase",
+        "text": "Stinge luminile din clasele goale și folosește lumina naturală ori de câte ori este posibil.",
+        "saving": "Reduce consumul de iluminat pe timp de zi",
+        "difficulty": "easy"
+      },
+      "school2": {
+        "title": "Înființează un club de economisire a energiei",
+        "text": "Organizează un grup de elevi care să urmărească consumul de energie al școlii și să propună îmbunătățiri personalului.",
+        "saving": "Conștientizare și economii continue",
+        "difficulty": "medium"
+      },
+      "school3": {
+        "title": "Oprește complet calculatoarele peste noapte",
+        "text": "Asigură-te că, la sfârșitul zilei, calculatoarele și proiectoarele școlii sunt oprite complet, nu doar puse în stand-by.",
+        "saving": "Reduce risipa de energie pe timpul nopții",
+        "difficulty": "easy"
+      },
+      "school4": {
+        "title": "Încurajează programele de reciclare",
+        "text": "Reciclarea hârtiei, plasticului și electronicelor reduce energia necesară pentru fabricarea de materiale noi.",
+        "saving": "Economii energetice indirecte",
+        "difficulty": "easy"
+      },
+      "transport1": {
+        "title": "Mergi pe jos sau cu bicicleta pe distanțe scurte",
+        "text": "Pentru distanțe de sub câțiva kilometri, mersul pe jos sau cu bicicleta economisește combustibil și este un exercițiu excelent.",
+        "saving": "100% din combustibilul pentru traseu",
+        "difficulty": "easy"
+      },
+      "transport2": {
+        "title": "Folosește transportul public",
+        "text": "Autobuzele și trenurile transportă mulți pasageri deodată, folosind mult mai puțină energie per persoană decât mașinile individuale.",
+        "saving": "Economii semnificative per persoană",
+        "difficulty": "medium"
+      },
+      "transport3": {
+        "title": "Practică transportul în comun (carpooling)",
+        "text": "Împărțirea deplasărilor cu colegi sau prieteni reduce numărul de mașini de pe drum și combustibilul consumat pe traseu.",
+        "saving": "Costuri de combustibil partajate",
+        "difficulty": "medium"
+      },
+      "transport4": {
+        "title": "Menține presiunea corectă în anvelope",
+        "text": "Anvelopele umflate insuficient cresc consumul de combustibil — verifică regulat presiunea pentru o eficiență mai bună.",
+        "saving": "Până la 3% economie de combustibil",
+        "difficulty": "easy"
+      },
+      "tech1": {
+        "title": "Activează modul de economisire a energiei",
+        "text": "Activează modul eco sau de economisire a energiei pe laptopuri, telefoane și monitoare pentru a reduce automat consumul.",
+        "saving": "10-20% din energia dispozitivului",
+        "difficulty": "easy"
+      },
+      "tech2": {
+        "title": "Redu luminozitatea ecranului",
+        "text": "Reducerea luminozității ecranului pe telefoane, tablete și calculatoare prelungește vizibil durata bateriei și economisește energie.",
+        "saving": "Reduce consumul dispozitivului",
+        "difficulty": "easy"
+      },
+      "tech3": {
+        "title": "Alege aparate eficiente energetic",
+        "text": "Când cumperi aparate noi, caută etichetele de eficiență energetică pentru a alege modele care consumă mai puțină electricitate.",
+        "saving": "Economii pe termen lung",
+        "difficulty": "medium"
+      },
+      "public1": {
+        "title": "Susține iluminatul stradal pe bază de energie solară",
+        "text": "Susține instalarea de lămpi stradale și iluminat public alimentate solar în comunitatea ta, pentru a reduce consumul din rețea.",
+        "saving": "Reduce cererea din rețeaua publică",
+        "difficulty": "hard"
+      },
+      "public2": {
+        "title": "Raportează iluminatul defect sau risipit",
+        "text": "Anunță autoritățile locale despre lămpile stradale sau publice care rămân aprinse inutil în timpul zilei.",
+        "saving": "Previne risipa de energie pe timpul zilei",
+        "difficulty": "easy"
+      },
+      "public3": {
+        "title": "Folosește sticle și pungi reutilizabile",
+        "text": "Producerea obiectelor din plastic necesită energie — alternativele reutilizabile reduc această cerere continuă.",
+        "saving": "Reduce energia de fabricație",
+        "difficulty": "easy"
+      }
     }
   },
   "facts": {
@@ -264,8 +361,6 @@
     "unfavorite": "Elimină din favorite",
     "shareCopied": "Curiozitatea a fost copiată!",
     "factCounter": "Curiozitatea {{current}} din {{total}}",
-    "showingFavorites": "Se afișează curiozitățile tale favorite",
-    "showAllFacts": "Arată toate curiozitățile",
     "noFavorites": "Nu ai adăugat încă nicio curiozitate la favorite. Apasă pe inimioară pentru a o salva aici.",
     "categorySolar": "Energie solară",
     "categoryWind": "Energie eoliană",
@@ -313,7 +408,16 @@
     "achievement2": "Luptător anti-poluare — Ai redus poluarea sub 20%",
     "achievement3": "Campionul oamenilor — Ai menținut fericirea peste 70%",
     "achievement4": "Maestru al sustenabilității — Ai terminat cu un scor de sustenabilitate peste 80",
-    "achievement5": "Erou al energiei — Ai finalizat toate cele 10 niveluri"
+    "achievement5": "Erou al energiei — Ai finalizat toate cele 10 niveluri",
+    "anonymous": "Erou anonim",
+    "rulesBudget": "Începi cu un buget de {{start}}, iar orașul câștigă încă +{{income}} la fiecare nivel. Cheltuiește cu cap: opțiunile scumpe necesită un buget suficient.",
+    "rulesTimer": "Ai {{seconds}} de secunde pentru fiecare decizie — dacă timpul expiră, se alege automat opțiunea cea mai ieftină.",
+    "cost": "Cost",
+    "free": "Gratuit",
+    "notEnoughBudget": "Buget insuficient pentru această opțiune.",
+    "timeUp": "Timpul a expirat! A fost aleasă automat opțiunea cea mai ieftină.",
+    "yourDecision": "Decizia ta",
+    "consequences": "Consecințe"
   },
   "calculator": {
     "pageTitle": "Calculator de consum energetic",
@@ -343,12 +447,12 @@
     "totalCo2": "CO₂ total estimat (lunar)",
     "resetAll": "Resetează calculatorul",
     "co2Disclaimer": "Estimările de CO₂ folosesc un factor mediu de emisii al rețelei electrice și sunt aproximative — emisiile reale depind puternic de mixul energetic local (cărbune, gaz, regenerabile etc.).",
-    "efficiencyTipsTitle": "Compară alternative eficiente energetic",
-    "efficiencyTipsText": "Încearcă să reduci valoarea 'Putere' pentru un aparat pentru a vedea cum un model eficient energetic (precum un bec LED în locul unuia incandescent) ar putea reduce consumul și costul tău.",
     "formError": "Te rugăm să completezi toate câmpurile cu numere valide și pozitive.",
-    "perMonth": "/lună",
     "perYear": "/an",
-    "perDay": "/zi"
+    "editAppliance": "Editează aparatul",
+    "currency": "Monedă",
+    "treesEquivalent": "Pentru a absorbi acest CO₂ într-un an ar fi nevoie de aproximativ {{trees}} copaci.",
+    "treesNote": "Un copac matur absoarbe aproximativ 21 kg de CO₂ pe an (estimare)."
   },
   "community": {
     "pageTitle": "Comunitate și sugestii",
@@ -412,5 +516,58 @@
     "ro": "Română",
     "ru": "Русский",
     "selectLanguage": "Selectează limba"
+  },
+  "a11y": {
+    "skipToContent": "Sari la conținutul principal",
+    "openMenu": "Deschide meniul",
+    "closeMenu": "Închide meniul",
+    "mainNavigation": "Navigare principală",
+    "footerQuickLinks": "Linkuri rapide din subsol",
+    "footerResources": "Resurse din subsol"
+  },
+  "notFound": {
+    "message": "Această pagină pare să fi rămas fără curent. Hai să te întoarcem pe un drum mai luminos."
+  },
+  "compare": {
+    "title": "Compară alternative eficiente",
+    "intro": "Vezi cât economisește un aparat eficient energetic față de unul mai vechi, folosind prețul tău la electricitate.",
+    "hoursPerDay": "{{hours}} h/zi",
+    "saves": "Economisește {{percent}}% din putere — {{kwh}} kWh, {{money}} și {{co2}} kg de CO₂ în fiecare an.",
+    "addToCalculator": "Adaugă varianta eficientă în calculatorul meu",
+    "illustrative": "Valorile sunt exemple tipice, cu rol ilustrativ — verifică eticheta energetică a aparatului tău.",
+    "items": {
+      "bulb": {
+        "old": "Bec cu incandescență",
+        "new": "Bec LED"
+      },
+      "fridge": {
+        "old": "Frigider vechi",
+        "new": "Frigider eficient (A+++)"
+      },
+      "tv": {
+        "old": "Televizor cu plasmă vechi",
+        "new": "Televizor LED modern"
+      },
+      "ac": {
+        "old": "Aparat de aer condiționat vechi",
+        "new": "Aparat de aer condiționat inverter"
+      }
+    }
+  },
+  "ai": {
+    "pageTitle": "IA și credite",
+    "pageSubtitle": "Cum a fost realizat acest proiect, ce instrumente de IA au ajutat și de unde provin informațiile și resursele.",
+    "toolsTitle": "Instrumente de IA folosite",
+    "toolsText": "Acest site a fost realizat cu ajutorul unui asistent de programare bazat pe IA: Claude Code de la Anthropic (modele Claude Sonnet). IA a scris și a revizuit cod, a redactat textele în engleză, română și rusă și a ajutat la găsirea și remedierea erorilor, mereu pe baza instrucțiunilor și a prompturilor scrise de echipă.",
+    "humanTitle": "Supervizare umană",
+    "humanText": "Echipa a ales tema, a stabilit obiectivele și funcționalitățile, a verificat rezultatele, a testat site-ul pe diferite dispozitive și a aprobat fiecare modificare înainte de publicare. Procesul complet și prompturile sunt documentate în depozitul proiectului (AI_USAGE.md).",
+    "factsTitle": "Fapte și surse",
+    "factsText": "Conținutul educativ se bazează pe informații publice de la Organizația Națiunilor Unite (ODD 7), Agenția Internațională pentru Energie (IEA) și Agenția Internațională pentru Energie Regenerabilă (IRENA). Statisticile sunt aproximative și se schimbă în timp — verifică mereu sursele oficiale din subsol.",
+    "licensesTitle": "Credite open-source",
+    "imagesText": "Nu sunt folosite imagini protejate de drepturi de autor: toate ilustrațiile sunt desenate cu CSS și SVG, iar pictogramele provin din biblioteca open-source Lucide.",
+    "privacyTitle": "Confidențialitate",
+    "privacyText": "Fără conturi și fără urmărire. Site-ul păstrează doar ce alegi să trimiți (nume și scor în joc, sugestii, mesaje de contact), iar setările, favoritele și progresul rămân în propriul tău browser.",
+    "limitsTitle": "Limite cunoscute",
+    "limitsText": "IA poate greși. Traducerile și faptele au fost verificate de echipă, dar dacă observi o greșeală, spune-ne prin pagina de contact. Rezultatele CO₂ din calculator sunt estimări."
   }
 }

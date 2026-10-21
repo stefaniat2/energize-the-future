@@ -15,7 +15,7 @@ export function ErrorState({ message, onRetry }) {
   const { t } = useTranslation();
   return (
     <div className="flex flex-col items-center justify-center gap-3 py-16 text-center" role="alert">
-      <AlertTriangle className="text-red-500" size={36} aria-hidden="true" />
+      <AlertTriangle className="text-red-600" size={36} aria-hidden="true" />
       <p className="text-slate-600 max-w-md">{message || t("common.error")}</p>
       {onRetry && (
         <button type="button" onClick={onRetry} className="btn-secondary mt-2">
