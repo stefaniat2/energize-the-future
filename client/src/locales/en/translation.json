@@ -58,15 +58,15 @@
     "objective3Text": "Substantially increase the share of renewable energy, such as solar, wind, and hydropower, in the global energy mix to reduce pollution and fight climate change.",
     "statsTitle": "Energy Around the World",
     "statsSubtitle": "Understanding where we stand helps us see how far we still need to go.",
-    "stat1Label": "People without electricity access",
-    "stat1Value": "~660 million",
-    "stat2Label": "People without clean cooking fuels",
+    "stat1Label": "People without electricity access (2024)",
+    "stat1Value": "~655 million",
+    "stat2Label": "People without clean cooking fuels (2023)",
     "stat2Value": "~2.1 billion",
-    "stat3Label": "Share of global power from renewables",
+    "stat3Label": "Share of global electricity from renewables (2024)",
     "stat3Value": "~30%",
     "stat4Label": "SDG 7 target year",
     "stat4Value": "2030",
-    "statsNote": "Figures are approximate, based on recent UN and International Energy Agency (IEA) reporting, and change as new data is published.",
+    "statsNote": "Figures are approximate and rounded, taken from the UN's SDG 7 progress reports (2023–2024 data) and Ember's global electricity review. The year is shown in brackets; numbers change as new data is published.",
     "sourcesTitle": "Renewable Sources",
     "sourcesSubtitle": "Explore the main clean energy sources powering our future.",
     "solarName": "Solar Energy",
@@ -130,7 +130,7 @@
     "timeline7Year": "2020s",
     "timeline7Text": "Solar and wind become the cheapest sources of new electricity in most of the world, accelerating the global clean energy transition.",
     "targetsTitle": "Official SDG 7 Targets",
-    "targetsSubtitle": "The United Nations has set specific targets to measure progress toward SDG 7 by 2030.",
+    "targetsSubtitle": "The United Nations has set specific targets to measure progress toward SDG 7 by 2030 (shown here in simplified wording).",
     "target1": "7.1 — Ensure universal access to affordable, reliable, and modern energy services.",
     "target2": "7.2 — Substantially increase the share of renewable energy in the global energy mix.",
     "target3": "7.3 — Double the global rate of improvement in energy efficiency.",
@@ -231,8 +231,8 @@
     "items": {
       "home1": {
         "title": "Switch to LED bulbs",
-        "text": "Replace incandescent bulbs with LED lights, which use up to 90% less energy and last much longer.",
-        "saving": "Up to 90% less lighting energy",
+        "text": "Replace incandescent bulbs with LED lights, which use at least 75% less energy and last up to 25 times longer.",
+        "saving": "At least 75% less lighting energy",
         "difficulty": "easy"
       },
       "home2": {
@@ -558,9 +558,9 @@
     "pageTitle": "AI & Credits",
     "pageSubtitle": "How this project was made, which AI tools helped, and where the information and assets come from.",
     "toolsTitle": "AI tools used",
-    "toolsText": "This website was built with the help of an AI coding assistant: Claude Code by Anthropic (Claude Sonnet models). The AI wrote and revised code, drafted the English, Romanian and Russian texts, and helped find and fix bugs, always following instructions and prompts written by the team.",
+    "toolsText": "This website was built with the help of an AI coding assistant: Claude Code by Anthropic (Claude Sonnet models). The AI wrote and revised code, drafted the English, Romanian and Russian texts, and helped find and fix bugs, always following instructions and prompts written by the author.",
     "humanTitle": "Human oversight",
-    "humanText": "The team chose the topic, set the goals and features, reviewed the results, tested the website on different devices and approved every change before publishing. The full process and prompts are documented in the project repository (AI_USAGE.md).",
+    "humanText": "The author chose the topic, set the goals and features, reviewed the results and approved every change before publishing. The site was also checked with automated tests, a Lighthouse accessibility audit and a comparison of the statistics with UN, IEA and IRENA sources. The full process and prompts are documented in the project repository (AI_USAGE.md).",
     "factsTitle": "Facts and sources",
     "factsText": "Educational content is based on public information from the United Nations (SDG 7), the International Energy Agency (IEA) and the International Renewable Energy Agency (IRENA). Statistics are approximate and change over time — always check the official sources linked in the footer.",
     "licensesTitle": "Open-source credits",
@@ -568,6 +568,7 @@
     "privacyTitle": "Privacy",
     "privacyText": "No accounts and no tracking. The site stores only what you choose to send (game name and score, suggestions, contact messages) and keeps your settings, favorites and progress in your own browser.",
     "limitsTitle": "Known limits",
-    "limitsText": "AI can make mistakes. Translations and facts were reviewed by the team, but if you spot an error, please tell us through the Contact page. CO₂ results in the calculator are estimates."
+    "limitsText": "AI can make mistakes. The Romanian and Russian texts were drafted by AI and reviewed in a second AI pass, so small errors may remain — if you spot one, please tell me through the Contact page. CO₂ results in the calculator are estimates.",
+    "authorLine": "Created by stefaniat2 as a solo project."
   }
 }

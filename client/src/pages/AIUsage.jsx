@@ -72,6 +72,8 @@ export default function AIUsage() {
             <ExternalLink size={16} aria-hidden="true" />
           </a>
         </section>
+
+        <p className="text-center text-slate-500">{t("ai.authorLine")}</p>
       </div>
     </div>
   );

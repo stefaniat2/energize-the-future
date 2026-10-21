@@ -58,15 +58,15 @@
     "objective3Text": "Creșterea substanțială a ponderii energiei regenerabile, precum cea solară, eoliană și hidroenergia, în mixul energetic global, pentru a reduce poluarea și a combate schimbările climatice.",
     "statsTitle": "Energia în lume",
     "statsSubtitle": "Înțelegerea situației actuale ne ajută să vedem cât drum mai avem de parcurs.",
-    "stat1Label": "Oameni fără acces la electricitate",
-    "stat1Value": "~660 de milioane",
-    "stat2Label": "Oameni fără combustibili curați pentru gătit",
+    "stat1Label": "Oameni fără acces la electricitate (2024)",
+    "stat1Value": "~655 de milioane",
+    "stat2Label": "Oameni fără combustibili curați pentru gătit (2023)",
     "stat2Value": "~2,1 miliarde",
-    "stat3Label": "Ponderea energiei regenerabile la nivel mondial",
+    "stat3Label": "Ponderea energiei regenerabile în electricitatea mondială (2024)",
     "stat3Value": "~30%",
     "stat4Label": "Anul-țintă pentru ODD 7",
     "stat4Value": "2030",
-    "statsNote": "Cifrele sunt aproximative, bazate pe rapoarte recente ale ONU și ale Agenției Internaționale pentru Energie (IEA), și se modifică pe măsură ce apar date noi.",
+    "statsNote": "Cifrele sunt aproximative și rotunjite, preluate din rapoartele ONU privind progresul ODD 7 (date din 2023–2024) și din analiza globală a electricității realizată de Ember. Anul este indicat între paranteze; cifrele se schimbă pe măsură ce apar date noi.",
     "sourcesTitle": "Surse regenerabile",
     "sourcesSubtitle": "Explorează principalele surse de energie curată care alimentează viitorul nostru.",
     "solarName": "Energie solară",
@@ -96,7 +96,7 @@
     "unTitle": "Ce este Organizația Națiunilor Unite?",
     "unText": "Organizația Națiunilor Unite (ONU) este o organizație internațională fondată în 1945, formată în prezent din 193 de state membre. Misiunea sa este de a menține pacea, de a proteja drepturile omului, de a oferi ajutor umanitar și de a promova dezvoltarea durabilă în întreaga lume.",
     "sdgTitle": "Ce este Obiectivul de Dezvoltare Durabilă 7?",
-    "sdgText": "În septembrie 2015, toate statele membre ONU au adoptat Agenda 2030 pentru Dezvoltare Durabilă, care include 17 Obiective de Dezvoltare Durabilă (ODD). ODD 7 se numește 'Energie accesibilă și curată' și cheamă lumea să asigure acces la energie accesibilă, sigură, durabilă și modernă pentru toți, până în 2030.",
+    "sdgText": "În septembrie 2015, toate statele membre ONU au adoptat Agenda 2030 pentru Dezvoltare Durabilă, care include 17 Obiective de Dezvoltare Durabilă (ODD). ODD 7 se numește „Energie accesibilă și curată” și cheamă lumea să asigure acces la energie accesibilă, sigură, durabilă și modernă pentru toți, până în 2030.",
     "whyAffordableTitle": "De ce contează energia accesibilă",
     "whyAffordableText": "Energia nu este un lux — ea alimentează spitale, școli, sisteme de refrigerare pentru alimente și medicamente, sisteme de apă curată și comunicații. Când energia este prea scumpă, familiile sunt nevoite să facă alegeri imposibile, iar comunități întregi sunt împiedicate să acceseze oportunități economice.",
     "whyCleanTitle": "De ce contează energia curată",
@@ -112,7 +112,7 @@
     "helpTitle": "Cum poate ajuta fiecare",
     "helpGovText": "Guvernele pot investi în infrastructură de energie curată, pot stabili standarde de eficiență și pot crea politici care fac energia regenerabilă mai accesibilă.",
     "helpBusinessText": "Companiile pot investi în tehnologii regenerabile, pot îmbunătăți eficiența operațiunilor lor și pot dezvolta soluții inovatoare de energie curată.",
-    "helpIndividualText": "Persoanele pot face alegeri zilnice — precum economisirea energiei acasă, susținerea politicilor de energie curată și sensibilizarea celor din jur — care se adună într-o schimbare semnificativă.",
+    "helpIndividualText": "Fiecare dintre noi poate face alegeri zilnice — precum economisirea energiei acasă, susținerea politicilor de energie curată și sensibilizarea celor din jur — care se adună într-o schimbare semnificativă.",
     "timelineTitle": "Evoluția energiei regenerabile",
     "timelineSubtitle": "O scurtă istorie a modului în care a evoluat tehnologia energiei curate.",
     "timeline1Year": "1839",
@@ -130,7 +130,7 @@
     "timeline7Year": "Anii 2020",
     "timeline7Text": "Energia solară și cea eoliană devin cele mai ieftine surse de electricitate nouă în majoritatea lumii, accelerând tranziția globală către energie curată.",
     "targetsTitle": "Țintele oficiale ale ODD 7",
-    "targetsSubtitle": "Organizația Națiunilor Unite a stabilit ținte specifice pentru a măsura progresul către ODD 7 până în 2030.",
+    "targetsSubtitle": "Organizația Națiunilor Unite a stabilit ținte specifice pentru a măsura progresul către ODD 7 până în 2030 (prezentate aici într-o formulare simplificată).",
     "target1": "7.1 — Asigurarea accesului universal la servicii energetice accesibile, sigure și moderne.",
     "target2": "7.2 — Creșterea substanțială a ponderii energiei regenerabile în mixul energetic global.",
     "target3": "7.3 — Dublarea ritmului global de îmbunătățire a eficienței energetice.",
@@ -168,11 +168,11 @@
     },
     "hydro": {
       "name": "Hidroenergie",
-      "how": "Apa curgătoare sau căzătoare rotește o turbină conectată la un generator. Barajele mari stochează apa în rezervoare, iar sistemele 'run-of-river' folosesc fluxul natural al unui râu.",
+      "how": "Apa curgătoare sau căzătoare rotește o turbină conectată la un generator. Barajele mari stochează apa în rezervoare, iar sistemele „run-of-river” folosesc fluxul natural al unui râu.",
       "pros": "Oferă o alimentare cu electricitate extrem de fiabilă și constantă; barajele mari pot stoca energie și ajuta la controlul inundațiilor; durată de viață lungă a instalațiilor.",
       "cons": "Barajele mari pot perturba ecosistemele fluviale și pot strămuta comunități; construcția este costisitoare și depinde de amplasament; poate fi afectată de secete.",
       "impact": "Emisii operaționale scăzute, dar proiectele de baraje mari pot schimba semnificativ ecosistemele locale și fluxul de apă.",
-      "uses": "Rețele electrice naționale la scară largă, sisteme mici 'run-of-river' pentru comunități locale și centrale cu acumulare prin pompare pentru stocarea energiei.",
+      "uses": "Rețele electrice naționale la scară largă, sisteme mici „run-of-river” pentru comunități locale și centrale cu acumulare prin pompare pentru stocarea energiei.",
       "fact": "Hidroenergia este în prezent cea mai mare sursă de generare a electricității regenerabile din lume."
     },
     "geothermal": {
@@ -189,7 +189,7 @@
       "how": "Materiale organice precum lemnul, deșeurile agricole și culturile energetice dedicate sunt arse sau transformate în biogaz sau biocombustibili pentru a genera căldură și electricitate.",
       "pros": "Poate folosi materiale reziduale care altfel ar fi aruncate; oferă o modalitate de gestionare a subproduselor agricole și forestiere; poate fi stocată și folosită la cerere.",
       "cons": "Arderea biomasei eliberează dioxid de carbon și poluanți atmosferici; utilizarea la scară largă poate concura cu producția alimentară pentru teren; sustenabilitatea depinde puternic de practicile de aprovizionare.",
-      "impact": "Considerată cu emisii mai reduse decât combustibilii fosili atunci când este obținută durabil, dar o gestionare deficitară poate duce la defrișări și probleme de calitate a aerului.",
+      "impact": "Considerată mai puțin poluantă decât combustibilii fosili atunci când este obținută durabil, dar o gestionare deficitară poate duce la defrișări și probleme de calitate a aerului.",
       "uses": "Centrale electrice pe biomasă, digestoare de biogaz în ferme, sisteme de încălzire cu peleți din lemn și biocombustibili pentru transport.",
       "fact": "Biogazul produs din deșeuri alimentare și animale poate fi folosit pentru a găti, a încălzi locuințe sau a genera electricitate."
     },
@@ -197,7 +197,7 @@
       "name": "Energie mareomotrice",
       "how": "Turbinele subacvatice sau barajele captează energia cinetică a fluxului și refluxului mareelor oceanice, transformând mișcarea previzibilă a apei în electricitate.",
       "pros": "Extrem de previzibilă, deoarece mareele urmează cicluri astronomice bine cunoscute; densitate energetică ridicată datorită greutății apei; durată lungă de viață a echipamentelor.",
-      "cons": "În prezent, costisitoare de construit și întreținut; limitată la zonele de coastă cu amplitudini mareice puternice; poate afecta ecosistemele marine din apropierea instalațiilor.",
+      "cons": "În prezent, costisitoare de construit și întreținut; limitată la zonele de coastă cu amplitudini mari ale mareelor; poate afecta ecosistemele marine din apropierea instalațiilor.",
       "impact": "Emisii scăzute în timpul funcționării, dar construcția subacvatică poate perturba habitatele marine locale dacă nu este gestionată cu atenție.",
       "uses": "Baraje mareomotrice de coastă, sisteme de turbine mareomotrice subacvatice și generatoare mareomotrice de mici dimensiuni pentru comunitățile de coastă izolate.",
       "fact": "Deoarece mareele sunt determinate de forțe gravitaționale previzibile, producția de energie mareomotrice poate fi prognozată cu ani înainte."
@@ -230,14 +230,14 @@
     "savingPotential": "Economie potențială",
     "items": {
       "home1": {
-        "title": "Trece la becuri LED",
-        "text": "Înlocuiește becurile incandescente cu becuri LED, care folosesc cu până la 90% mai puțină energie și durează mult mai mult.",
-        "saving": "Până la 90% mai puțină energie pentru iluminat",
+        "title": "Treci la becuri LED",
+        "text": "Înlocuiește becurile incandescente cu becuri LED, care consumă cu cel puțin 75% mai puțină energie și durează de până la 25 de ori mai mult.",
+        "saving": "Cu cel puțin 75% mai puțină energie pentru iluminat",
         "difficulty": "easy"
       },
       "home2": {
         "title": "Deconectează aparatele nefolosite",
-        "text": "Deconectează încărcătoarele, televizoarele și consolele de jocuri atunci când nu sunt folosite, pentru a evita consumul 'fantomă' în standby.",
+        "text": "Deconectează încărcătoarele, televizoarele și consolele de jocuri atunci când nu sunt folosite, pentru a evita consumul „fantomă” în standby.",
         "saving": "5-10% din electricitatea locuinței",
         "difficulty": "easy"
       },
@@ -279,7 +279,7 @@
       },
       "school3": {
         "title": "Oprește complet calculatoarele peste noapte",
-        "text": "Asigură-te că, la sfârșitul zilei, calculatoarele și proiectoarele școlii sunt oprite complet, nu doar puse în stand-by.",
+        "text": "Asigură-te că, la sfârșitul zilei, calculatoarele și proiectoarele școlii sunt oprite complet, nu doar puse în standby.",
         "saving": "Reduce risipa de energie pe timpul nopții",
         "difficulty": "easy"
       },
@@ -302,9 +302,9 @@
         "difficulty": "medium"
       },
       "transport3": {
-        "title": "Practică transportul în comun (carpooling)",
-        "text": "Împărțirea deplasărilor cu colegi sau prieteni reduce numărul de mașini de pe drum și combustibilul consumat pe traseu.",
-        "saving": "Costuri de combustibil partajate",
+        "title": "Folosește o singură mașină pentru mai mulți oameni (carpooling)",
+        "text": "Dacă faci naveta cu colegi sau prieteni în aceeași mașină, scazi numărul de mașini de pe drum și combustibilul consumat pe traseu.",
+        "saving": "Costuri de combustibil împărțite",
         "difficulty": "medium"
       },
       "transport4": {
@@ -558,9 +558,9 @@
     "pageTitle": "IA și credite",
     "pageSubtitle": "Cum a fost realizat acest proiect, ce instrumente de IA au ajutat și de unde provin informațiile și resursele.",
     "toolsTitle": "Instrumente de IA folosite",
-    "toolsText": "Acest site a fost realizat cu ajutorul unui asistent de programare bazat pe IA: Claude Code de la Anthropic (modele Claude Sonnet). IA a scris și a revizuit cod, a redactat textele în engleză, română și rusă și a ajutat la găsirea și remedierea erorilor, mereu pe baza instrucțiunilor și a prompturilor scrise de echipă.",
+    "toolsText": "Acest site a fost realizat cu ajutorul unui asistent de programare bazat pe IA: Claude Code de la Anthropic (modele Claude Sonnet). IA a scris și a revizuit cod, a redactat textele în engleză, română și rusă și a ajutat la găsirea și remedierea erorilor, mereu pe baza instrucțiunilor și a prompturilor scrise de autor.",
     "humanTitle": "Supervizare umană",
-    "humanText": "Echipa a ales tema, a stabilit obiectivele și funcționalitățile, a verificat rezultatele, a testat site-ul pe diferite dispozitive și a aprobat fiecare modificare înainte de publicare. Procesul complet și prompturile sunt documentate în depozitul proiectului (AI_USAGE.md).",
+    "humanText": "Autorul a ales tema, a stabilit obiectivele și funcționalitățile, a verificat rezultatele și a aprobat fiecare modificare înainte de publicare. Site-ul a fost verificat și cu teste automate, un audit de accesibilitate Lighthouse și o comparare a statisticilor cu sursele ONU, IEA și IRENA. Procesul complet și prompturile sunt documentate în depozitul proiectului (AI_USAGE.md).",
     "factsTitle": "Fapte și surse",
     "factsText": "Conținutul educativ se bazează pe informații publice de la Organizația Națiunilor Unite (ODD 7), Agenția Internațională pentru Energie (IEA) și Agenția Internațională pentru Energie Regenerabilă (IRENA). Statisticile sunt aproximative și se schimbă în timp — verifică mereu sursele oficiale din subsol.",
     "licensesTitle": "Credite open-source",
@@ -568,6 +568,7 @@
     "privacyTitle": "Confidențialitate",
     "privacyText": "Fără conturi și fără urmărire. Site-ul păstrează doar ce alegi să trimiți (nume și scor în joc, sugestii, mesaje de contact), iar setările, favoritele și progresul rămân în propriul tău browser.",
     "limitsTitle": "Limite cunoscute",
-    "limitsText": "IA poate greși. Traducerile și faptele au fost verificate de echipă, dar dacă observi o greșeală, spune-ne prin pagina de contact. Rezultatele CO₂ din calculator sunt estimări."
+    "limitsText": "IA poate greși. Textele în română și rusă au fost redactate de IA și revizuite într-o a doua trecere tot de IA, deci pot rămâne mici greșeli — dacă observi una, spune-mi prin pagina de contact. Rezultatele CO₂ din calculator sunt estimări.",
+    "authorLine": "Creat de stefaniat2 ca proiect individual."
   }
 }
