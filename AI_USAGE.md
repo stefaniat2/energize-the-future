@@ -130,8 +130,8 @@ matters more than a long list of ticks:
 | Statistics and claims compared with official sources | ✅ done by AI, 21 Oct 2026 | Sources and results in [docs/FACT_CHECK.md](docs/FACT_CHECK.md); 5 corrections made |
 | Second-pass review of the Romanian and Russian texts | ✅ done by AI, 21 Oct 2026 | See below — real errors were found and fixed |
 | Repository free of secrets | ✅ checked | Working tree **and** full git history scanned for tokens, keys, `.env` and database files: none |
-| Proofreading of RO/RU texts by a human | ☐ author | Recommended: read the pages in each language once and report anything odd |
-| Author can explain the code | ☐ author | Study guide: [docs/CODE_WALKTHROUGH.md](docs/CODE_WALKTHROUGH.md) |
+| Proofreading of RO/RU texts by a human | ✅ read by the author and friends (16 Nov 2026) | The author speaks Romanian and Russian and gave the site to friends who also do; they reported that the text is good. Informal, not a professional proofread |
+| Author can explain the code | ✅ author reports (16 Nov 2026) | The author says they have learned the code; the study guide is [docs/CODE_WALKTHROUGH.md](docs/CODE_WALKTHROUGH.md). Not verified by anyone else |
 | Use on a real phone and laptop | ✅ phone confirmed by the author (16 Nov 2026) | Phone layout was tested with browser mobile emulation and Lighthouse mobile only (no horizontal overflow in EN/RO/RU on a 375 px emulation) |
 | Romanian and Russian text of the Scheduler and Research pages | ✅ read by the author | AI first draft (about 150 strings); the author reports it reads well. No second AI pass and no native-speaker review |
 | Benchmark reproducible and consistent | ✅ done | `npm run benchmark` is seeded; a test checks the published file (no method beats the proven optimum, savings never exceed the tariff ceiling) |

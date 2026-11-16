@@ -1,0 +1,44 @@
+<!doctype html><html lang="ro"><head><meta charset="utf-8"><title>Rezumat — Energize the Future</title>
+<style>
+@page { size: A4; margin: 15mm 18mm 15mm 18mm; } * { box-sizing: border-box; }
+body { font: 12pt/1.22 "Times New Roman", Times, serif; color: #000; margin: 0; text-align: justify; }
+h1 { font-size: 14pt; text-align: center; margin: 0 0 3pt; line-height: 1.2; } .meta { text-align: center; font-size: 11pt; margin-bottom: 6pt; }
+h2 { font-size: 12pt; margin: 5pt 0 1pt; } p { margin: 0 0 3pt; } ul { margin: 0 0 3pt; padding-left: 16pt; } li { margin-bottom: 0; }
+table.t { border-collapse: collapse; width: 100%; font-size: 10.5pt; margin: 3pt 0 4pt; } .t th, .t td { border: .5pt solid #000; padding: 1.5pt 4pt; text-align: center; } .t td:first-child { text-align: left; }
+.small { font-size: 10.5pt; } .ref { font-size: 10.5pt; margin: 0 0 1.5pt; padding-left: 14pt; text-indent: -14pt; text-align: left; } .ph { background: #fff3b0; }
+</style></head><body>
+<h1>Programarea optimă a consumului casnic de energie electrică în Republica Moldova cu tarif pe două zone: compararea metodelor greedy, a călirii simulate, a algoritmului genetic și a căutării exacte</h1>
+<div class="meta"><b>Categoria tematică:</b> III. Tehnologia informației (algoritmi, aplicații software) · <b>Autor:</b> Ștefania Tabarcea · <b>Clasa:</b> <span class="ph">[clasa]</span><br>Orizont, Durlești · coordonator: Azamat Jauysh<br>Proiectul „Energize the Future” (ODD 7 al ONU) · https://energize-the-future.vercel.app · github.com/stefaniat2/energize-the-future</div>
+
+<h2>1. Scopul și actualitatea cercetării</h2>
+<p>Gospodăriile din Republica Moldova pot alege un tarif pe două zone, în care energia electrică de noapte (23:00–07:00) este mai ieftină decât cea de zi; pagina oficială Premier Energy indică 3,75 și 2,94 lei/kWh din 2 aprilie 2026, adică o reducere nocturnă de 22%. O familie poate reduce factura mutând aparatele flexibile (mașina de spălat, mașina de spălat vase, uscătorul, boilerul electric, încărcătorul pentru mașina electrică) în zona ieftină, dar siguranța principală (circa 3,7 kW la 16 A, 5,75 kW la 25 A) limitează puterea totală la fiecare oră. „Pornește mașina noaptea” devine astfel o problemă de planificare cu restricții: se alege o oră de pornire pentru fiecare aparat astfel încât costul zilnic să fie minim, iar siguranța să nu fie depășită. Pentru șase aparate fără restricții există 24<sup>6</sup> ≈ 1,9·10<sup>8</sup> combinații. Scopul este să măsurăm cât se poate economisi și care algoritm este cel mai potrivit.</p>
+
+<h2>2. Ipoteze (scrise înainte de prima rulare completă)</h2>
+<ul>
+<li><b>H1.</b> Un program optimizat costă mai puțin decât cel obișnuit (diferență pe perechi, p &lt; 0,05).</li>
+<li><b>H2.</b> La același buget de 2400 de evaluări, călirea simulată și algoritmul genetic ajung mai aproape de optim decât metoda greedy atunci când siguranța este strânsă.</li>
+<li><b>H3.</b> Economia este plafonată de (1 − preț noapte/preț zi) din costul consumului mutabil și crește aproximativ proporțional cu diferența de preț.</li>
+<li><b>H4.</b> Căutarea exactă prin ramificare și limitare nu mai poate fi folosită când numărul de aparate crește, în timp ce metodele euristice returnează programe viabile în milisecunde.</li>
+</ul>
+
+<h2>3. Metode utilizate</h2>
+<p>Fiecare aparat are putere, durată, interval permis de pornire și oră obișnuită. Toate metodele minimizează același scor (costul zilnic plus o penalizare mare pe kWh peste limita siguranței): (a) <i>obiceiul</i> (referință: orele obișnuite, amânate doar cât cere siguranța); (b) metoda <i>greedy</i>, cel mai mare consum primul; (c) <i>călirea simulată</i> (Kirkpatrick et al., 1983) cu răcire geometrică; (d) un <i>algoritm genetic</i> (populație 40, selecție prin turneu, încrucișare uniformă, mutație, elitism); (e) <i>ramificare și limitare</i> (Land și Doig, 1960), optimul exact de referință. Călirea și algoritmul genetic pornesc de la programul greedy. Experimentele folosesc gospodării aleatorii cu valoare inițială fixă (5–7 aparate): 200 în regimul A (siguranță 5,5 kW) și 193 în regimul B (4,0 kW; 7 fără soluție viabilă, excluse), plus 100 pentru fiecare dimensiune de 6, 10, 16, 24 și 40 de aparate. Distanțele se măsoară față de optimul dovedit și iau în calcul doar programele care respectă siguranța; intervalele sunt intervale de încredere de 95%; metodele se compară prin teste pe perechi, pe aceleași gospodării. Codul, valorile inițiale și datele sunt publice, iar testul se reproduce cu <i>npm run benchmark</i>.</p>
+
+<h2>4. Analiza datelor obținute</h2>
+<table class="t"><tr><th>Metoda</th><th>Economie A</th><th>Distanță A</th><th>Economie B</th><th>Distanță B</th><th>Siguranță OK B</th></tr>
+<tr><td>Greedy</td><td>10,1%</td><td>0,44%</td><td>4,9%</td><td>1,14%</td><td>94,3%</td></tr><tr><td>Călire simulată</td><td>10,4%</td><td>0,09%</td><td>5,6%</td><td>0,41%</td><td>97,9%</td></tr><tr><td>Algoritm genetic</td><td>10,2%</td><td>0,29%</td><td>5,3%</td><td>0,80%</td><td>96,9%</td></tr><tr><td>Exact (R&amp;L)</td><td>10,5%</td><td>0,00%</td><td>6,0%</td><td>0,00%</td><td>100,0%</td></tr></table>
+<p class="small">Economia față de obicei și distanța medie față de optimul dovedit; 200 (A) și 193 (B) gospodării.</p>
+<p><b>H1 susținută.</b> Călirea economisește 10,4% (IC 95%: 9,9–10,9) în regimul A și 5,6% în regimul B (p < 0,001). Fără amânare, orele obișnuite ar depăși siguranța la 97% (A) și 100% (B) dintre gospodării.</p>
+<p><b>H2 susținută, cu rezervă.</b> În regimul B distanța medie este 1,14% (greedy), 0,41% (călire) și 0,80% (genetic). Deoarece ambele căutări pornesc de la greedy, o parte din avantaj este încorporată; comparația corectă este cu optimul exact, pe care niciuna nu îl atinge la toate gospodăriile (103/193 și 63/193).</p>
+<p><b>H3 susținută.</b> La raportul actual 0,784 optimul economisește 10,5% față de plafonul de 21,6%; între rapoartele 0,9 și 0,4 economia crește de la 4,7% la 34,0% fără a depăși plafonul. <b>H4 susținută.</b> Căutarea exactă și-a încheiat demonstrația pentru 100% dintre gospodăriile cu 6 aparate, dar doar pentru 8% la 40 aparate; la dimensiunea unei case (6 aparate) este deja instantanee, deci euristicile contează la sisteme mai mari (blocuri, școli).</p>
+
+<h2>5. Valoarea practică și economică</h2>
+<p>O gospodărie de referință mută 1.381 kWh pe an (spălat, spălat vase, încălzirea apei). Economia este de <b>539 lei (≈ 27 EUR) pe an</b>; 291 lei cu siguranță strânsă și cel mult 1.118 lei dacă tot consumul s-ar muta noaptea (curs 20,18 lei/EUR, BNM, 5 nov. 2026). Programul costă 0 EUR și poate fi aplicat cu temporizatoarele aparatelor (amortizare imediată); trei prize inteligente (≈15 EUR bucata, ipoteză) se amortizează în 1,7 ani, un manager energetic de 658 EUR în 25 de ani, iar un sistem instalat de ≈1.000 EUR plus 120–240 EUR/an niciodată. Tariful pe două zone necesită un contor cu înregistrare orară și un angajament de 12 luni. Nu se pretinde nicio reducere de CO<sub>2</sub>. Limite: gospodării sintetice, bază TVA nespecificată pentru tarif, aparate cu putere constantă; pasul următor este validarea pe date reale de la contor.</p>
+
+<h2>Literatura utilizată</h2>
+<p class="ref">Kirkpatrick S., Gelatt C. D., Vecchi M. P. (1983). Optimization by simulated annealing. <i>Science</i> 220(4598), 671–680.</p>
+<p class="ref">Land A. H., Doig A. G. (1960). An automatic method of solving discrete programming problems. <i>Econometrica</i> 28(3), 497–520.</p>
+<p class="ref">Holland J. H. (1975). <i>Adaptation in Natural and Artificial Systems.</i> University of Michigan Press.</p>
+<p class="ref">Premier Energy Moldova (2026). Informații privind prețurile diferențiate (premierenergy.md); Moldpres (31.03.2026), tarifele ANRE; Banca Națională a Moldovei, cursul oficial EUR/MDL, 5.11.2026. Surse și grad de certitudine: docs/research/ECONOMICS.md.</p>
+<p class="ref">IA: Claude Code (Anthropic) a fost singurul instrument de IA; a scris codul și ciornele sub îndrumarea și verificarea autoarei (AI_USAGE.md).</p>
+</body></html>

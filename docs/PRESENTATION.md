@@ -224,8 +224,8 @@ RO: Da: `cd client && npm install && npm run benchmark` dă numere identice (se 
 posterul sunt generate din același fișier.
 
 **16. Who is on the team?**
-EN: A solo project by stefaniat2. The organisers' rules mention two roles; the mentor (Azamat Jauysh) and the teacher have confirmed that a solo entry is fine.
-RO: Proiect individual al lui stefaniat2. Regulamentul organizatorilor menționează două roluri; mentorul și profesorul au confirmat că participarea individuală este acceptată.
+EN: A solo project by Stefania Tabarcea (stefaniat2). The MoldSEF regulation allows individual projects (teams have at most 2 members), and the mentor, Azamat Jauysh, and the teacher agreed.
+RO: Proiect individual al Ștefaniei Tabarcea (stefaniat2). Regulamentul MoldSEF permite proiecte individuale (echipele au cel mult 2 membri), iar mentorul, Azamat Jauysh, și profesorul sunt de acord.
 
 **17. Is it secure and private?**
 EN: Server-side validation, parameterised SQL, rate limiting, CORS allow-list, no accounts, cookies or tracking. The

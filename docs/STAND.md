@@ -9,6 +9,7 @@ to try.** Everything here supports that.
 |---|---|
 | `docs/stand/poster.html` | Editable source of the A3 poster (open in Chrome) |
 | `docs/stand/poster-A3.pdf` | Print-ready A3 poster (portrait) with QR code to the live site — the friendly *Try Energy Hero* version |
+| `docs/stand/qr-card.pdf` | A4 **QR card** (print on A4, 100%): big QR code to the live site, URL, and a line in English, Romanian and Russian. The QR was decoded and checked to open `https://energize-the-future.vercel.app` |
 | `docs/stand/poster-A0.pdf` / `poster-A0.html` | **A0 research poster** (841 × 1189 mm, portrait): research question and hypotheses, system, four figures, key results, economic case, limits, responsible AI, QR. **This is the competition poster.** Generated from the benchmark data by `client/scripts/build-research-docs.mjs` |
 
 The poster uses the same colours and typeface as the website (SDG 7 green `#2F9E44`, blue
