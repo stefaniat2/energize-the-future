@@ -66,8 +66,8 @@
           ],
           "medianGapPct": 0,
           "optimalCount": 123,
-          "meanMs": 0.01,
-          "sdMs": 0.02
+          "meanMs": 0,
+          "sdMs": 0.01
         },
         "anneal": {
           "feasiblePct": 98.5,
@@ -84,8 +84,8 @@
           ],
           "medianGapPct": 0,
           "optimalCount": 173,
-          "meanMs": 0.48,
-          "sdMs": 0.55
+          "meanMs": 0.44,
+          "sdMs": 0.22
         },
         "genetic": {
           "feasiblePct": 97,
@@ -102,8 +102,8 @@
           ],
           "medianGapPct": 0,
           "optimalCount": 145,
-          "meanMs": 1.14,
-          "sdMs": 0.44
+          "meanMs": 1.1,
+          "sdMs": 0.21
         },
         "exact": {
           "feasiblePct": 100,
@@ -227,8 +227,8 @@
           ],
           "medianGapPct": 0,
           "optimalCount": 103,
-          "meanMs": 0.53,
-          "sdMs": 0.15
+          "meanMs": 0.41,
+          "sdMs": 0.06
         },
         "genetic": {
           "feasiblePct": 96.9,
@@ -245,8 +245,8 @@
           ],
           "medianGapPct": 0.681,
           "optimalCount": 63,
-          "meanMs": 1.19,
-          "sdMs": 0.2
+          "meanMs": 1.08,
+          "sdMs": 0.12
         },
         "exact": {
           "feasiblePct": 100,
@@ -263,8 +263,8 @@
           ],
           "medianGapPct": 0,
           "optimalCount": 193,
-          "meanMs": 1.06,
-          "sdMs": 2.89
+          "meanMs": 1.05,
+          "sdMs": 2.87
         }
       },
       "tests": {
@@ -555,12 +555,12 @@
         "genetic": {
           "feasiblePct": 92,
           "meanGapToBestPct": 0.405,
-          "meanMs": 2.9
+          "meanMs": 2.8
         },
         "exact": {
           "feasiblePct": 100,
           "meanGapToBestPct": 0.598,
-          "meanMs": 350.5
+          "meanMs": 350.8
         }
       },
       "exactProvedPct": 49
@@ -588,7 +588,7 @@
         "exact": {
           "feasiblePct": 100,
           "meanGapToBestPct": 1.714,
-          "meanMs": 479.7
+          "meanMs": 476.7
         }
       },
       "exactProvedPct": 27
@@ -616,7 +616,7 @@
         "exact": {
           "feasiblePct": 100,
           "meanGapToBestPct": 3.94,
-          "meanMs": 588
+          "meanMs": 584
         }
       },
       "exactProvedPct": 8
@@ -643,5 +643,53 @@
       "maxCost": 188.26,
       "foundOptimumPct": 0
     }
+  },
+  "ablation": {
+    "regime": "constrained",
+    "variants": {
+      "saRandom": {
+        "label": "Annealing, random start",
+        "feasiblePct": 95.9,
+        "meanGapPct": 0.655,
+        "optimalCount": 94,
+        "hardCaseFailedRuns": 37
+      },
+      "saWarm": {
+        "label": "Annealing, greedy start (used)",
+        "feasiblePct": 97.9,
+        "meanGapPct": 0.409,
+        "optimalCount": 103,
+        "hardCaseFailedRuns": 28
+      },
+      "saPolish": {
+        "label": "Annealing, greedy start + repair",
+        "feasiblePct": 96.4,
+        "meanGapPct": 0.342,
+        "optimalCount": 107,
+        "hardCaseFailedRuns": 18
+      },
+      "gaRandom": {
+        "label": "Genetic, random start",
+        "feasiblePct": 94.3,
+        "meanGapPct": 0.806,
+        "optimalCount": 64,
+        "hardCaseFailedRuns": 37
+      },
+      "gaWarm": {
+        "label": "Genetic, greedy start (used)",
+        "feasiblePct": 96.9,
+        "meanGapPct": 0.804,
+        "optimalCount": 63,
+        "hardCaseFailedRuns": 4
+      },
+      "gaPolish": {
+        "label": "Genetic, greedy start + repair",
+        "feasiblePct": 96.9,
+        "meanGapPct": 0.807,
+        "optimalCount": 63,
+        "hardCaseFailedRuns": 4
+      }
+    },
+    "instances": 193
   }
 }

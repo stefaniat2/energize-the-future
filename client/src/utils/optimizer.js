@@ -176,8 +176,40 @@ export function solveGreedy(problem) {
   return result;
 }
 
+// ---------- repair / polish: coordinate descent ----------
+// Tries every other start hour of every appliance and keeps any change that lowers the fitness; repeats until no change
+// helps or the evaluation allowance is used up. Used on the final schedule of the searches to remove a leftover fuse
+// overload or a small avoidable cost. Its evaluations are taken from the same total budget.
+export function polishGenes(problem, genes, maxEvals) {
+  let best = genes.slice();
+  let bestFit = evaluate(problem, best).fitness;
+  let used = 1;
+  let improved = true;
+  while (improved && used < maxEvals) {
+    improved = false;
+    for (let i = 0; i < best.length && used < maxEvals; i++) {
+      const span = problem.appliances[i].span;
+      for (let g = 0; g < span && used < maxEvals; g++) {
+        if (g === best[i]) continue;
+        const cand = best.slice();
+        cand[i] = g;
+        const f = evaluate(problem, cand).fitness;
+        used++;
+        if (f < bestFit - 1e-12) {
+          best = cand;
+          bestFit = f;
+          improved = true;
+        }
+      }
+    }
+  }
+  return { genes: best, used };
+}
+
 // ---------- method 2: simulated annealing ----------
-export function solveAnneal(problem, { budget = DEFAULT_BUDGET, seed = 1, warmStart = true } = {}) {
+export function solveAnneal(problem, { budget = DEFAULT_BUDGET, seed = 1, warmStart = true, polish = false } = {}) {
+  const reserve = polish ? Math.round(budget * 0.1) : 0; // evaluations kept for the final repair
+  const searchBudget = budget - reserve;
   const rand = mulberry32(seed);
   const n = problem.appliances.length;
   // warm start: begin from the greedy schedule (v1 began from a random one and often never became feasible)
@@ -188,8 +220,8 @@ export function solveAnneal(problem, { budget = DEFAULT_BUDGET, seed = 1, warmSt
   const history = [bestFit];
   const t0 = 2 * Math.max(...problem.prices); // money units: early on a move worse by ~1 day-rate is accepted
   const t1 = 0.005;
-  for (let it = 1; it < budget; it++) {
-    const temp = t0 * Math.pow(t1 / t0, it / budget); // geometric cooling
+  for (let it = 1; it < searchBudget; it++) {
+    const temp = t0 * Math.pow(t1 / t0, it / searchBudget); // geometric cooling
     const candidate = current.slice();
     const i = Math.floor(rand() * n);
     const span = problem.appliances[i].span;
@@ -209,11 +241,18 @@ export function solveAnneal(problem, { budget = DEFAULT_BUDGET, seed = 1, warmSt
     }
     history.push(bestFit);
   }
+  if (polish) {
+    const r = polishGenes(problem, best, reserve);
+    best = r.genes;
+    history.push(evaluate(problem, best).fitness);
+  }
   return makeResult(problem, best, budget, history);
 }
 
 // ---------- method 3: genetic algorithm ----------
-export function solveGenetic(problem, { budget = DEFAULT_BUDGET, seed = 1, population = 40, warmStart = true } = {}) {
+export function solveGenetic(problem, { budget = DEFAULT_BUDGET, seed = 1, population = 40, warmStart = true, polish = false } = {}) {
+  const reserve = polish ? Math.round(budget * 0.1) : 0;
+  const searchBudget = budget - reserve;
   const rand = mulberry32(seed);
   const apps = problem.appliances;
   const n = apps.length;
@@ -239,10 +278,10 @@ export function solveGenetic(problem, { budget = DEFAULT_BUDGET, seed = 1, popul
     }
     return winner;
   };
-  while (evaluations < budget) {
+  while (evaluations < searchBudget) {
     pop.sort((a, b) => a.fit - b.fit);
     const next = [pop[0], pop[1]]; // elitism: the two best survive unchanged
-    while (next.length < population && evaluations < budget) {
+    while (next.length < population && evaluations < searchBudget) {
       const a = tournament();
       const b = tournament();
       const child = new Array(n);
@@ -258,6 +297,10 @@ export function solveGenetic(problem, { budget = DEFAULT_BUDGET, seed = 1, popul
     }
     pop = next;
     best = pop.reduce((a, b) => (b.fit < a.fit ? b : a), best);
+  }
+  if (polish) {
+    const r = polishGenes(problem, best.genes, reserve);
+    return makeResult(problem, r.genes, budget, history);
   }
   return makeResult(problem, best.genes, evaluations, history);
 }

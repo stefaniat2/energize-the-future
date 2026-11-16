@@ -4,7 +4,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 
 import {
-  HOURS, twoZonePrices, makeProblem, evaluate, loadProfile, randomInstance, mulberry32,
+  polishGenes, HOURS, twoZonePrices, makeProblem, evaluate, loadProfile, randomInstance, mulberry32,
   solvePreferred, solveGreedy, solveAnneal, solveGenetic, solveExact,
 } from "../src/utils/optimizer.js";
 import { mean, sd, median, normalCdf, confidence95, pairedTest } from "../src/utils/stats.js";
@@ -215,4 +215,23 @@ test("economics: payback is upfront / net yearly saving, and never when running 
   close(paybackYears({ upfrontEur: 60, yearlyEur: 0 }, 30), 2);
   assert.equal(paybackYears({ upfrontEur: 1000, yearlyEur: 180 }, 30), null);
   assert.equal(OPTIONS.length, 4);
+});
+
+test("polish: never makes a schedule worse and stays inside its evaluation allowance", () => {
+  for (let seed = 1; seed <= 10; seed++) {
+    const problem = randomInstance(seed, { prices, capKw: 4.0 });
+    const start = solveGreedy(problem).genes;
+    const before = evaluate(problem, start).fitness;
+    const r = polishGenes(problem, start, 120);
+    assert.ok(evaluate(problem, r.genes).fitness <= before + 1e-9);
+    assert.ok(r.used <= 120);
+  }
+});
+
+test("ablation in benchmark.json: the greedy start helps annealing's feasibility and gap", () => {
+  const b = JSON.parse(readFileSync(new URL("../src/data/benchmark.json", import.meta.url), "utf8"));
+  const v = b.ablation.variants;
+  assert.ok(v.saWarm.meanGapPct < v.saRandom.meanGapPct);
+  assert.ok(v.saWarm.feasiblePct > v.saRandom.feasiblePct);
+  assert.ok(v.saWarm.hardCaseFailedRuns <= v.saRandom.hardCaseFailedRuns);
 });

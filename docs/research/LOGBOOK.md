@@ -94,7 +94,7 @@ missing 2-page abstract, 1-page visual annex and this logbook; poster was A3, A0
 
 ### Experiment E5 — final run, tests, audit
 
-- **12 November:** benchmark (adds the three reported tariff scenarios), 34 client + 16 server = **50 tests**
+- **12 November:** benchmark (adds the three reported tariff scenarios), 34 client + 16 server = **52 tests**
   pass; Lighthouse on the new pages: Scheduler 95 / 100 / 100 / 100, Research 98 / 100 / 100 / 100 (performance /
   accessibility / best practices / SEO; home re-measured 97 / 100 / 100 / 100).
 - Documents generated from the data file: abstract (2 pages), visual annex (1 page), A0 poster.
@@ -112,6 +112,19 @@ missing 2-page abstract, 1-page visual annex and this logbook; poster was A3, A0
   overstated the night discount (23 % → 22 %) and the day price. The page, the documents and the pitch were updated.
   The table below was measured under the 2025 tariff; under the official tariff the v2 row is gap 0.41 %, feasibility
   97.9 %, hard-case failed runs 28 (annealing) / 4 (genetic) of 100.
+
+### Experiment E7 — ablation: starting point and a repair step (16 Nov 2026)
+
+- **Question:** how much of the improvement comes from starting the searches at the greedy schedule, and would a final
+  repair step (coordinate descent using 10 % of the same budget) remove the remaining fuse failures?
+- **Method:** same 193 regime-B households and seeds, six variants; plus 100 seeds on the hard 10-appliance household.
+- **Result (annealing):** random start → greedy start: gap 0.66 % → **0.41 %**, feasible 95.9 % → **97.9 %**, hard-case
+  failures 37 → **28**. Adding repair: gap **0.34 %**, optimum found 103 → 107 of 193, hard-case failures **18**, **but** the
+  share of feasible households *fell* to 96.4 % (the repair takes budget from the search).
+- **Result (genetic):** the greedy start cut hard-case failures from 37 to **4** but left the mean gap about the same
+  (0.81 % → 0.80 %); repair changed nothing.
+- **Lesson:** a mixed result, reported as such. Repair was **not** adopted by default; the headline numbers are unchanged.
+  The warm start is justified by measurement now, not only by the earlier comparison.
 
 ### Quantitative progress (regime B, 4.0 kW fuse; measured on 11 Nov with the 2025 tariff)
 

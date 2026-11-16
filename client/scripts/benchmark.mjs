@@ -224,12 +224,50 @@ const stability = {};
   }
 }
 
+// ---------------------------------------------------------------- experiment 6: ablation (starting point and repair step)
+// Same households and seeds as regime B. "polish" reserves 10% of the budget for a final coordinate-descent repair.
+const ABL = {
+  saRandom: { label: "Annealing, random start", run: (p, sd) => solveAnneal(p, { seed: sd, warmStart: false }) },
+  saWarm: { label: "Annealing, greedy start (used)", run: (p, sd) => solveAnneal(p, { seed: sd }) },
+  saPolish: { label: "Annealing, greedy start + repair", run: (p, sd) => solveAnneal(p, { seed: sd, polish: true }) },
+  gaRandom: { label: "Genetic, random start", run: (p, sd) => solveGenetic(p, { seed: sd, warmStart: false }) },
+  gaWarm: { label: "Genetic, greedy start (used)", run: (p, sd) => solveGenetic(p, { seed: sd }) },
+  gaPolish: { label: "Genetic, greedy start + repair", run: (p, sd) => solveGenetic(p, { seed: sd, polish: true }) },
+};
+const ablation = { regime: "constrained", variants: {} };
+{
+  const acc = Object.fromEntries(Object.keys(ABL).map((k) => [k, { feas: 0, gaps: [], opt: 0 }]));
+  let n = 0;
+  for (let seed = 1; seed <= N_INSTANCES; seed++) {
+    const problem = randomInstance(seed, { prices, capKw: REGIMES.constrained });
+    const ex = solveExact(problem);
+    if (!ex || !ex.proven) continue;
+    n++;
+    for (const [k, v] of Object.entries(ABL)) {
+      const r = v.run(problem, seed);
+      if (r.overload < 1e-9) {
+        acc[k].feas++;
+        const gap = pct(r.cost, ex.cost);
+        acc[k].gaps.push(gap);
+        if (gap < 1e-6) acc[k].opt++;
+      }
+    }
+  }
+  const hard = randomInstance(7, { prices, capKw: (REGIMES.constrained * 10) / 6, count: 10 });
+  ablation.instances = n;
+  for (const [k, v] of Object.entries(ABL)) {
+    let failed = 0;
+    for (let sd = 1; sd <= 100; sd++) if (v.run(hard, sd).overload > 1e-9) failed++;
+    ablation.variants[k] = { label: v.label, feasiblePct: round((acc[k].feas / n) * 100, 1), meanGapPct: round(mean(acc[k].gaps), 3), optimalCount: acc[k].opt, hardCaseFailedRuns: failed };
+  }
+}
+
 const result = {
   generatedBy: "client/scripts/benchmark.mjs",
   generatedOn: new Date().toISOString().slice(0, 10),
   environment: { node: process.version, platform: `${os.platform()} ${os.arch()}`, cpu: os.cpus()[0]?.model ?? "unknown" },
   settings: { budget: BUDGET, instancesPerRegime: N_INSTANCES, instancesPerScalabilityPoint: N_SCALE, tariff: TARIFFS.premier, tariffFeeNord: TARIFFS.feeNord, regimes: REGIMES },
-  regimes, convergence: conv, sensitivity, tariffScenarios, scalability, stability,
+  regimes, convergence: conv, sensitivity, tariffScenarios, scalability, stability, ablation,
 };
 writeFileSync(outJson, JSON.stringify(result, null, 2) + "\n");
 writeFileSync(resolve(outDir, "benchmark-instances.csv"), csvRows.join("\n") + "\n");

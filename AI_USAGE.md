@@ -53,7 +53,7 @@ The prompts that shaped the project are kept in the repository so the process is
 
 The AI was not trusted blindly. Every feature was checked in several ways:
 
-1. **Automated tests — 50 tests** (16 in `server/`, 34 in `client/`; `npm test` in each):
+1. **Automated tests — 52 tests** (16 in `server/`, 36 in `client/`; `npm test` in each):
    API behaviour, validation, CORS, rate limiting, SQL-injection text, calculator formulas,
    game rules, the optimiser (exact solver checked against exhaustive search), statistics, the economic model,
    consistency of the published benchmark, and a guard that Romanian and Russian have the same keys as English.

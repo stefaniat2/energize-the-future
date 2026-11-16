@@ -17,7 +17,7 @@ answers in both languages**. Every number below comes from `client/src/data/benc
 | 01 Originality | A scheduler that solves a real constrained problem with four algorithms *in the browser*, plus a budget strategy game and a watts→money→CO₂→trees calculator, in 3 languages | Pitch 0:45–1:45 |
 | 02 Practicality | A family types its own appliances and tariff and gets start times; economic case study in lei and EUR with honest payback | Pitch 2:25 |
 | 03 UI/UX | One burger menu, instant language switch, charts with text alternatives, keyboard and screen-reader support, Lighthouse 100 / 100 / 100 | Demo |
-| 04 Functionality | Everything works live: scheduler, game, leaderboard, forms. **50 automated tests** pass | Demo + CI badge |
+| 04 Functionality | Everything works live: scheduler, game, leaderboard, forms. **52 automated tests** pass | Demo + CI badge |
 | 05 Technical skills | React/Vite, Express, SQLite/Turso, i18n, pure tested algorithms (annealing, genetic, branch and bound), statistics, reproducible benchmark | Pitch 1:45 + Q&A |
 | 06 Oral presentation | Hook, one question, evidence, honesty, timing | Whole pitch |
 | 07 Documentation | README, architecture, user guide, **abstract, visual annex, logbook, economics**, fact-check | [docs/research/](research/README.md) |

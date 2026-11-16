@@ -190,7 +190,7 @@ and the household's fuse limit is never exceeded. Search space for six unrestric
 | Level | What | How |
 |---|---|---|
 | Unit | Calculator, game rules, translation files | `client/tests/logic.test.js` (13 tests) |
-| Unit | Optimiser (exact solver vs exhaustive search, seeds, budget, warm start), statistics, economics, consistency of the published benchmark | `client/tests/optimizer.test.js` (21 tests) |
+| Unit | Optimiser (exact solver vs exhaustive search, seeds, budget, warm start), statistics, economics, consistency of the published benchmark | `client/tests/optimizer.test.js` (23 tests) |
 | Integration | Every API endpoint on a real Express app with an in-memory database | `server/tests/` — `api.test.js` (15) and `seed.test.js` (1) |
 | Manual (browser) | See checklist below | Done before each release |
 | Deployment | Live site against the live API | After each deploy |

@@ -92,7 +92,7 @@ drawn with CSS/SVG, so no copyrighted images are used. See the [user guide](docs
 
 **Backend** — Node.js 20 · Express 4 · SQLite via the libSQL client (`@libsql/client`): a local file for development, optionally a free hosted **Turso** database for permanent data · dotenv
 
-**Quality** — Node's built-in test runner (50 automated tests), in-memory database for tests, GitHub Actions CI, Lighthouse audited
+**Quality** — Node's built-in test runner (52 automated tests), in-memory database for tests, GitHub Actions CI, Lighthouse audited
 
 **Hosting (free tiers)** — Vercel (frontend) · Render (API)
 
