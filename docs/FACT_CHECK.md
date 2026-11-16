@@ -67,3 +67,12 @@ averages that the app labels as estimates; they were not re-verified here (real 
 - World Nuclear Association, Denmark profile: https://world-nuclear.org/Information-Library/Country-Profiles/countries-A-F/Denmark
 - OSTI, standby power paper: https://www.osti.gov/biblio/793734
 - Natural Resources Canada, ENERGY STAR clothes washers: https://natural-resources.canada.ca/energy-efficiency/energy-star/clothes-washers
+
+## Tariff, price and exchange-rate inputs (added 12 November 2026)
+
+The economic case study uses Moldovan electricity tariffs, an exchange rate and commercial prices. They were looked up
+by web search; on 16 November 2026 the official Premier Energy page and a Moldpres article were also read in full. Older media reports **conflict** with each other and with the current official figures.
+Each input has its own source, certainty level (A / B / C) and note in
+[research/ECONOMICS.md](research/ECONOMICS.md). Short version: the exchange rate (National Bank of Moldova, 20.1773
+on 5 Nov 2026) is level B; the Premier Energy two-zone prices **3.75 / 2.94 lei/kWh since 2 April 2026** were read on the operator's own page (level A for that page; VAT basis not stated, ANRE decision PDF not read); FEE Nord's 4.89 / 3.90 and Premier's earlier 4.32 / 3.31 and 3.89 are older media reports (level B−/C), kept as comparison scenarios; commercial prices and the smart-plug price
+are level C (indicative or assumed). The website lets visitors type their own prices.

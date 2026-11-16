@@ -1,0 +1,647 @@
+{
+  "generatedBy": "client/scripts/benchmark.mjs",
+  "generatedOn": "2026-11-16",
+  "environment": {
+    "node": "v24.18.0",
+    "platform": "darwin arm64",
+    "cpu": "Apple M4"
+  },
+  "settings": {
+    "budget": 2400,
+    "instancesPerRegime": 200,
+    "instancesPerScalabilityPoint": 100,
+    "tariff": {
+      "label": "Premier Energy two-zone, in force since 2 April 2026 (premierenergy.md)",
+      "day": 3.75,
+      "night": 2.94
+    },
+    "tariffFeeNord": {
+      "label": "FEE Nord two-zone (reported 2025)",
+      "day": 4.89,
+      "night": 3.9
+    },
+    "regimes": {
+      "realistic": 5.5,
+      "constrained": 4
+    }
+  },
+  "regimes": {
+    "realistic": {
+      "capKw": 5.5,
+      "instances": 200,
+      "excludedInfeasible": 0,
+      "habitFuseViolationPct": 97,
+      "meanDailySavingLei": 11.77,
+      "methods": {
+        "preferred": {
+          "feasiblePct": 99.5,
+          "meanCost": 113.502,
+          "meanSavingPct": 0,
+          "savingCI95": [
+            0,
+            0
+          ],
+          "meanGapPct": 11.903,
+          "gapCI95": [
+            11.24,
+            12.567
+          ],
+          "medianGapPct": 11.651,
+          "optimalCount": 0,
+          "meanMs": 0,
+          "sdMs": 0
+        },
+        "greedy": {
+          "feasiblePct": 97,
+          "meanCost": 102.046,
+          "meanSavingPct": 10.12,
+          "savingCI95": [
+            9.58,
+            10.66
+          ],
+          "meanGapPct": 0.443,
+          "gapCI95": [
+            0.347,
+            0.539
+          ],
+          "medianGapPct": 0,
+          "optimalCount": 123,
+          "meanMs": 0.01,
+          "sdMs": 0.02
+        },
+        "anneal": {
+          "feasiblePct": 98.5,
+          "meanCost": 101.972,
+          "meanSavingPct": 10.41,
+          "savingCI95": [
+            9.89,
+            10.94
+          ],
+          "meanGapPct": 0.092,
+          "gapCI95": [
+            0.048,
+            0.136
+          ],
+          "medianGapPct": 0,
+          "optimalCount": 173,
+          "meanMs": 0.48,
+          "sdMs": 0.55
+        },
+        "genetic": {
+          "feasiblePct": 97,
+          "meanCost": 101.835,
+          "meanSavingPct": 10.23,
+          "savingCI95": [
+            9.69,
+            10.77
+          ],
+          "meanGapPct": 0.289,
+          "gapCI95": [
+            0.207,
+            0.371
+          ],
+          "medianGapPct": 0,
+          "optimalCount": 145,
+          "meanMs": 1.14,
+          "sdMs": 0.44
+        },
+        "exact": {
+          "feasiblePct": 100,
+          "meanCost": 102.024,
+          "meanSavingPct": 10.46,
+          "savingCI95": [
+            9.93,
+            10.98
+          ],
+          "meanGapPct": 0,
+          "gapCI95": [
+            0,
+            0
+          ],
+          "medianGapPct": 0,
+          "optimalCount": 200,
+          "meanMs": 0.16,
+          "sdMs": 0.72
+        }
+      },
+      "tests": {
+        "greedy_vs_preferred": {
+          "n": 193,
+          "meanDiff": 11.318,
+          "t": 36.35,
+          "p": 0,
+          "dz": 2.62
+        },
+        "anneal_vs_preferred": {
+          "n": 196,
+          "meanDiff": 11.688,
+          "t": 37.35,
+          "p": 0,
+          "dz": 2.67
+        },
+        "genetic_vs_preferred": {
+          "n": 193,
+          "meanDiff": 11.44,
+          "t": 36.34,
+          "p": 0,
+          "dz": 2.62
+        },
+        "exact_vs_preferred": {
+          "n": 199,
+          "meanDiff": 11.778,
+          "t": 37.47,
+          "p": 0,
+          "dz": 2.66
+        },
+        "anneal_vs_greedy": {
+          "n": 193,
+          "meanDiff": 0.38,
+          "t": 7.98,
+          "p": 1.3322676295501878e-15,
+          "dz": 0.57
+        },
+        "genetic_vs_greedy": {
+          "n": 193,
+          "meanDiff": 0.149,
+          "t": 4.69,
+          "p": 0.0000027201813652677487,
+          "dz": 0.34
+        }
+      }
+    },
+    "constrained": {
+      "capKw": 4,
+      "instances": 193,
+      "excludedInfeasible": 7,
+      "habitFuseViolationPct": 100,
+      "meanDailySavingLei": 6.34,
+      "methods": {
+        "preferred": {
+          "feasiblePct": 97.4,
+          "meanCost": 109.369,
+          "meanSavingPct": 0,
+          "savingCI95": [
+            0,
+            0
+          ],
+          "meanGapPct": 6.421,
+          "gapCI95": [
+            5.928,
+            6.915
+          ],
+          "medianGapPct": 5.908,
+          "optimalCount": 0,
+          "meanMs": 0,
+          "sdMs": 0
+        },
+        "greedy": {
+          "feasiblePct": 94.3,
+          "meanCost": 104.28,
+          "meanSavingPct": 4.94,
+          "savingCI95": [
+            4.47,
+            5.41
+          ],
+          "meanGapPct": 1.138,
+          "gapCI95": [
+            0.991,
+            1.286
+          ],
+          "medianGapPct": 1.049,
+          "optimalCount": 48,
+          "meanMs": 0,
+          "sdMs": 0
+        },
+        "anneal": {
+          "feasiblePct": 97.9,
+          "meanCost": 104.043,
+          "meanSavingPct": 5.62,
+          "savingCI95": [
+            5.18,
+            6.06
+          ],
+          "meanGapPct": 0.409,
+          "gapCI95": [
+            0.323,
+            0.495
+          ],
+          "medianGapPct": 0,
+          "optimalCount": 103,
+          "meanMs": 0.53,
+          "sdMs": 0.15
+        },
+        "genetic": {
+          "feasiblePct": 96.9,
+          "meanCost": 104.089,
+          "meanSavingPct": 5.3,
+          "savingCI95": [
+            4.86,
+            5.75
+          ],
+          "meanGapPct": 0.804,
+          "gapCI95": [
+            0.686,
+            0.922
+          ],
+          "medianGapPct": 0.681,
+          "optimalCount": 63,
+          "meanMs": 1.19,
+          "sdMs": 0.2
+        },
+        "exact": {
+          "feasiblePct": 100,
+          "meanCost": 103.608,
+          "meanSavingPct": 5.99,
+          "savingCI95": [
+            5.57,
+            6.41
+          ],
+          "meanGapPct": 0,
+          "gapCI95": [
+            0,
+            0
+          ],
+          "medianGapPct": 0,
+          "optimalCount": 193,
+          "meanMs": 1.06,
+          "sdMs": 2.89
+        }
+      },
+      "tests": {
+        "greedy_vs_preferred": {
+          "n": 177,
+          "meanDiff": 4.98,
+          "t": 23.53,
+          "p": 0,
+          "dz": 1.77
+        },
+        "anneal_vs_preferred": {
+          "n": 184,
+          "meanDiff": 5.808,
+          "t": 28.23,
+          "p": 0,
+          "dz": 2.08
+        },
+        "genetic_vs_preferred": {
+          "n": 182,
+          "meanDiff": 5.435,
+          "t": 26.46,
+          "p": 0,
+          "dz": 1.96
+        },
+        "exact_vs_preferred": {
+          "n": 188,
+          "meanDiff": 6.239,
+          "t": 32.2,
+          "p": 0,
+          "dz": 2.35
+        },
+        "anneal_vs_greedy": {
+          "n": 180,
+          "meanDiff": 0.743,
+          "t": 11.39,
+          "p": 0,
+          "dz": 0.85
+        },
+        "genetic_vs_greedy": {
+          "n": 179,
+          "meanDiff": 0.315,
+          "t": 5.84,
+          "p": 5.29933696924445e-9,
+          "dz": 0.44
+        }
+      }
+    }
+  },
+  "convergence": {
+    "checkpoints": [
+      1,
+      50,
+      100,
+      200,
+      400,
+      800,
+      1200,
+      1600,
+      2000,
+      2400
+    ],
+    "anneal": [
+      1.308,
+      1.253,
+      1.223,
+      1.114,
+      0.885,
+      0.633,
+      0.468,
+      0.429,
+      0.415,
+      0.409
+    ],
+    "genetic": [
+      1.308,
+      1.297,
+      1.249,
+      1.177,
+      1.05,
+      0.908,
+      0.856,
+      0.842,
+      0.829,
+      0.821
+    ],
+    "greedy": 1.308
+  },
+  "sensitivity": [
+    {
+      "ratio": 1,
+      "meanSavingPct": 0,
+      "ci95": [
+        0,
+        0
+      ],
+      "upperBoundPct": 0
+    },
+    {
+      "ratio": 0.9,
+      "meanSavingPct": 4.69,
+      "ci95": [
+        4.37,
+        5.01
+      ],
+      "upperBoundPct": 10
+    },
+    {
+      "ratio": 0.8,
+      "meanSavingPct": 9.7,
+      "ci95": [
+        9.05,
+        10.35
+      ],
+      "upperBoundPct": 20
+    },
+    {
+      "ratio": 0.784,
+      "meanSavingPct": 10.53,
+      "ci95": [
+        9.84,
+        11.23
+      ],
+      "upperBoundPct": 21.6
+    },
+    {
+      "ratio": 0.7,
+      "meanSavingPct": 15.07,
+      "ci95": [
+        14.1,
+        16.04
+      ],
+      "upperBoundPct": 30
+    },
+    {
+      "ratio": 0.6,
+      "meanSavingPct": 20.86,
+      "ci95": [
+        19.57,
+        22.15
+      ],
+      "upperBoundPct": 40
+    },
+    {
+      "ratio": 0.5,
+      "meanSavingPct": 27.13,
+      "ci95": [
+        25.53,
+        28.74
+      ],
+      "upperBoundPct": 50
+    },
+    {
+      "ratio": 0.4,
+      "meanSavingPct": 33.97,
+      "ci95": [
+        32.05,
+        35.88
+      ],
+      "upperBoundPct": 60
+    }
+  ],
+  "tariffScenarios": [
+    {
+      "id": "premier",
+      "label": "Premier Energy two-zone, in force since 2 April 2026 (official page)",
+      "day": 3.75,
+      "night": 2.94,
+      "ratio": 0.784,
+      "n": 200,
+      "meanSavingPct": 10.46,
+      "ci95": [
+        9.93,
+        10.98
+      ]
+    },
+    {
+      "id": "premierLaunch2025",
+      "label": "Premier Energy two-zone as reported at launch (Jan 2025)",
+      "day": 4.32,
+      "night": 3.31,
+      "ratio": 0.766,
+      "n": 200,
+      "meanSavingPct": 11.39,
+      "ci95": [
+        10.82,
+        11.95
+      ]
+    },
+    {
+      "id": "premierLowerDay",
+      "label": "Premier Energy, day price reported lowered to 3.89 (Aug 2025)",
+      "day": 3.89,
+      "night": 3.31,
+      "ratio": 0.851,
+      "n": 200,
+      "meanSavingPct": 7.06,
+      "ci95": [
+        6.7,
+        7.42
+      ]
+    },
+    {
+      "id": "feeNord",
+      "label": "FEE Nord two-zone as reported (2025)",
+      "day": 4.89,
+      "night": 3.9,
+      "ratio": 0.798,
+      "n": 200,
+      "meanSavingPct": 9.76,
+      "ci95": [
+        9.27,
+        10.25
+      ]
+    }
+  ],
+  "scalability": [
+    {
+      "appliances": 6,
+      "instances": 97,
+      "capKw": 4,
+      "methods": {
+        "greedy": {
+          "feasiblePct": 97.9,
+          "meanGapToBestPct": 1.165,
+          "meanMs": 0
+        },
+        "anneal": {
+          "feasiblePct": 99,
+          "meanGapToBestPct": 0.489,
+          "meanMs": 0.6
+        },
+        "genetic": {
+          "feasiblePct": 99,
+          "meanGapToBestPct": 0.894,
+          "meanMs": 1.3
+        },
+        "exact": {
+          "feasiblePct": 100,
+          "meanGapToBestPct": 0,
+          "meanMs": 0.4
+        }
+      },
+      "exactProvedPct": 100
+    },
+    {
+      "appliances": 10,
+      "instances": 100,
+      "capKw": 6.67,
+      "methods": {
+        "greedy": {
+          "feasiblePct": 97,
+          "meanGapToBestPct": 0.912,
+          "meanMs": 0
+        },
+        "anneal": {
+          "feasiblePct": 96,
+          "meanGapToBestPct": 0.32,
+          "meanMs": 0.9
+        },
+        "genetic": {
+          "feasiblePct": 99,
+          "meanGapToBestPct": 0.764,
+          "meanMs": 1.9
+        },
+        "exact": {
+          "feasiblePct": 100,
+          "meanGapToBestPct": 0,
+          "meanMs": 45.1
+        }
+      },
+      "exactProvedPct": 99
+    },
+    {
+      "appliances": 16,
+      "instances": 100,
+      "capKw": 10.67,
+      "methods": {
+        "greedy": {
+          "feasiblePct": 88,
+          "meanGapToBestPct": 0.469,
+          "meanMs": 0
+        },
+        "anneal": {
+          "feasiblePct": 94,
+          "meanGapToBestPct": 0.181,
+          "meanMs": 1.3
+        },
+        "genetic": {
+          "feasiblePct": 92,
+          "meanGapToBestPct": 0.405,
+          "meanMs": 2.9
+        },
+        "exact": {
+          "feasiblePct": 100,
+          "meanGapToBestPct": 0.598,
+          "meanMs": 350.5
+        }
+      },
+      "exactProvedPct": 49
+    },
+    {
+      "appliances": 24,
+      "instances": 100,
+      "capKw": 16,
+      "methods": {
+        "greedy": {
+          "feasiblePct": 91,
+          "meanGapToBestPct": 0.346,
+          "meanMs": 0
+        },
+        "anneal": {
+          "feasiblePct": 98,
+          "meanGapToBestPct": 0.033,
+          "meanMs": 1.8
+        },
+        "genetic": {
+          "feasiblePct": 91,
+          "meanGapToBestPct": 0.313,
+          "meanMs": 4
+        },
+        "exact": {
+          "feasiblePct": 100,
+          "meanGapToBestPct": 1.714,
+          "meanMs": 479.7
+        }
+      },
+      "exactProvedPct": 27
+    },
+    {
+      "appliances": 40,
+      "instances": 100,
+      "capKw": 26.67,
+      "methods": {
+        "greedy": {
+          "feasiblePct": 91,
+          "meanGapToBestPct": 0.325,
+          "meanMs": 0
+        },
+        "anneal": {
+          "feasiblePct": 98,
+          "meanGapToBestPct": 0.004,
+          "meanMs": 2.9
+        },
+        "genetic": {
+          "feasiblePct": 92,
+          "meanGapToBestPct": 0.325,
+          "meanMs": 6.4
+        },
+        "exact": {
+          "feasiblePct": 100,
+          "meanGapToBestPct": 3.94,
+          "meanMs": 588
+        }
+      },
+      "exactProvedPct": 8
+    }
+  ],
+  "stability": {
+    "anneal": {
+      "runs": 100,
+      "infeasibleRuns": 28,
+      "referenceCost": 186.69,
+      "meanCost": 188.11,
+      "sdCost": 0.38,
+      "minCost": 186.74,
+      "maxCost": 188.26,
+      "foundOptimumPct": 0
+    },
+    "genetic": {
+      "runs": 100,
+      "infeasibleRuns": 4,
+      "referenceCost": 186.69,
+      "meanCost": 188.25,
+      "sdCost": 0.045,
+      "minCost": 187.94,
+      "maxCost": 188.26,
+      "foundOptimumPct": 0
+    }
+  }
+}

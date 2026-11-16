@@ -17,6 +17,8 @@ export default function Navbar() {
     { to: "/fun-facts", key: "facts" },
     { to: "/mini-game", key: "game" },
     { to: "/calculator", key: "calculator" },
+    { to: "/optimizer", key: "optimizer" },
+    { to: "/research", key: "research" },
     { to: "/community", key: "community" },
     { to: "/contact", key: "contact" },
     { to: "/ai-usage", key: "ai" },

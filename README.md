@@ -5,7 +5,8 @@
 An educational, multilingual (English · Română · Русский) web application that teaches young
 people about renewable energy, energy efficiency and how everyone can help build a cleaner
 future. It combines clear explanations with things you can *do*: a city-building strategy game,
-an energy-cost and CO₂ calculator, a habit tracker and a community suggestion box.
+an energy-cost and CO₂ calculator, a **smart appliance scheduler** (four algorithms that find the cheapest
+start times under a two-zone tariff without overloading the fuse), a habit tracker and a community suggestion box.
 
 | | |
 |---|---|
@@ -64,6 +65,8 @@ the goal into experiences young people can try in a few minutes:
 | **Fun Facts** | 35 facts from the database, category filters, random/next, favorites, sharing and a counter |
 | **Mini Game — Energy Hero** | 10 levels, budget and timer, 5 live city stats, consequence feedback after every decision, 5 achievements, global leaderboard |
 | **Energy Calculator** | Multiple appliances (add / edit / remove, saved locally), daily/monthly/yearly energy, cost in USD/EUR/RON/MDL, CO₂, trees equivalent, efficiency comparison tool |
+| **Smart Scheduler** | Pick your appliances, tariff and fuse limit; four methods (greedy, simulated annealing, genetic, exact) find the cheapest schedule in milliseconds, with timeline and power charts |
+| **Research & Economics** | Hypotheses, method, results of a 393-household benchmark with statistics, scalability, and an economic case study for a Moldovan household — see [docs/research/](docs/research/README.md) |
 | **Community** | Validated suggestion form stored in the database |
 | **Contact** | Validated contact form stored in the database |
 | **AI & Credits** | Transparent statement about AI assistance, sources, licences and privacy |
@@ -89,7 +92,7 @@ drawn with CSS/SVG, so no copyrighted images are used. See the [user guide](docs
 
 **Backend** — Node.js 20 · Express 4 · SQLite via the libSQL client (`@libsql/client`): a local file for development, optionally a free hosted **Turso** database for permanent data · dotenv
 
-**Quality** — Node's built-in test runner (29 automated tests), in-memory database for tests, GitHub Actions CI, Lighthouse audited
+**Quality** — Node's built-in test runner (50 automated tests), in-memory database for tests, GitHub Actions CI, Lighthouse audited
 
 **Hosting (free tiers)** — Vercel (frontend) · Render (API)
 
@@ -142,7 +145,8 @@ is only needed to force-reset the facts and game levels.
 | `server/` | `npm run seed` | Force re-seed facts and game levels |
 | `client/` | `npm run dev` | Vite dev server |
 | `client/` | `npm run build` | Production build into `client/dist` |
-| `client/` | `npm test` | 13 unit tests (formulas, game rules, translations) |
+| `client/` | `npm test` | 34 unit tests (formulas, game rules, translations, optimiser, statistics, economics, benchmark data) |
+| `client/` | `npm run benchmark` | Re-run the research benchmark (~4 min); writes `src/data/benchmark.json` |
 
 ## Configuration
 
@@ -176,12 +180,15 @@ cd client && npm test     # formulas, game rules, translation parity
 - **Calculator** — the exact formulas from the specification, totals, trees equivalent, efficiency savings.
 - **Game rules** — stat clamping, scoring formula, budget locking (the player can never be left
   without a choice), achievement thresholds, and that the seeded scenarios are winnable.
+- **Optimiser and statistics** — tariff wrap-around at midnight, cost and fuse-overload arithmetic, the exact solver
+  against exhaustive search, reproducible seeds, evaluation budget, statistics reference values, and consistency of the
+  published benchmark file (no method beats the proven optimum; saving never exceeds the tariff ceiling).
 - **Translations** — English, Romanian and Russian have identical keys, no empty strings,
   matching `{{placeholders}}`, and no long text left identical to English.
 
 **Continuous integration:** `.github/workflows/ci.yml` runs both test suites and a production build on every push.
 
-**Lighthouse audit** (mobile emulation with throttling, production build, all 10 pages, October 2026):
+**Lighthouse audit** (mobile emulation with throttling, production build, 10 original pages measured in October 2026; Home and the two research pages re-measured on 12 November 2026):
 Accessibility **100** · Best Practices **100** · SEO **100** · Performance **95–98**. The audit found real
 problems (low-contrast text, a nameless logo link, skipped heading levels, layout shift while data loaded, an
 invalid `robots.txt`) which were fixed — see [AI_USAGE.md](AI_USAGE.md#mistakes-made-by-the-ai-that-testing-caught).
@@ -216,7 +223,7 @@ Suggestion categories: `renewable-energy`, `energy-efficiency`, `education`, `tr
 
 - English (default), Romanian and Russian via i18next; the choice is remembered and applied
   instantly without reloading.
-- **471 translation keys per language** in `client/src/locales/{en,ro,ru}/translation.json`,
+- **623 translation keys per language** in `client/src/locales/{en,ro,ru}/translation.json`,
   guarded by automated tests so a missing or untranslated string is caught immediately.
 - Database content (facts, game levels) is stored translated and served by `?lang=`.
 - `<html lang>` and the browser-tab title follow the selected language; numbers and currencies
@@ -249,12 +256,13 @@ energize-the-future/
 ├── client/                         React + Vite single-page app
 │   ├── src/
 │   │   ├── components/             Navbar, Footer, LanguageSelector, StatusMessage…
-│   │   ├── pages/                  One file per route (10 pages)
-│   │   ├── utils/                  energy.js, game.js — pure, unit-tested logic
+│   │   ├── pages/                  One file per route (12 pages)
+│   │   ├── utils/                  energy.js, game.js, optimizer.js, stats.js, economics.js — pure, unit-tested logic
 │   │   ├── hooks/                  useLocalStorage
 │   │   ├── services/api.js         fetch() wrapper
 │   │   └── locales/{en,ro,ru}/     translations
-│   ├── tests/logic.test.js
+│   ├── tests/                      logic.test.js, optimizer.test.js
+│   ├── scripts/                    benchmark.mjs, build-research-docs.mjs
 │   └── vercel.json                 SPA routing rule
 ├── server/                         Express + SQLite API
 │   ├── app.js / server.js          app definition / process entry point

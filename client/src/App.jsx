@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Navbar from "./components/Navbar.jsx";
@@ -14,7 +14,11 @@ import Community from "./pages/Community.jsx";
 import Contact from "./pages/Contact.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import AIUsage from "./pages/AIUsage.jsx";
+// The research pages carry the benchmark data and charts, so they are loaded only when visited.
+const Optimizer = lazy(() => import("./pages/Optimizer.jsx"));
+const Research = lazy(() => import("./pages/Research.jsx"));
 import ScrollToTop from "./components/ScrollToTop.jsx";
+import { Loading } from "./components/StatusMessage.jsx";
 
 // Route -> translation key used for the browser tab title.
 const PAGE_TITLE_KEYS = {
@@ -25,6 +29,8 @@ const PAGE_TITLE_KEYS = {
   "/fun-facts": "nav.facts",
   "/mini-game": "nav.game",
   "/calculator": "nav.calculator",
+  "/optimizer": "nav.optimizer",
+  "/research": "nav.research",
   "/community": "nav.community",
   "/contact": "nav.contact",
   "/ai-usage": "nav.ai",
@@ -57,6 +63,7 @@ export default function App() {
       <ScrollToTop />
       <Navbar />
       <main id="main-content" tabIndex={-1} className="min-h-screen flex-1 outline-none">
+        <Suspense fallback={<Loading />}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<AboutSDG7 />} />
@@ -65,11 +72,14 @@ export default function App() {
           <Route path="/fun-facts" element={<FunFacts />} />
           <Route path="/mini-game" element={<MiniGame />} />
           <Route path="/calculator" element={<EnergyCalculator />} />
+          <Route path="/optimizer" element={<Optimizer />} />
+          <Route path="/research" element={<Research />} />
           <Route path="/community" element={<Community />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/ai-usage" element={<AIUsage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        </Suspense>
       </main>
       <Footer />
     </div>

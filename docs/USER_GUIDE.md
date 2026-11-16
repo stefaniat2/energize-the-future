@@ -70,6 +70,26 @@ Score tip: sustainability is worth the most points, so long-term choices pay off
 
 CO₂ values are estimates: they depend on how your country produces electricity.
 
+### Smart Scheduler
+
+Finds the cheapest start times for your appliances under a two-zone tariff, without overloading your fuse.
+
+1. Choose a **tariff** (Premier Energy or FEE Nord as reported by the media, a flat tariff, or type your own prices — check your bill).
+2. Set the **fuse limit** in kW (a 25 A fuse allows about 5.75 kW; 16 A about 3.7 kW).
+3. Tick your appliances and set their power, hours per run, usual start hour and when they may run.
+4. Press **Find the cheapest schedule**. The table compares your habit with four methods (greedy, simulated annealing,
+   genetic algorithm, exact) in milliseconds; the timeline shows when each appliance runs (dashed = your habit, green =
+   optimised) and the power chart shows the fuse line. Choose which method's schedule to display.
+
+Everything runs in your browser: your appliances are not sent anywhere. The yearly figure assumes the appliances run
+every day, so it is an upper estimate — see the Research page for a realistic case.
+
+### Research & Economics
+
+Explains the question, four hypotheses, the method and the results of a benchmark on 393 random households,
+how the methods scale, and an economic case study for a Moldovan household (with payback of different ways to apply the
+schedule and an honest list of limits). All numbers are generated from one reproducible script.
+
 ### Community
 Send an idea for a more sustainable community: name, e-mail, category and message (10–2000
 characters). If something is wrong you'll see exactly what to fix; on success you get a

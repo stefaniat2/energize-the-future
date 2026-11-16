@@ -1,0 +1,823 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Energize the Future — Presenter's Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+  @page {
+    size: A4;
+    margin: 22mm 18mm 20mm 18mm;
+    @top-right { content: "Energize the Future — Presenter's Guide"; font: 8.5pt Poppins, sans-serif; color: #64748b; }
+    @bottom-center { content: "Page " counter(page); font: 8.5pt Poppins, sans-serif; color: #64748b; }
+  }
+  @page :first { @top-right { content: none; } @bottom-center { content: none; } }
+
+  * { box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { font-family: Poppins, system-ui, sans-serif; font-size: 10pt; line-height: 1.52; color: #1e293b; margin: 0; }
+  p { margin: 0 0 2.8mm; }
+  a { color: #1971c2; text-decoration: none; }
+  strong { color: #0f172a; }
+  code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 9pt; background: #eef2f7; padding: 0.4mm 1.4mm; border-radius: 1mm; color: #0b3d5c; }
+
+  /* ---------- headings ---------- */
+  h1 { font-size: 22pt; line-height: 1.15; margin: 0 0 4mm; color: #124e89; font-weight: 800; }
+  h2 { font-size: 14.5pt; margin: 6.5mm 0 2.5mm; color: #124e89; font-weight: 700; break-after: avoid; }
+  h3 { font-size: 11.5pt; margin: 5mm 0 2mm; color: #1e6b30; font-weight: 700; break-after: avoid; }
+  .part { break-before: page; background: linear-gradient(135deg,#124e89,#1971c2 60%,#237a36); color: #fff; margin: 0 0 7mm; padding: 9mm 10mm 8mm; border-radius: 3mm; }
+  .part.cont { break-before: auto; margin-top: 8mm; }
+  .part .num { font-size: 10pt; letter-spacing: 2pt; text-transform: uppercase; opacity: .85; font-weight: 600; }
+  .part h1 { color: #fff; font-size: 24pt; margin: 1mm 0 2mm; }
+  .part p { color: #e6f0fb; margin: 0; max-width: 150mm; }
+
+  /* ---------- cover ---------- */
+  .cover { width: 100%; height: 250mm; margin: 0; border-radius: 6mm; break-after: page; position: relative; overflow: hidden;
+           background: linear-gradient(150deg,#124e89 0%,#1971c2 55%,#237a36 100%); color: #fff; padding: 22mm 16mm; }
+  .cover::after { content: ""; position: absolute; right: -26mm; top: -30mm; width: 92mm; height: 92mm; border-radius: 50%; background: #f5c518; opacity: .95; box-shadow: 0 0 50mm rgba(245,197,24,.55); }
+  .cover > * { position: relative; z-index: 1; }
+  .cover .tag { display: inline-block; background: rgba(255,255,255,.18); padding: 2.5mm 6mm; border-radius: 50mm; font-weight: 600; font-size: 12pt; margin-bottom: 10mm; }
+  .cover h1 { color: #fff; font-size: 50pt; line-height: 1.0; margin: 0 0 6mm; }
+  .cover .sub { font-size: 17pt; max-width: 130mm; margin-bottom: 14mm; }
+  .cover .box { background: rgba(255,255,255,.14); border-radius: 5mm; padding: 6mm 8mm; max-width: 125mm; font-size: 11pt; margin-bottom: 8mm; }
+  .cover .qr { position: absolute; right: 16mm; bottom: 26mm; background: #fff; border-radius: 5mm; padding: 4mm; width: 52mm; text-align: center; color: #0f172a; }
+  .cover .qr svg { width: 100%; height: auto; display: block; }
+  .cover .qr b { display: block; font-size: 9.5pt; margin-top: 2mm; }
+  .cover .foot { position: absolute; left: 16mm; bottom: 18mm; max-width: 88mm; font-size: 9.5pt; opacity: .95; line-height: 1.7; }
+
+  /* ---------- boxes ---------- */
+  .box { border-radius: 3mm; padding: 4mm 5mm; margin: 4mm 0; break-inside: avoid; border-left: 1.6mm solid; }
+  .box > :last-child { margin-bottom: 0; }
+  .box .t { font-weight: 700; font-size: 9pt; letter-spacing: .8pt; text-transform: uppercase; margin-bottom: 1.2mm; }
+  .analogy { background: #fff8db; border-color: #f5c518; } .analogy .t { color: #8a6d00; }
+  .say     { background: #e8f3ff; border-color: #1971c2; } .say .t { color: #124e89; }
+  .tip     { background: #e9f7ee; border-color: #237a36; } .tip .t { color: #1e6b30; }
+  .warn    { background: #fdeceb; border-color: #c92a2a; } .warn .t { color: #a61e1e; }
+  .big     { background: #f1f5f9; border-color: #475569; } .big .t { color: #334155; }
+
+  /* ---------- tables ---------- */
+  table { border-collapse: collapse; width: 100%; margin: 3.5mm 0 5mm; font-size: 9.3pt; break-inside: auto; }
+  th { background: #124e89; color: #fff; text-align: left; padding: 2mm 3mm; font-weight: 600; }
+  td { padding: 2mm 3mm; border-bottom: .3mm solid #dbe3ec; vertical-align: top; }
+  tr { break-inside: avoid; }
+  tbody tr:nth-child(even) td { background: #f6f9fc; }
+  td:first-child { font-weight: 600; color: #0f172a; }
+
+  /* ---------- figures ---------- */
+  figure { margin: 4mm 0 5mm; break-inside: avoid; text-align: center; }
+  figure img { max-width: 100%; border: .3mm solid #cbd5e1; border-radius: 2.5mm; box-shadow: 0 1mm 3mm rgba(0,0,0,.08); }
+  figure.narrow img { max-width: 46mm; }
+  figcaption { font-size: 8.8pt; color: #64748b; margin-top: 1.6mm; font-style: italic; }
+  .row2 { display: flex; gap: 5mm; align-items: flex-start; break-inside: avoid; }
+  .row2 > * { flex: 1; min-width: 0; }
+
+  /* ---------- diagrams ---------- */
+  .flow { display: flex; align-items: stretch; gap: 0; margin: 5mm 0; break-inside: avoid; }
+  .flow .node { flex: 1; border-radius: 3mm; padding: 3.5mm 3mm; text-align: center; font-size: 8.8pt; line-height: 1.35; border: .4mm solid; }
+  .flow .node b { display: block; font-size: 10pt; margin-bottom: 1mm; }
+  .flow .arrow { width: 9mm; display: flex; align-items: center; justify-content: center; font-size: 15pt; color: #64748b; font-weight: 700; flex: none; }
+  .n-blue { background: #e8f3ff; border-color: #1971c2; } .n-green { background: #e9f7ee; border-color: #237a36; }
+  .n-yellow { background: #fff8db; border-color: #f5c518; } .n-grey { background: #f1f5f9; border-color: #94a3b8; }
+  .steps { counter-reset: s; list-style: none; padding: 0; margin: 3mm 0 4mm; }
+  .steps li { counter-increment: s; position: relative; padding: 0 0 2.4mm 10mm; break-inside: avoid; }
+  .steps li::before { content: counter(s); position: absolute; left: 0; top: 0; width: 6.5mm; height: 6.5mm; border-radius: 50%; background: #f5c518; color: #0f172a; font-weight: 800; font-size: 9pt; display: grid; place-items: center; }
+  ul, ol { margin: 0 0 3.5mm; padding-left: 6mm; } li { margin-bottom: 1.2mm; }
+  .toc td:first-child { width: 22mm; color: #237a36; }
+  .pill { display: inline-block; background: #e8f3ff; color: #124e89; border-radius: 50mm; padding: .3mm 2.6mm; font-size: 8.6pt; font-weight: 600; }
+  .code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 8.7pt; background: #0f172a; color: #e2e8f0; border-radius: 2.5mm; padding: 3.5mm 4.5mm; margin: 3mm 0 4mm; line-height: 1.5; white-space: pre-wrap; break-inside: avoid; }
+  .code .c { color: #8aa4c4; } .code .k { color: #ffd866; } .code .s { color: #a9dc76; }
+  dl { margin: 0; } dt { font-weight: 700; color: #124e89; margin-top: 3mm; break-after: avoid; } dd { margin: 0 0 0 0; break-inside: avoid; }
+
+  /* ---------- beginner-friendly building blocks ---------- */
+  .easy p, .easy li { font-size: 10.6pt; line-height: 1.62; }
+  .one { background: #124e89; color: #fff; border-radius: 3mm; padding: 3.4mm 5mm; margin: 3mm 0 4mm; font-size: 10.8pt; font-weight: 600; break-inside: avoid; break-after: avoid; }
+  .one small { display: block; font-size: 8pt; letter-spacing: 1pt; text-transform: uppercase; opacity: .8; margin-bottom: .8mm; font-weight: 600; }
+  .tool { border: .35mm solid #cfdbe8; border-left: 2.2mm solid #1971c2; border-radius: 3mm; padding: 3.4mm 5mm 3.2mm; margin: 3.5mm 0; break-inside: avoid; background: #fff; }
+  .tool h4 { margin: 0 0 1.6mm; font-size: 12pt; color: #124e89; }
+  .tool .row { display: flex; gap: 3mm; margin-bottom: 1.2mm; font-size: 10pt; line-height: 1.5; }
+  .tool .row b { flex: none; width: 22mm; color: #1e6b30; font-size: 8.6pt; text-transform: uppercase; letter-spacing: .6pt; padding-top: .5mm; }
+  .tool.k { border-left-color: #f5c518; } .tool.d { border-left-color: #237a36; } .tool.h { border-left-color: #6741d9; } .tool.q { border-left-color: #e8590c; }
+  .demo { display: grid; grid-template-columns: 1fr 1fr; gap: 3mm; margin: 3mm 0 4mm; break-inside: avoid; align-items: stretch; }
+  .demo .src { background: #0f172a; color: #e2e8f0; border-radius: 2.5mm; padding: 3mm 4mm; font-family: "SF Mono", Menlo, monospace; font-size: 8.8pt; line-height: 1.55; white-space: pre-wrap; }
+  .demo .src i { display: block; font-style: normal; font-family: Poppins, sans-serif; font-size: 7.6pt; letter-spacing: 1pt; text-transform: uppercase; color: #8aa4c4; margin-bottom: 1.2mm; }
+  .demo .res { border: .4mm dashed #94a3b8; border-radius: 2.5mm; padding: 3mm 4mm; background: #f8fafc; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+  .demo .res i { font-style: normal; font-size: 7.6pt; letter-spacing: 1pt; text-transform: uppercase; color: #64748b; margin-bottom: 2mm; }
+  .b1 { font: 600 10pt Poppins, sans-serif; padding: 2mm 5mm; border: .3mm solid #888; background: #eee; border-radius: 1mm; color: #000; }
+  .b2 { font: 600 10pt Poppins, sans-serif; padding: 2.4mm 6mm; border: 0; background: #237a36; color: #fff; border-radius: 6mm; }
+  .bubbles { margin: 3mm 0 4mm; break-inside: avoid; }
+  .bubble { max-width: 78%; padding: 2.6mm 4mm; border-radius: 4mm; margin: 0 0 2.2mm; font-size: 9.8pt; line-height: 1.45; }
+  .bubble small { display: block; font-weight: 700; font-size: 7.8pt; letter-spacing: .8pt; text-transform: uppercase; margin-bottom: .6mm; }
+  .bubble.me { background: #e8f3ff; border: .3mm solid #1971c2; } .bubble.srv { background: #fff8db; border: .3mm solid #f5c518; margin-left: auto; }
+  .mini { width: 100%; border-collapse: collapse; font-size: 8.8pt; margin: 2mm 0; } .mini th { background: #475569; color: #fff; padding: 1.4mm 2.4mm; text-align: left; } .mini td { padding: 1.4mm 2.4mm; border: .25mm solid #cbd5e1; background: #fff; font-weight: 400; color: #1e293b; }
+  .panels { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3mm; margin: 4mm 0; }
+  .panel { border: .35mm solid #cfdbe8; border-radius: 3mm; padding: 3mm 3.4mm; background: #fff; break-inside: avoid; font-size: 9.2pt; line-height: 1.45; position: relative; padding-top: 7mm; }
+  .panel .n { position: absolute; top: -3mm; left: 3mm; width: 7mm; height: 7mm; border-radius: 50%; background: #f5c518; color: #0f172a; font-weight: 800; display: grid; place-items: center; font-size: 10pt; }
+  .panel .ic { font-size: 16pt; display: block; margin-bottom: 1mm; }
+  .map td:first-child { width: 42mm; } .map td:nth-child(2) { width: 34mm; color: #124e89; font-weight: 600; }
+  .quote { border-left: 1.4mm solid #1971c2; background: #f1f7fd; padding: 3mm 5mm; margin: 3mm 0; font-style: italic; border-radius: 0 2mm 2mm 0; break-inside: avoid; }
+  .quote::before { content: "Say it like this:  "; font-style: normal; font-weight: 700; font-size: 8.4pt; letter-spacing: .6pt; text-transform: uppercase; color: #124e89; }
+  .emo { font-size: 13pt; }
+</style>
+</head>
+<body>
+
+<!-- ============================================================ COVER -->
+<section class="cover">
+  <div class="tag">UN Sustainable Development Goal 7</div>
+  <h1>Energize<br>the Future</h1>
+  <div class="sub">Presenter's Guide — how the project was made and how to use it, explained for someone who has never programmed.</div>
+  <div class="box">
+    A website that teaches young people about <b>affordable and clean energy</b> — with a city-building game, an energy calculator, facts and tips, in <b>English, Romanian and Russian</b>.
+  </div>
+  <div class="qr"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 31 31" shape-rendering="crispEdges"><path fill="#ffffff" d="M0 0h31v31H0z"/><path stroke="#0b3d2e" d="M1 1.5h7m5 0h1m2 0h1m3 0h1m2 0h7M1 2.5h1m5 0h1m1 0h4m1 0h1m1 0h5m2 0h1m5 0h1M1 3.5h1m1 0h3m1 0h1m2 0h1m1 0h1m2 0h1m1 0h1m2 0h1m2 0h1m1 0h3m1 0h1M1 4.5h1m1 0h3m1 0h1m5 0h1m1 0h2m2 0h2m2 0h1m1 0h3m1 0h1M1 5.5h1m1 0h3m1 0h1m1 0h2m1 0h2m2 0h1m3 0h1m2 0h1m1 0h3m1 0h1M1 6.5h1m5 0h1m2 0h5m1 0h1m1 0h4m1 0h1m5 0h1M1 7.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M10 8.5h1m1 0h3m2 0h2m1 0h2M1 9.5h1m1 0h1m1 0h1m1 0h1m3 0h1m3 0h4m1 0h2m3 0h1m2 0h1M2 10.5h3m1 0h1m1 0h2m1 0h3m4 0h2m2 0h2m2 0h1m2 0h1M2 11.5h7m5 0h1m2 0h1m4 0h2m3 0h3M2 12.5h2m1 0h2m1 0h1m7 0h6m1 0h2m3 0h1M2 13.5h4m1 0h4m1 0h2m2 0h3m2 0h4m1 0h1m1 0h2M3 14.5h4m1 0h3m2 0h2m2 0h3m1 0h3m2 0h1m2 0h1M1 15.5h3m2 0h3m4 0h1m1 0h1m2 0h2m1 0h1m2 0h3m1 0h2M2 16.5h2m1 0h1m2 0h1m1 0h1m2 0h6m1 0h1m5 0h1m1 0h1M3 17.5h2m2 0h2m2 0h1m1 0h1m1 0h1m1 0h2m1 0h4m2 0h1m1 0h2M2 18.5h4m7 0h1m1 0h1m1 0h2m2 0h1m1 0h1m2 0h2m1 0h1M1 19.5h1m2 0h2m1 0h1m1 0h1m2 0h3m6 0h1m6 0h2M2 20.5h5m3 0h2m6 0h6m1 0h2m1 0h1M1 21.5h1m2 0h1m1 0h4m1 0h2m4 0h3m1 0h5M9 22.5h2m1 0h1m1 0h1m2 0h1m3 0h1m3 0h1m1 0h3M1 23.5h7m3 0h3m1 0h1m1 0h2m1 0h2m1 0h1m1 0h2m1 0h2M1 24.5h1m5 0h1m2 0h3m1 0h2m2 0h1m2 0h1m3 0h2m1 0h2M1 25.5h1m1 0h3m1 0h1m1 0h1m3 0h1m1 0h1m2 0h1m2 0h5m2 0h2M1 26.5h1m1 0h3m1 0h1m3 0h1m1 0h1m1 0h1m1 0h3m4 0h2m1 0h3M1 27.5h1m1 0h3m1 0h1m1 0h2m2 0h1m4 0h1m1 0h1m3 0h3m2 0h1M1 28.5h1m5 0h1m2 0h2m2 0h5m1 0h2m6 0h1M1 29.5h7m1 0h4m4 0h2m2 0h5m2 0h2"/></svg>
+<b>Scan to open the site</b></div>
+  <div class="foot">
+    Created by <b>stefaniat2</b> (solo project)<br>
+    Live site: <b>energize-the-future.vercel.app</b><br>
+    Source code: github.com/<br>stefaniat2/energize-the-future<br>
+    October 2026
+  </div>
+</section>
+
+<!-- ============================================================ HOW TO USE -->
+<h1>Read this first</h1>
+<p>You are going to present a project you did not program. That is completely fine — <strong>as long as you understand what it is, can show it working, and are honest about who made it.</strong> This guide gives you everything for that: what the project is, how to use every part of it, how it was built (explained from zero), a glossary of every technical word, and ready-to-use things to say.</p>
+
+<div class="box tip"><div class="t">Suggested reading plan (about 45 minutes)</div>
+<ol style="margin-bottom:0">
+<li><strong>Part 1 and Part 2</strong> (15 min) — what it is and how to use it. Open the real website next to the guide and click through every page.</li>
+<li><strong>Part 5</strong> (15 min) — what to say, the demo route, and answers to likely questions. Practise out loud.</li>
+<li><strong>Part 3</strong> (20 min) — how it was made, told as a simple story with a restaurant comparison. Read section <strong>3.2</strong> (the restaurant table) twice: it is the key to everything. You don't need to memorise the rest. Use <strong>Part 4</strong> (glossary) whenever a word is new.</li>
+</ol></div>
+
+<table class="toc">
+<thead><tr><th>Part</th><th>What is inside</th></tr></thead>
+<tbody>
+<tr><td>Part 1</td><td><strong>The project in plain words</strong> — the problem it addresses, who it is for, what makes it special</td></tr>
+<tr><td>Part 2</td><td><strong>How to use the website</strong> — every page, what to click, what you will see (with screenshots)</td></tr>
+<tr><td>Part 3</td><td><strong>How it was made — told as a story.</strong> What code is, a website as a restaurant (dining room, kitchen, pantry), every tool explained with a simple comparison, how it got online, how it was checked, and how the AI helper was used. Ends with a quick-answers card.</td></tr>
+<tr><td>Part 4</td><td><strong>Glossary</strong> — about 50 technical words in simple language</td></tr>
+<tr><td>Part 5</td><td><strong>Presenting the project</strong> — what to say, a 3-minute live demo, likely questions with simple answers, what not to claim, what to do if something goes wrong, a one-page cheat sheet</td></tr>
+</tbody></table>
+
+<div class="box big"><div class="t">The 60-second summary</div>
+<p><strong>Energize the Future</strong> is a website about the United Nations' Goal 7: <em>affordable and clean energy for everyone by 2030</em>. About 655 million people still have no electricity, and the energy we do use is warming the planet. The website helps young people <strong>understand</strong> the problem (pages about SDG 7, six renewable energy sources, facts and tips), <strong>try</strong> solving it (a strategy game where you run a polluted city on a tight budget), and <strong>measure</strong> their own impact (a calculator that turns an appliance into money, CO₂ and "how many trees"). It speaks three languages and works on phones and computers.</p>
+<p style="margin:0">It was created by <strong>stefaniat2</strong> as a solo project, using an AI assistant (Claude Code) to write the code under the author's instructions, with the author reviewing, testing and publishing it. Everything is free and public.</p></div>
+
+<!-- ============================================================ PART 1 -->
+<section class="part"><div class="num">Part 1</div><h1>The project in plain words</h1><p>What problem it addresses, who it is for, and what is special about it.</p></section>
+
+<h2>1.1 The problem: why "Goal 7"?</h2>
+<p>In 2015 the <strong>United Nations</strong> (UN) — an organisation of 193 countries founded in 1945 to keep peace and help countries work together — agreed on <strong>17 "Sustainable Development Goals"</strong> to be reached by 2030. They cover things like ending poverty, clean water, education and protecting the climate. <strong>Goal 7</strong> is called <em>Affordable and Clean Energy</em>. Its aim: <strong>everyone should have energy that is affordable, reliable, sustainable and modern.</strong></p>
+<p>Why does energy matter so much? Energy is not a luxury. It runs hospitals, schools, refrigerators that keep food and medicine safe, clean-water systems and phones. When it is too expensive or missing, families are held back. And when we make energy by burning coal, oil and gas (<em>fossil fuels</em>), we release gases that warm the planet and pollute the air.</p>
+
+<table>
+<thead><tr><th>The numbers behind Goal 7</th><th>Value</th><th>Source (year)</th></tr></thead>
+<tbody>
+<tr><td>People with no electricity at home</td><td>about <strong>655 million</strong></td><td>UN SDG 7 page (2024)</td></tr>
+<tr><td>People cooking with polluting fuels (wood, charcoal, kerosene)</td><td>about <strong>2.1 billion</strong></td><td>Tracking SDG 7 report (2023)</td></tr>
+<tr><td>Share of the world's <em>electricity</em> that comes from renewables</td><td>about <strong>30%</strong></td><td>Ember Global Electricity Review (2024)</td></tr>
+<tr><td>The deadline</td><td><strong>2030</strong></td><td>UN</td></tr>
+</tbody></table>
+<div class="box warn"><div class="t">Careful</div><p>These figures are rounded and change every year. Always say "about" and, if asked, "the website shows the year and the sources". The project's fact-check file (<code>docs/FACT_CHECK.md</code>) lists every source.</p></div>
+
+<h2>1.2 What the project does</h2>
+<p>Reading facts rarely changes habits. So the website turns the goal into things you <em>do</em>:</p>
+<div class="flow">
+ <div class="node n-blue"><b>UNDERSTAND</b>Plain-language pages about SDG 7, six kinds of renewable energy, 35 fun facts</div><div class="arrow"> </div>
+ <div class="node n-green"><b>DECIDE</b>"Energy Hero": a 10-level game where you run a city's energy on a limited budget</div><div class="arrow"> </div>
+ <div class="node n-yellow"><b>MEASURE</b>A calculator: cost, CO₂ and trees for your own appliances</div><div class="arrow"> </div>
+ <div class="node n-grey"><b>ACT</b>20 energy-saving tips with a progress tracker, and a form to send ideas</div>
+</div>
+
+<h2>1.3 Who is it for?</h2>
+<p>Students (roughly 12–18) and their families, teachers and anyone curious. It works on phones, tablets and computers, needs no account and no installation, and is available in <strong>English, Romanian and Russian</strong>.</p>
+
+<h2>1.4 The ten pages at a glance</h2>
+<table>
+<thead><tr><th>Page</th><th>What it is for</th></tr></thead>
+<tbody>
+<tr><td>Home</td><td>First impression: the idea, the three SDG 7 objectives, statistics, the energy sources, and "What can you do?"</td></tr>
+<tr><td>About SDG 7</td><td>Plain-language explanation of the UN, Goal 7, energy poverty, climate; a timeline from 1839 to today; the official targets</td></tr>
+<tr><td>Renewable Energy</td><td>Solar, wind, hydropower, geothermal, biomass, tidal: how each works, pros and cons, a fun fact, a comparison table</td></tr>
+<tr><td>Energy-Saving Tips</td><td>20 practical tips (home, school, transport, technology, public spaces) and a progress tracker</td></tr>
+<tr><td>Fun Facts</td><td>35 facts in 6 categories; random/next, favourites, share</td></tr>
+<tr><td>Mini Game</td><td><strong>Energy Hero</strong> — the strategy game, with a leaderboard</td></tr>
+<tr><td>Energy Calculator</td><td>Turns watts into money, CO₂ and trees; compares old and efficient appliances</td></tr>
+<tr><td>Community</td><td>A form to send a sustainability idea</td></tr>
+<tr><td>Contact</td><td>A form to send a message to the author</td></tr>
+<tr><td>AI &amp; Credits</td><td>Honest explanation of how AI was used, the sources, licences and privacy</td></tr>
+</tbody></table>
+
+<h2>1.5 What makes it special</h2>
+<ul>
+<li><strong>It is interactive, not a brochure.</strong> The game has a real budget: you cannot buy every good option, so you must choose — just like real governments.</li>
+<li><strong>It connects energy to your life.</strong> Enter your fridge's power and your electricity price and see your yearly cost, your CO₂, and how many trees would be needed to absorb it.</li>
+<li><strong>Three languages, everything translated</strong> — including the facts and game levels that come from the database.</li>
+<li><strong>Accessible and fast.</strong> Audited with Google's Lighthouse tool: 100 out of 100 for Accessibility, Best Practices and SEO on all pages.</li>
+<li><strong>Reliable and permanent.</strong> 29 automated tests, a permanent online database, free hosting, and all code and documents public.</li>
+<li><strong>Honest about AI.</strong> A dedicated page and document explain exactly what the AI did, what the author did, and what mistakes were found and fixed.</li>
+</ul>
+
+<!-- ============================================================ PART 2 -->
+<section class="part"><div class="num">Part 2</div><h1>How to use the website</h1><p>A page-by-page tour: what each page is for, exactly what to click, and what you should see.</p></section>
+
+<h2>2.0 Opening the site</h2>
+<ul>
+<li><strong>Address:</strong> <code>energize-the-future.vercel.app</code> — type it in any browser, or scan the QR code on the cover or the poster.</li>
+<li><strong>No account, no download, no password.</strong> It works in Chrome, Safari, Firefox and Edge, on phones and computers.</li>
+<li><strong>The first load may be slow.</strong> The data lives on a free server that "goes to sleep" after 15 minutes without visitors. The first request wakes it up, which can take up to <strong>about a minute</strong>. After that it is fast. <em>Before presenting, open the site once and play one level to wake it up.</em></li>
+</ul>
+
+<h3>The menu and language button</h3>
+<p>At the top right are two buttons: the <strong>globe</strong> (language: English / Română / Русский — everything changes instantly, no reload) and the <strong>☰ menu</strong> (opens a list of all ten pages; press <code>Esc</code> or click outside to close it). The logo on the left returns to the home page. On a phone the layout rearranges itself automatically.</p>
+<figure class="narrow"><img src="img/mobile-romanian-menu.jpg" alt="Phone view in Romanian with the menu open"><figcaption>On a phone, in Romanian, with the menu open.</figcaption></figure>
+
+<h2>2.1 Home</h2>
+<figure><img src="img/home.png" alt="Home page"><figcaption>The home page: a headline, two big buttons (Play Energy Hero, Try the Energy Calculator) and an animated sun, wind turbines and solar panel drawn with code.</figcaption></figure>
+<p><strong>What it is for:</strong> a first impression and a map. Scroll down to see the SDG 7 explanation, the three objectives (affordable energy; reliable and sustainable energy; more renewable energy), four statistic cards, four energy-source cards, and six things you can do today.</p>
+<div class="box say"><div class="t">What to say</div><p>"This is the home page. The goal of the project is to help young people understand clean energy and actually do something about it — there is a game, a calculator, facts and tips."</p></div>
+
+<h2>2.2 About SDG 7</h2>
+<p>Short sections explaining in simple words: what the UN is, what Goal 7 is, why affordable and clean energy matter, the problems of fossil fuels, <em>energy poverty</em> (when people cannot get or afford reliable energy), climate change, and why using less energy (<em>energy efficiency</em>) is the cheapest solution. It also has a <strong>timeline</strong> (from the discovery of the photovoltaic effect in 1839 to cheap solar and wind today) and the <strong>official targets</strong> 7.1, 7.2, 7.3, 7.a and 7.b, shown in simplified wording.</p>
+
+<h2>2.3 Renewable Energy</h2>
+<figure><img src="img/renewable.png" alt="Renewable energy page"><figcaption>Click a source to open or close it. Each shows how it works, advantages, disadvantages, impact, uses and a fun fact.</figcaption></figure>
+<p><strong>How to use:</strong> click any of the six sources (solar, wind, hydropower, geothermal, biomass, tidal). Scroll to the bottom for a <strong>comparison table</strong> showing how steady each source is, how its cost is changing, and where it works best.</p>
+<div class="box analogy"><div class="t">In simple words</div><p><em>Renewable</em> energy comes from sources that nature refills — sunshine, wind, flowing water, heat from underground, plants, and ocean tides. <em>Fossil</em> energy (coal, oil, gas) took millions of years to form and runs out.</p></div>
+
+<h2>2.4 Energy-Saving Tips</h2>
+<figure><img src="img/tips.png" alt="Energy-saving tips page"><figcaption>Each tip shows its difficulty and potential saving. The ring at the top fills as you complete tips.</figcaption></figure>
+<p><strong>How to use:</strong> read a tip and press <strong>Mark as completed</strong>. The progress ring (for example "15% — 3 of 20 tips") updates and is <strong>remembered in your own browser</strong> — close the site and come back and it is still there. <strong>Reset progress</strong> starts over. Tips are grouped into Home, School, Transportation, Technology and Public Spaces.</p>
+
+<h2>2.5 Fun Facts</h2>
+<figure><img src="img/facts.png" alt="Fun facts page"><figcaption>One fact at a time, with category filters, favourites and sharing.</figcaption></figure>
+<ul>
+<li><strong>Category buttons</strong> (Solar, Wind, Climate, Energy Efficiency, Hydropower, Sustainable Technology) show only facts from that topic.</li>
+<li><strong>Random Fact</strong> jumps to any fact; <strong>Next Fact</strong> goes to the next one. "Fact 1 of 35" shows where you are.</li>
+<li>The <strong>heart</strong> saves a favourite (see them under "My Favorites"); <strong>Share</strong> opens your phone's share menu or copies the fact.</li>
+</ul>
+<p>These facts are not typed into the page — they are loaded from the <strong>database</strong> over the internet each time, in the language you chose.</p>
+
+<h2>2.6 Mini Game: Energy Hero</h2>
+<p>This is the star of the project. <strong>You are the new energy advisor of Greenville</strong>, a city that runs mostly on coal. Over <strong>10 levels</strong> you make decisions that change the city.</p>
+<figure><img src="img/game-start.png" alt="Energy Hero start screen"><figcaption>The start screen explains the rules, asks for an optional name, and shows the leaderboard.</figcaption></figure>
+
+<h3>The rules</h3>
+<ul>
+<li>Each level describes a situation (for example "The old streetlights consume huge amounts of electricity") and gives <strong>two options</strong>.</li>
+<li>Each option has a <strong>cost</strong>. You start with a budget of <strong>120</strong> and earn <strong>+20</strong> at every new level. An option you cannot afford is <strong>locked</strong> (shown with a padlock).</li>
+<li>You have <strong>25 seconds</strong> per decision. If the time runs out, the <strong>cheapest option is chosen for you</strong>.</li>
+<li>Five <strong>city stats</strong> change with your choices: <em>Clean Energy</em> (higher is better), <em>Pollution</em> (lower is better), <em>Affordability</em>, <em>Happiness</em> and <em>Sustainability Score</em>.</li>
+<li>After each decision a <strong>consequences panel</strong> shows exactly what changed (green = good, red = bad). Press <strong>Next Level</strong> to continue.</li>
+</ul>
+<figure><img src="img/game-consequences.jpg" alt="Game consequences panel"><figcaption>After investing in a wind farm: Clean Energy +20, Pollution −12, Affordability −5, Sustainability +15, Budget −40.</figcaption></figure>
+
+<h3>Scoring and the leaderboard</h3>
+<p>You earn points only for improvements, and <strong>sustainability is worth the most</strong>, so long-term thinking wins. For example, building the first level's solar farm gives <code>10×10 + 15×3 + 5×3 + 10×3 = 190</code> points. At the end you see your final score and any <strong>achievements</strong> you unlocked:</p>
+<table>
+<thead><tr><th>Achievement</th><th>How to get it</th></tr></thead>
+<tbody>
+<tr><td>Clean Starter</td><td>Reach 50% or more clean energy</td></tr>
+<tr><td>Pollution Fighter</td><td>Bring pollution down to 20% or less</td></tr>
+<tr><td>People's Champion</td><td>Keep happiness at 70% or more</td></tr>
+<tr><td>Sustainability Master</td><td>Finish with a sustainability score of 80 or more</td></tr>
+<tr><td>Energy Hero</td><td>Complete all 10 levels</td></tr>
+</tbody></table>
+<p>Press <strong>Submit to Leaderboard</strong> to save your score (it uses the name you typed, or "Anonymous Hero"). The <strong>top 10</strong> scores are shown to everyone.</p>
+<div class="box tip"><div class="t">The clever part — the budget</div><p>Taking the best option on every level would cost <strong>335</strong>, but you will only ever have <strong>300</strong>. So even a perfect-looking game forces a sacrifice (usually at level 8, where the big power-plant replacement costs 50). Nobody can have everything — exactly like real governments. In testing, the best realistic score was about <strong>2,090</strong> points (the theoretical maximum is 2,436).</p></div>
+<div class="box warn"><div class="t">Careful when demonstrating</div><p>Scores cannot be deleted from the website. <strong>Do not submit practice scores</strong> before the event, and don't submit silly names in front of the jury. Playing without pressing "Submit" is always safe.</p></div>
+
+<h2>2.7 Energy Calculator</h2>
+<figure><img src="img/calculator.png" alt="Energy calculator page"><figcaption>Fill the form on the left; results appear on the right.</figcaption></figure>
+<h3>Add an appliance — a worked example</h3>
+<ol class="steps">
+<li>Type a name, e.g. <strong>Refrigerator</strong>. Power: <strong>150</strong> (watts — printed on the appliance label). Hours per day: <strong>24</strong>. Days per month: <strong>30</strong>. Price per kWh: <strong>0.15</strong> (from an electricity bill). Pick a currency.</li>
+<li>Press <strong>Add Appliance</strong>. You will see: <strong>3.6 kWh per day, 108 kWh per month, 16.20 per month, 194.40 per year, 48.6 kg of CO₂ per month</strong>.</li>
+<li>Under <strong>Your Totals</strong> the app adds everything up and says how many trees would be needed to absorb that CO₂ in a year (for this fridge, about 28).</li>
+<li>Use the <strong>pencil</strong> to edit and the <strong>bin</strong> to remove an appliance. Everything is saved in your browser.</li>
+</ol>
+<figure><img src="img/calculator-totals.jpg" alt="Calculator totals"><figcaption>Totals for three efficient appliances: 30.15 kWh a month, $4.52, 13.57 kg of CO₂ — about 7.8 trees a year.</figcaption></figure>
+<h3>Compare efficient alternatives</h3>
+<p>Further down, the page compares an old appliance with an efficient one using <strong>your</strong> electricity price: incandescent bulb vs LED, old vs A+++ fridge, old plasma vs modern LED TV, old vs inverter air conditioner. For the LED bulb it shows it saves about <strong>85%</strong> of the power — roughly 93 kWh, 14 money units and 42 kg of CO₂ every year. One click adds the efficient version to your list.</p>
+<div class="box analogy"><div class="t">In simple words</div><p>A <em>watt</em> (W) is how fast an appliance uses energy. A <em>kilowatt-hour</em> (kWh) is the amount of energy used: a 1,000-watt heater running for one hour uses 1 kWh. Your electricity bill charges you per kWh. The CO₂ number is only an <em>estimate</em> because it depends on how your country makes electricity — the page says so.</p></div>
+
+<h2>2.8 Community and 2.9 Contact</h2>
+<figure><img src="img/community.png" alt="Community form"><figcaption>The Community page: a form to send an idea for a more sustainable community.</figcaption></figure>
+<p><strong>Community:</strong> enter a name, an e-mail, a category (renewable energy, efficiency, education, transportation, community projects, other) and a message of at least 10 characters. If something is wrong the page tells you exactly what to fix; if everything is right you see a "Thank you!" message and the idea is stored in the database. <strong>Contact</strong> works the same way for a message to the author (name, e-mail, subject, message). Neither form shows other people's messages — they are private.</p>
+
+<h2>2.10 AI &amp; Credits</h2>
+<figure><img src="img/ai.png" alt="AI and credits page"><figcaption>The page that explains openly how the project was made.</figcaption></figure>
+<p>Explains which AI tool was used, what human oversight there was, where the facts come from, the open-source software and its licences, privacy (no accounts, no tracking), and the known limits. The page also links to the project's source code.</p>
+
+<!-- ============================================================ PART 3 -->
+<section class="part"><div class="num">Part 3</div><h1>How it was made</h1><p>Told as a simple story, one step at a time. No programming knowledge needed — every new word is explained with an everyday comparison.</p></section>
+
+<div class="easy">
+
+<div class="box tip"><div class="t">Don't worry — you will understand this</div>
+<p>You do <strong>not</strong> need to understand code. You only need to understand <strong>five simple ideas</strong>. Everything in this part builds on them:</p>
+<ol style="margin-bottom:0">
+<li><strong>Code is a recipe.</strong> A computer follows written instructions exactly.</li>
+<li><strong>A website is like a restaurant.</strong> It has a dining room, a kitchen and a pantry.</li>
+<li><strong>Each part uses a ready-made tool,</strong> like a kitchen uses an oven and a fridge.</li>
+<li><strong>The restaurant needs a building</strong> that is always open. We rent three small free ones.</li>
+<li><strong>Robots and people check it every time it changes,</strong> and an AI helper did most of the writing.</li>
+</ol></div>
+
+<h2>3.1 What does "making a website" even mean?</h2>
+<div class="one"><small>In one sentence</small>Making a website means writing instructions, in a very strict language, that tell a computer what to show and what to do.</div>
+
+<p>A computer cannot think. It cannot guess what you mean. It only does <strong>exactly</strong> what it is told, in the exact order. The instructions are called <strong>code</strong>. The special language they are written in is called a <strong>programming language</strong>.</p>
+
+<div class="box analogy"><div class="t">Comparison: a recipe</div>
+<table class="map" style="margin:1mm 0 0">
+<tbody>
+<tr><td>A recipe</td><td>= code</td><td>Step-by-step instructions</td></tr>
+<tr><td>A cook who follows it exactly</td><td>= the computer</td><td>Never improvises, never gets tired</td></tr>
+<tr><td>The language the recipe is written in</td><td>= programming language</td><td>Like English or Romanian, but much stricter — one wrong letter and the cook is lost</td></tr>
+</tbody></table></div>
+
+<h3>Seeing it with your own eyes: three tiny examples</h3>
+<p>A web page is made of three kinds of instructions. Here they are in the simplest possible form. On the left is the real code. On the right is what the person sees.</p>
+
+<p><strong>1. HTML says WHAT is on the page.</strong></p>
+<div class="demo"><div class="src"><i>The code</i>&lt;button&gt;
+  Play the game
+&lt;/button&gt;</div><div class="res"><i>What you see</i><span class="b1">Play the game</span></div></div>
+<p>"Put a button here that says <em>Play the game</em>." That's all. It's plain and ugly, but it exists.</p>
+
+<p><strong>2. CSS says HOW it looks.</strong></p>
+<div class="demo"><div class="src"><i>The code</i>button {
+  background: green;
+  color: white;
+  border-radius: 20px;
+}</div><div class="res"><i>What you see</i><span class="b2">Play the game</span></div></div>
+<p>"Make buttons green, with white writing and round corners."</p>
+
+<p><strong>3. JavaScript says WHAT HAPPENS.</strong></p>
+<div class="demo"><div class="src"><i>The code</i>when the button is clicked:
+  add 1 to the number</div><div class="res"><i>What you see</i><span class="b2">Clicked 0 times</span><span style="font-size:8pt;margin:1.5mm 0">⬇ after one click ⬇</span><span class="b2">Clicked 1 time</span></div></div>
+<p>"When someone clicks, change the number." (This is simplified — real code looks a bit different — but the idea is exactly this.)</p>
+
+<div class="box analogy"><div class="t">Comparison: a person</div><p><strong>HTML</strong> is the skeleton (what is there). <strong>CSS</strong> is the clothes and make-up (how it looks). <strong>JavaScript</strong> is the muscles (what it does when you touch it). Our whole project is made of these three things. The code adds up to about <strong>3,900 lines</strong> — roughly an 80-page booklet of instructions.</p></div>
+
+<h2>3.2 The big idea: a website is a restaurant</h2>
+<div class="one"><small>In one sentence</small>Every modern website has three parts — a dining room (what you see), a kitchen (does the work) and a pantry (stores things) — and this project has all three.</div>
+
+<div class="flow">
+ <div class="node n-blue"><b>🍽️ The dining room</b>Where the guest sits, looks at the menu and orders.<br><em>= what you see and click</em></div><div class="arrow">⇄</div>
+ <div class="node n-yellow"><b>🛎️🍳 Waiter + kitchen</b>The waiter carries the order. The kitchen prepares it.<br><em>= the part that does the work</em></div><div class="arrow">⇄</div>
+ <div class="node n-green"><b>🥫 The pantry</b>Where all the ingredients are stored safely.<br><em>= where information is kept</em></div>
+</div>
+
+<p><strong>If you only remember one page of this guide, remember this table.</strong> It matches every restaurant word with its website word and with the real tool used in this project:</p>
+<table class="map">
+<thead><tr><th>In a restaurant</th><th>In a website</th><th>The tool used here</th></tr></thead>
+<tbody>
+<tr><td>🍽️ The dining room</td><td>The <strong>frontend</strong></td><td>React (plus HTML, CSS, JavaScript, Vite, Tailwind)</td></tr>
+<tr><td>🛎️ The waiter</td><td>The <strong>API</strong></td><td>A list of allowed "orders" served by Express</td></tr>
+<tr><td>🍳 The kitchen</td><td>The <strong>backend</strong></td><td>Node.js and Express</td></tr>
+<tr><td>🥫 The pantry</td><td>The <strong>database</strong></td><td>SQLite, stored online at Turso</td></tr>
+<tr><td>🏠 The building</td><td><strong>Hosting</strong></td><td>Vercel (dining room), Render (kitchen), Turso (pantry)</td></tr>
+<tr><td>📒 Notebook of every change</td><td><strong>Version history</strong></td><td>Git and GitHub</td></tr>
+<tr><td>✅ Morning checklist</td><td><strong>Automated tests</strong></td><td>29 checks that run by themselves</td></tr>
+</tbody></table>
+<div class="quote">Think of a restaurant. The dining room is what you see. The kitchen does the work. The pantry stores everything. Our website has all three, and each one uses a free, ready-made tool.</div>
+
+<h2>3.3 The dining room — what you see</h2>
+<div class="one"><small>In one sentence</small>The "frontend" is everything you can see and touch on the website: the colours, the buttons, the pages and the game.</div>
+<p>It runs <strong>inside your own phone or computer</strong>, in the program you use to open websites (called a <strong>browser</strong> — Chrome, Safari, Firefox…). Building it from scratch would take years. So the author used ready-made tools, like a restaurant owner buys an oven instead of building one.</p>
+
+<div class="tool"><h4>React</h4>
+<div class="row"><b>What it is</b><span>A free toolbox, made by Facebook's company, for building the pages you see.</span></div>
+<div class="row"><b>Like…</b><span><strong>Lego bricks.</strong> You don't carve a castle from one giant block. You snap together small bricks — walls, doors, towers.</span></div>
+<div class="row"><b>In our site</b><span>Every page is built from small reusable pieces called <strong>components</strong>: the menu bar, a button, a card, the progress ring. Make a piece once, use it everywhere. Change the button once and <em>every</em> button changes.</span></div></div>
+
+<div class="tool"><h4>Vite</h4>
+<div class="row"><b>What it is</b><span>A "packing machine" for the code.</span></div>
+<div class="row"><b>Like…</b><span>Packing a suitcase before a trip: everything gets folded into a few small, neat bags so it's quick to carry.</span></div>
+<div class="row"><b>In our site</b><span>It packs all the pieces into a few small files, so the website loads fast. While building, it also shows every change instantly.</span></div></div>
+
+<div class="tool"><h4>Tailwind CSS</h4>
+<div class="row"><b>What it is</b><span>A box of ready-made paints and stickers for the design.</span></div>
+<div class="row"><b>Like…</b><span>Instead of mixing your own paint, you pick: "green… round… white text".</span></div>
+<div class="row"><b>In our site</b><span>It keeps the whole site looking like one family, using the green, blue and yellow of the UN's Goal 7.</span></div></div>
+
+<div class="tool"><h4>React Router</h4>
+<div class="row"><b>What it is</b><span>The signposts inside the building.</span></div>
+<div class="row"><b>Like…</b><span>Walking from room to room without leaving the building.</span></div>
+<div class="row"><b>In our site</b><span>When you click "Mini Game", the page changes instantly <em>without</em> reloading everything. That's why the site feels fast.</span></div></div>
+
+<div class="tool"><h4>i18next (the three-language system)</h4>
+<div class="row"><b>What it is</b><span>A dictionary system for several languages.</span></div>
+<div class="row"><b>Like…</b><span>Every sentence has a label sticker, like "start-button". Three notebooks — English, Romanian, Russian — say what each label means. Press the language button and the site simply reads from a different notebook.</span></div>
+<div class="row"><b>In our site</b><span>There are <strong>472 labels</strong> in each language. A robot check makes sure no notebook is missing a label.</span></div></div>
+
+<div class="box analogy"><div class="t">Small extras</div><p>The little pictures (icons) come from a free library called Lucide. The sun, wind turbines and solar panel on the home page are <em>drawn with code</em>, so no copyrighted photos are used. The font is called Poppins and is free to use.</p></div>
+
+<h2>3.4 The kitchen — where the work happens</h2>
+<div class="one"><small>In one sentence</small>The "backend" is a program on an always-on computer that keeps the information for everybody and answers requests from the website.</div>
+<p><strong>Why do we need a kitchen at all?</strong> Some things cannot happen on your phone. The leaderboard must show the <em>same</em> scores to <em>everyone</em>. Private messages must be saved somewhere safe. So we need a shared computer that is always switched on. A computer like that is called a <strong>server</strong> — "a computer that <em>serves</em> answers".</p>
+
+<div class="tool k"><h4>Node.js</h4>
+<div class="row"><b>What it is</b><span>A tool that lets the JavaScript language run on a server.</span></div>
+<div class="row"><b>Like…</b><span>Having the kitchen staff speak the <em>same language</em> as the waiters. One author, one language, whole project.</span></div></div>
+
+<div class="tool k"><h4>Express</h4>
+<div class="row"><b>What it is</b><span>A ready-made kitchen layout.</span></div>
+<div class="row"><b>Like…</b><span>A plan that says: "orders arrive here, and this cook handles soups, that cook handles desserts."</span></div>
+<div class="row"><b>In our site</b><span>"When someone asks for the facts, send them to the facts cook." Each job has its own small piece of code.</span></div></div>
+
+<h3>The waiter: how the dining room talks to the kitchen</h3>
+<p>The dining room cannot walk into the kitchen. It places an <strong>order</strong> and waits. The fixed menu of orders it is allowed to place is called an <strong>API</strong>. Here is a real conversation from this project:</p>
+<div class="bubbles">
+ <div class="bubble me"><small>The website (dining room)</small>"Please give me all the fun facts, in English."</div>
+ <div class="bubble srv"><small>The server (kitchen)</small>"Here are 35 facts." (and the list)</div>
+</div>
+<p>The reply is written as a tidy note called <strong>JSON</strong> — a neat way to write information so any program can read it:</p>
+<div class="code">{ <span class="k">"id"</span>: 1, <span class="k">"category"</span>: <span class="s">"solar"</span>, <span class="k">"text"</span>: <span class="s">"Sunlight reaches Earth with enough energy in one hour to power the entire world for a year."</span> }</div>
+<p>The orders on our menu, in plain words:</p>
+<table>
+<thead><tr><th>Order</th><th>What it means</th></tr></thead>
+<tbody>
+<tr><td>Get the facts</td><td>"Show me the facts (all, one topic, or one random)."</td></tr>
+<tr><td>Get the game levels</td><td>"Show me the 10 levels of the game."</td></tr>
+<tr><td>Save a score / get the leaderboard</td><td>"Write down my score" and "Who is winning?"</td></tr>
+<tr><td>Save an idea / save a message</td><td>"Keep what I wrote in the Community or Contact form."</td></tr>
+<tr><td>"Are you awake?"</td><td>A quick check that the kitchen is open.</td></tr>
+</tbody></table>
+
+<h3>The guards at the kitchen door</h3>
+<p>Before an order reaches the cook, it passes a few guards. Each guard has one simple job:</p>
+<div class="panels">
+ <div class="panel"><span class="n">1</span><span class="ic">🧐</span><strong>"Does this order make sense?"</strong><br>Checks the information is sensible: a real e-mail shape, a name that isn't empty, a possible score. Nonsense is politely refused.</div>
+ <div class="panel"><span class="n">2</span><span class="ic">⏱️</span><strong>"Too many orders!"</strong><br>Stops spam. No single visitor can send more than 20 submissions a minute.</div>
+ <div class="panel"><span class="n">3</span><span class="ic">🎫</span><strong>"Are you from our restaurant?"</strong><br>The kitchen only accepts orders that come from this project's own website, not from strangers' websites.</div>
+</div>
+<div class="box analogy"><div class="t">One famous trick, and why it fails here</div><p>Some attackers type secret <em>commands</em> into a form, hoping the kitchen obeys them. In our project, everything a visitor types is treated as <strong>plain text only</strong> — like a note, never an instruction. The automated checks even try this trick on purpose to make sure it fails.</p></div>
+
+<h2>3.5 The pantry — where information is kept</h2>
+<div class="one"><small>In one sentence</small>A database is a super-organised spreadsheet that never forgets, even when the kitchen is switched off.</div>
+<p>Imagine a workbook with several sheets. Each sheet is a <strong>table</strong>. Each line is one item. Each column is one detail about the item. This is a small piece of our real "facts" sheet:</p>
+<table class="mini">
+<thead><tr><th>id</th><th>category</th><th>text (English)</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>solar</td><td>Sunlight reaches Earth with enough energy in one hour to power the entire world for a year.</td></tr>
+<tr><td>2</td><td>solar</td><td>Solar panels can still generate electricity on cloudy days, just at a reduced output.</td></tr>
+<tr><td>7</td><td>wind</td><td>A single modern wind turbine can generate enough electricity to power thousands of homes.</td></tr>
+</tbody></table>
+<p>(The real sheet has two more columns: the same fact in Romanian and in Russian.) Our pantry has six sheets:</p>
+<table>
+<thead><tr><th>Sheet (table)</th><th>What is kept on it</th></tr></thead>
+<tbody>
+<tr><td>facts</td><td>The 35 fun facts, in three languages</td></tr>
+<tr><td>game levels</td><td>The 10 levels of the game and what each choice changes</td></tr>
+<tr><td>game scores</td><td>The leaderboard: names, scores, dates</td></tr>
+<tr><td>suggestions</td><td>Ideas sent through the Community form</td></tr>
+<tr><td>contact messages</td><td>Messages sent through the Contact form</td></tr>
+<tr><td>a small note</td><td>Which version of the content is stored (explained below)</td></tr>
+</tbody></table>
+
+<div class="tool d"><h4>SQL — asking the pantry a question</h4>
+<div class="row"><b>What it is</b><span>The language used to talk to a database.</span></div>
+<div class="row"><b>Example</b><span><code>SELECT * FROM facts</code> means "show me everything on the facts sheet". It reads almost like English.</span></div></div>
+
+<div class="tool d"><h4>SQLite and Turso</h4>
+<div class="row"><b>What they are</b><span><strong>SQLite</strong> is the <em>type</em> of pantry: small, quick, and used in billions of phones. <strong>Turso</strong> is a company that <em>rents</em> you such a pantry online, for free for small projects.</span></div>
+<div class="row"><b>Why online?</b><span>The free kitchen can be wiped clean when it restarts. If the pantry were inside it, scores and messages would vanish. Turso keeps them <strong>permanently</strong>. (While building at home, the author used a simple pantry on the laptop — the same instructions work for both.)</span></div></div>
+
+<div class="box analogy"><div class="t">Stocking the shelves ("seeding")</div><p>The facts and game levels are written in the kitchen's recipe book. When the kitchen opens, the cook checks the pantry. If a shelf is empty or the labels say <em>old version</em>, the cook restocks it. Each stock has a <strong>version number</strong>. If the author fixes a fact, a new version number makes the cook replace just the facts — while the leaderboard and messages are never touched.</p></div>
+
+<h2>3.6 The building — putting it on the internet</h2>
+<div class="one"><small>In one sentence</small>Hosting means renting space on computers that are always on, so that anyone in the world can visit.</div>
+<p>A website on the author's laptop could only be seen by the author. For everyone to visit, the three parts must live on computers that are switched on <strong>all the time</strong>. Buying and running them is expensive, so we <strong>rent</strong> three small rooms. All three have free plans:</p>
+<div class="flow">
+ <div class="node n-blue"><b>🏠 Vercel</b>Rents the room for the <strong>dining room</strong> (what you see).<br><em>energize-the-future.vercel.app</em></div><div class="arrow">→</div>
+ <div class="node n-yellow"><b>🏠 Render</b>Rents the room for the <strong>kitchen</strong> (does the work).<br><em>…wuln.onrender.com</em></div><div class="arrow">→</div>
+ <div class="node n-green"><b>🏠 Turso</b>Rents the room for the <strong>pantry</strong> (stores things).</div>
+</div>
+<div class="box warn"><div class="t">Why is the first visit sometimes slow?</div><p>Render's free plan lets the kitchen <strong>take a nap</strong> when nobody has visited for 15 minutes. The next visitor wakes it up, which can take <strong>up to about a minute</strong>. After that it is quick. That is why you open the site once before presenting.</p></div>
+<p><strong>Secrets in a locked drawer.</strong> The key to the pantry must never be written in the public recipe book. It is kept in a "locked drawer" in each service's settings page. These private settings are called <strong>environment variables</strong>.</p>
+
+<div class="tool h"><h4>Git and GitHub — the notebook of every change</h4>
+<div class="row"><b>Git</b><span>A tool that saves a <strong>save point</strong> (called a <em>commit</em>) of the whole project each time something changes, with a short note about what changed. Like a notebook where every change is dated. You can look back at any day, or undo a mistake.</span></div>
+<div class="row"><b>GitHub</b><span>A website that keeps a copy of that notebook online, where anyone can read it. The project's notebook is public, with more than 15 save points.</span></div>
+<div class="row"><b>The magic</b><span>When a new page is added to the notebook, Vercel and Render notice and <strong>automatically update the live website</strong>. Nobody has to upload anything by hand.</span></div></div>
+
+<h2>3.7 Checking that everything works</h2>
+<div class="one"><small>In one sentence</small>Before and after every change, robots ask the website dozens of yes/no questions, and Google gives it a report card.</div>
+
+<div class="tool q"><h4>Automated tests — the morning checklist</h4>
+<div class="row"><b>What they are</b><span>Small programs that check other programs. Each test asks one yes/no question and answers in a blink.</span></div>
+<div class="row"><b>Examples</b><span>"Does the leaderboard sort from highest to lowest?" · "Is a fake score of 999,999 refused?" · "Is a trick typed into a form treated as plain text?" · "Does 150 watts for 24 hours really make 3.6 kWh?" · "Does every language have every sentence?"</span></div>
+<div class="row"><b>The numbers</b><span><strong>29 checks</strong>, all passing. A robot on GitHub runs them after every change and shows a green tick ✅.</span></div></div>
+
+<div class="tool q"><h4>Lighthouse — the report card</h4>
+<div class="row"><b>What it is</b><span>A free checker built into Google's Chrome browser that gives a website marks out of 100.</span></div>
+<div class="row"><b>Our marks</b><span>
+<strong>Accessibility 100</strong> — can everyone use it, including people with disabilities?<br>
+<strong>Best Practices 100</strong> — does it follow modern, safe habits?<br>
+<strong>SEO 100</strong> — can search engines understand it?<br>
+<strong>Performance 95–98</strong> — does it load fast, even on a slow connection?</span></div>
+<div class="row"><b>Honestly…</b><span>At first it found real problems (for example some text was too pale to read). They were fixed. That is exactly what a report card is for.</span></div></div>
+
+<div class="box analogy"><div class="t">What is "accessibility"?</div><p>Buildings have ramps for wheelchairs and signs in braille. A website needs the equivalent: clear colours, buttons with names that a screen reader can speak, a way to move around using only a keyboard, and a "skip to content" link. We built these in from the start.</p></div>
+
+<div class="tool q"><h4>The fact-check</h4>
+<div class="row"><b>What was done</b><span>Every statistic on the site was compared with official sources (the UN, IRENA, Ember). One claim was wrong and was corrected: LED bulbs save <em>at least 75%</em> of the energy, not "up to 90%". The full list is in the file <code>docs/FACT_CHECK.md</code>.</span></div></div>
+
+<h2>3.8 The AI helper — how it was really built</h2>
+<div class="one"><small>In one sentence</small>An AI assistant wrote the code, following written instructions from the author, who decided what to build, checked every result and published it.</div>
+<p>An <strong>AI assistant</strong> is a program you can talk to in everyday language. Here it is called <strong>Claude Code</strong>. You tell it what you want. It writes the code, runs it and tests it on your computer. It is the <strong>only AI tool</strong> used in this project.</p>
+
+<div class="box analogy"><div class="t">Comparison: a manager and a very fast builder</div>
+<p>Imagine you want a house. You are the <strong>manager</strong>: you decide how many rooms, where the doors go, and you inspect every wall. You hire a <strong>very fast builder</strong> who knows every tool. The builder lays the bricks. If you say "move that door", the builder does it. And sometimes the builder makes a mistake — which is why the manager must inspect.</p></div>
+
+<table>
+<thead><tr><th>The builder (the AI)</th><th>The manager (the author, stefaniat2)</th></tr></thead>
+<tbody>
+<tr><td>Wrote and corrected the code, tests and documents</td><td>Chose the topic and wrote the plan: what pages, what game, what calculator, which languages</td></tr>
+<tr><td>Drafted the English, Romanian and Russian texts</td><td>Looked at the results, asked for changes (for example "make the menu a burger button")</td></tr>
+<tr><td>Helped find and fix bugs</td><td>Reported problems with screenshots, created the online accounts and published the site</td></tr>
+</tbody></table>
+
+<h3>How one step usually went</h3>
+<div class="panels">
+ <div class="panel"><span class="n">1</span><span class="ic">💬</span>The author says in plain words what is wanted.</div>
+ <div class="panel"><span class="n">2</span><span class="ic">🛠️</span>The AI writes the code.</div>
+ <div class="panel"><span class="n">3</span><span class="ic">🧪</span>The robot checks run. The AI tests the page in a browser.</div>
+ <div class="panel"><span class="n">4</span><span class="ic">👀</span>The author looks at the result and says what is wrong.</div>
+ <div class="panel"><span class="n">5</span><span class="ic">🔁</span>The AI fixes it. Repeat until it is right.</div>
+ <div class="panel"><span class="n">6</span><span class="ic">🚀</span>The author publishes it.</div>
+</div>
+
+<h3>The builder made mistakes — and they were found</h3>
+<p>This is the honest part, and it is important:</p>
+<ul>
+<li>The game showed a "budget" but didn't actually use it. <strong>Fixed:</strong> options you can't afford are now locked.</li>
+<li>The spinning wind turbine looked wrong. <strong>Fixed:</strong> redrawn.</li>
+<li>A colour change made the footer text <em>harder</em> to read. <strong>Found by the report card</strong> (Lighthouse) and fixed.</li>
+<li>The first public version asked the wrong address for its data, so pages showed errors. <strong>Found by looking at the live site</strong> and fixed.</li>
+<li>The Romanian and Russian texts had grammar mistakes. <strong>Found in a second review</strong> and fixed.</li>
+</ul>
+<div class="quote">The AI wrote the code under the author's instructions. The author decided what to build and checked the results. The AI made mistakes, and tests, an audit and reviews found and fixed them. Everything is explained openly on the website's "AI and Credits" page.</div>
+<div class="box warn"><div class="t">Honest limits</div><p>The Romanian and Russian reviews were done by an AI, not by a human proofreader, so a human read-through is still recommended. The CO₂ numbers are estimates. Statistics are rounded and change every year.</p></div>
+
+<h2>3.9 One click, step by step</h2>
+<div class="one"><small>In one sentence</small>Opening "Fun Facts" is exactly like ordering a dish: the guest orders, the waiter carries it, the kitchen checks and cooks, the pantry supplies, and the plate comes back.</div>
+<div class="panels">
+ <div class="panel"><span class="n">1</span><span class="ic">👆</span><strong>You click "Fun Facts".</strong><br>The page changes right away, and a "Loading…" circle appears.</div>
+ <div class="panel"><span class="n">2</span><span class="ic">🛎️</span><strong>The waiter takes the order:</strong> "all facts, in English" — across the internet to the kitchen on Render.</div>
+ <div class="panel"><span class="n">3</span><span class="ic">🧐</span><strong>The guards check it:</strong> from our own website? Not too many orders? Sensible?</div>
+ <div class="panel"><span class="n">4</span><span class="ic">🍳</span><strong>The cook asks the pantry</strong> at Turso: "show me everything on the facts sheet."</div>
+ <div class="panel"><span class="n">5</span><span class="ic">📝</span><strong>The cook picks the English column</strong> and writes the reply as a tidy JSON note.</div>
+ <div class="panel"><span class="n">6</span><span class="ic">🍽️</span><strong>The plate arrives:</strong> the page draws the first fact. If something went wrong, you see a friendly message and a "Try again" button.</div>
+</div>
+
+<h2>3.10 Two clever parts, explained simply</h2>
+<h3>The game: levels are data, not code</h3>
+<p>Each of the 10 levels is just a few lines on a sheet in the pantry: a story, two choices, and for each choice some numbers — for example <em>"Invest in the wind farm: clean energy +20, pollution −12, affordability −5, sustainability +15, budget −40."</em> To add a level, you add a line; you don't rewrite the game.</p>
+<ul>
+<li><strong>The budget.</strong> You start with 120 and earn 20 more per level. Taking every good choice would cost 335 but you only ever get 300 — so you <em>must</em> give something up. That's the clever part: real governments have the same problem.</li>
+<li><strong>The padlock.</strong> A choice is locked only if you can't afford it <em>and</em> the other choice is affordable, so you are never stuck.</li>
+<li><strong>The timer.</strong> You have 25 seconds. If the time runs out, the cheapest choice is made for you.</li>
+<li><strong>The score.</strong> Points only for improvements, and sustainability gives the most. Example: the first level's solar farm gives 100 + 45 + 15 + 30 = <strong>190 points</strong>.</li>
+<li><strong>Fair play.</strong> The kitchen refuses impossible scores (the true maximum is 2,436), so nobody can cheat by sending a fake one.</li>
+</ul>
+
+<h3>The calculator: kitchen-table maths</h3>
+<p>Only multiplication and division. Example: a fridge that uses <strong>150 watts</strong>, running <strong>24 hours</strong> a day, for <strong>30 days</strong>, at <strong>0.15</strong> per unit of electricity:</p>
+<table>
+<thead><tr><th>Step</th><th>The maths</th><th>Result</th></tr></thead>
+<tbody>
+<tr><td>Energy per day</td><td>150 ÷ 1000 × 24</td><td><strong>3.6 kWh</strong> (a "kWh" is the unit your electricity bill uses)</td></tr>
+<tr><td>Energy per month</td><td>3.6 × 30</td><td><strong>108 kWh</strong></td></tr>
+<tr><td>Cost per month</td><td>108 × 0.15</td><td><strong>16.20</strong></td></tr>
+<tr><td>Cost per year</td><td>16.20 × 12</td><td><strong>194.40</strong></td></tr>
+<tr><td>CO₂ per month</td><td>108 × 0.45 kg</td><td><strong>48.6 kg</strong></td></tr>
+<tr><td>Trees needed</td><td>(48.6 × 12) ÷ 21 kg per tree</td><td><strong>about 28 trees</strong></td></tr>
+</tbody></table>
+<p>The 0.45 and the 21 are <em>simplified averages</em>, so the site calls the CO₂ result an <strong>estimate</strong>. The maths is kept in its own small piece of code that the 29 checks test directly.</p>
+
+<h2>3.11 The story in three chapters</h2>
+<table>
+<thead><tr><th>When</th><th>What happened</th></tr></thead>
+<tbody>
+<tr><td>Mid-September 2026</td><td><strong>The plan and the first build.</strong> The author wrote the plan. The AI built the dining room, kitchen, pantry, the three languages, the game and the calculator.</td></tr>
+<tr><td>Early October</td><td><strong>Opening to the public.</strong> The project was put on GitHub and rented rooms were set up at Vercel and Render. Real problems appeared and were solved: pages showing "404", the kitchen starting from the wrong folder, a crash caused by a newer version of a tool, a safety rule blocking the website, and the wrong address for the data.</td></tr>
+<tr><td>Late October</td><td><strong>Making it excellent.</strong> 29 automatic checks, security guards, the permanent online pantry (Turso), the real game budget, the old-versus-efficient comparison, the report-card audit, the fact-check, a second language review, documents and a poster. The project also moved to the author's own GitHub account.</td></tr>
+</tbody></table>
+<table>
+<thead><tr><th>The project by the numbers</th><th></th></tr></thead>
+<tbody>
+<tr><td>Pages and languages</td><td>10 pages · 3 languages · 472 translated sentences in each</td></tr>
+<tr><td>Content</td><td>35 facts · 20 tips · 6 energy sources · 10 game levels · 5 achievements</td></tr>
+<tr><td>Size</td><td>About 3,900 lines of code (plus about 350 lines of checks)</td></tr>
+<tr><td>Quality</td><td>29 automatic checks · report card 100 / 100 / 100 / 95–98</td></tr>
+<tr><td>Cost to run</td><td>Nothing — all three rented rooms are free plans</td></tr>
+</tbody></table>
+
+<h2>3.12 Quick answers card</h2>
+<p>If someone asks "what is…?", this is the one-line answer. Print it or keep it on your phone.</p>
+<table>
+<thead><tr><th>Word</th><th>One-line answer</th><th>Comparison</th></tr></thead>
+<tbody>
+<tr><td>Code</td><td>Written instructions a computer follows exactly</td><td>A recipe</td></tr>
+<tr><td>JavaScript</td><td>The programming language the whole project uses</td><td>The language the recipes are written in</td></tr>
+<tr><td>HTML / CSS</td><td>What is on the page / how it looks</td><td>Skeleton / clothes</td></tr>
+<tr><td>Frontend</td><td>The part you see and touch</td><td>The dining room</td></tr>
+<tr><td>React</td><td>A toolbox for building pages from small reusable pieces</td><td>Lego bricks</td></tr>
+<tr><td>Vite</td><td>Packs the code so the site loads fast</td><td>A suitcase-packing machine</td></tr>
+<tr><td>Tailwind</td><td>Ready-made styles for a consistent design</td><td>A box of ready-made paints</td></tr>
+<tr><td>Backend / server</td><td>The always-on computer that does the work and keeps information for everyone</td><td>The kitchen</td></tr>
+<tr><td>Node.js / Express</td><td>The tools the kitchen is built with</td><td>The kitchen's layout and equipment</td></tr>
+<tr><td>API</td><td>The fixed list of orders the website can send to the server</td><td>The menu and the waiter</td></tr>
+<tr><td>Database (SQLite, Turso)</td><td>An organised spreadsheet that never forgets; Turso keeps it online</td><td>The pantry</td></tr>
+<tr><td>Hosting (Vercel, Render)</td><td>Renting computers that are always on, so anyone can visit</td><td>Renting the building</td></tr>
+<tr><td>Git / GitHub</td><td>A dated notebook of every change, kept online</td><td>The notebook of changes</td></tr>
+<tr><td>Automated tests</td><td>29 yes/no checks that run by themselves</td><td>The morning checklist</td></tr>
+<tr><td>Lighthouse</td><td>Google's free report card for websites</td><td>A school report card</td></tr>
+<tr><td>AI assistant</td><td>A program you talk to that writes and tests code</td><td>A very fast builder, with the author as manager</td></tr>
+</tbody></table>
+
+</div><!-- /easy -->
+
+<!-- ============================================================ PART 4 -->
+<section class="part cont"><div class="num">Part 4</div><h1>Glossary</h1><p>The technical words in this guide, in simple language, in alphabetical order.</p></section>
+<dl>
+<dt>Accessibility</dt><dd>Designing so that people with disabilities (low vision, blindness, motor difficulties…) can use the site, for example with a keyboard or a screen reader.</dd>
+<dt>AI (artificial intelligence)</dt><dd>Software that can perform tasks that normally need human thinking, such as writing text or code. Here: Claude Code.</dd>
+<dt>API</dt><dd>The fixed "menu" of requests a frontend may send to a backend. The waiter between the dining room and the kitchen.</dd>
+<dt>Backend</dt><dd>The part of a website running on a server that stores data and applies rules. Invisible to visitors.</dd>
+<dt>Browser</dt><dd>The program you use to open websites (Chrome, Safari, Firefox, Edge).</dd>
+<dt>Build</dt><dd>Turning the code the author writes into small, optimised files the browser can load quickly.</dd>
+<dt>CI (continuous integration)</dt><dd>A robot that automatically tests the project every time it changes. Here: GitHub Actions.</dd>
+<dt>Commit</dt><dd>A "save point" in Git: a snapshot of the project with a short description.</dd>
+<dt>Component</dt><dd>A reusable building block of a page in React (a button, a card, the menu).</dd>
+<dt>CORS</dt><dd>A browser safety rule: a website may only talk to a server that has agreed to it.</dd>
+<dt>CSS</dt><dd>The language that controls how a page looks (colours, sizes, spacing).</dd>
+<dt>Database</dt><dd>Organised storage that keeps information safely, even when programs restart.</dd>
+<dt>Deploy</dt><dd>To publish a project on the internet so everyone can use it.</dd>
+<dt>Endpoint</dt><dd>One address of an API, such as <code>/api/facts</code>.</dd>
+<dt>Environment variable</dt><dd>A setting (often a secret) kept outside the code, entered in a service's dashboard.</dd>
+<dt>Express</dt><dd>A framework for Node.js that makes it easy to build a backend and its API.</dd>
+<dt>Framework</dt><dd>A building kit that provides the structure and standard parts of a program. (A <em>library</em> is a toolbox you pick pieces from.)</dd>
+<dt>Frontend</dt><dd>The part of a website that runs in your browser: everything you see and click.</dd>
+<dt>Git</dt><dd>A tool that records the history of a project's changes.</dd>
+<dt>GitHub</dt><dd>A website that stores Git projects online and shows their history. The project's source code is public there.</dd>
+<dt>GitHub Actions</dt><dd>GitHub's automation robots; here it runs the tests on every change.</dd>
+<dt>Hosting</dt><dd>Paying (or using a free plan) for a computer that keeps your site running on the internet.</dd>
+<dt>HTML</dt><dd>The language that gives a page its structure (headings, paragraphs, buttons).</dd>
+<dt>i18n (internationalisation)</dt><dd>Preparing software for several languages ("i" + 18 letters + "n"). Done here with i18next.</dd>
+<dt>JavaScript</dt><dd>The programming language of the web; the main language of this project.</dd>
+<dt>JSON</dt><dd>A tidy text format for exchanging data between programs.</dd>
+<dt>JSX</dt><dd>HTML-like syntax written inside JavaScript, used by React.</dd>
+<dt>Library</dt><dd>A collection of ready-made code you can reuse (React is one).</dd>
+<dt>Lighthouse</dt><dd>Google's free tool that audits a page for accessibility, performance, best practices and SEO.</dd>
+<dt>localStorage</dt><dd>A small storage space inside your own browser. Used for your language, tip progress, favourites and appliances.</dd>
+<dt>Middleware</dt><dd>A checkpoint a request passes through on the server (validation, security, limits) before reaching the main code.</dd>
+<dt>Node.js</dt><dd>Lets JavaScript run on a server instead of only in a browser.</dd>
+<dt>npm</dt><dd>The tool and giant catalogue used to download the libraries a project needs.</dd>
+<dt>React</dt><dd>A library for building user interfaces out of reusable components.</dd>
+<dt>Render</dt><dd>The hosting service that runs this project's backend.</dd>
+<dt>Repository (repo)</dt><dd>A project folder tracked by Git, including its full history.</dd>
+<dt>REST</dt><dd>A common style for designing APIs with addresses and GET / POST requests.</dd>
+<dt>Route</dt><dd>A rule that connects an address to the code that handles it.</dd>
+<dt>Seed</dt><dd>To fill a database with its starting content.</dd>
+<dt>Server</dt><dd>A computer that answers requests from other computers over the internet.</dd>
+<dt>SEO</dt><dd>Making a site understandable to search engines.</dd>
+<dt>Single-page application (SPA)</dt><dd>A site that loads once and then swaps content instantly without reloading.</dd>
+<dt>SQL</dt><dd>The language used to read and change data in a database.</dd>
+<dt>SQL injection</dt><dd>An attack where someone types database commands into a form. Prevented here by always using placeholders.</dd>
+<dt>SQLite</dt><dd>A small, fast database engine used worldwide.</dd>
+<dt>State</dt><dd>The information that changes while you use a page (the current level, your budget…).</dd>
+<dt>Tailwind CSS</dt><dd>A styling toolkit with short ready-made class names.</dd>
+<dt>Test (automated)</dt><dd>A small program that checks that another program works correctly.</dd>
+<dt>Turso</dt><dd>An online service that hosts SQLite-compatible databases; keeps this project's data permanently.</dd>
+<dt>Validation</dt><dd>Checking that information typed into a form is sensible before accepting it.</dd>
+<dt>Vercel</dt><dd>The hosting service that serves this project's frontend.</dd>
+<dt>Vite</dt><dd>A tool that builds and speeds up development of the frontend.</dd>
+</dl>
+
+<!-- ============================================================ PART 5 -->
+<section class="part"><div class="num">Part 5</div><h1>Presenting the project</h1><p>What to say, what to show, how to answer questions — and how to stay completely honest about who made it.</p></section>
+
+<h2>5.1 First, an important point: you are presenting someone else's work</h2>
+<p>The project was created by <strong>stefaniat2</strong> as a solo project. You are presenting it <em>on their behalf</em>. That is perfectly acceptable — but the jury will probably ask about how it was made, so you must <strong>never say or suggest that you programmed it or wrote it yourself.</strong> A simple, true opening sentence:</p>
+<div class="box say"><div class="t">Say this at the start</div><p>"This project, <em>Energize the Future</em>, was created by stefaniat2 as a solo project, using an AI assistant for the programming under their direction. I'm going to present it for them — what it is, how it works, and how it was made."</p></div>
+<div class="box tip"><div class="t">One thing to check with the author</div><p>Ask whether the competition rules allow someone else to present, and whether the author should be reachable (a phone call or message) in case the jury has a very technical question. Also ask them to be available for a practice run with you.</p></div>
+
+<h2>5.2 The 60-second pitch</h2>
+<div class="box say"><div class="t">Say this</div>
+<p>"About 655 million people on Earth still have no electricity, and the energy we do use is warming the planet. The United Nations calls this Goal 7: affordable and clean energy for everyone by 2030.</p>
+<p>Energize the Future is a website that helps young people <em>understand</em> it, <em>try</em> to solve it and <em>measure</em> their own impact. There is a strategy game where you run a polluted city on a limited budget, a calculator that shows how much an appliance costs and how much CO₂ it makes, plus facts and tips. It works in English, Romanian and Russian, on any phone or computer, and it is free.</p>
+<p style="margin:0">Let me show you."</p></div>
+
+<h2>5.3 The 7-minute talk</h2>
+<table>
+<thead><tr><th>Time</th><th>Part</th><th>What to do</th></tr></thead>
+<tbody>
+<tr><td>0:00</td><td>Who and why</td><td>The opening sentence from 5.1, then the 60-second pitch above.</td></tr>
+<tr><td>1:30</td><td>Live demo</td><td>Follow the demo route in 5.4 (3 minutes). This is the most important part: <em>show, don't explain</em>.</td></tr>
+<tr><td>4:30</td><td>How it was made</td><td>Use the restaurant picture (3.2): "A website is like a restaurant. The dining room is what you see — it is built with React. The kitchen does the work — it uses Node.js and Express. The pantry stores everything — a database called Turso. Each part lives on a free online service." Then: "29 automatic checks run every time something changes, and Google's report card gives it 100 out of 100 for accessibility, best practices and SEO."</td></tr>
+<tr><td>5:45</td><td>Responsible use of AI</td><td>See the script below.</td></tr>
+<tr><td>6:30</td><td>Close</td><td>"You can try it right now: scan the QR code, play Energy Hero and see if you can beat 2,000 points. Thank you!"</td></tr>
+</tbody></table>
+<div class="box say"><div class="t">Say this about AI (about 40 seconds)</div><p>"The code was written by an AI assistant called Claude Code, following detailed instructions from the author, who decided what the project should do, reviewed every result, tested it and published it. The AI also made mistakes — for example, the game budget wasn't enforced at first, and some translations had grammar errors — and they were found and fixed through automated tests, an audit, and a second review. Everything is documented openly on the website's AI and Credits page."</p></div>
+
+<h2>5.4 The 3-minute live demo — do exactly this</h2>
+<p>Practise until it takes three minutes. <strong>Before you start:</strong> open the site once and play one level so the server is awake.</p>
+<ol class="steps">
+<li><strong>Home (10 s).</strong> "Here is the home page: the idea, the three objectives and real statistics."</li>
+<li><strong>Language (15 s).</strong> Press the globe → Русский → Română → English. "Everything changes instantly, including the facts and game levels from the database."</li>
+<li><strong>Game (75 s).</strong> Menu → Mini Game → Start Game. On level 1 pick the first option (solar farm) → <strong>Confirm Choice</strong> → point at the green and red numbers: "Every decision has visible consequences." On level 2 point at the cost badges and the budget: "I can't afford everything." Keep choosing the <em>first</em> option quickly; around level 8 an option shows a <strong>padlock</strong> — "Not enough budget: the player must prioritise." Finish the game and show the score and achievements. <strong>Do not press Submit.</strong></li>
+<li><strong>Calculator (60 s).</strong> Menu → Energy Calculator. Enter <strong>Refrigerator, 150, 24, 30, 0.15</strong> → Add Appliance. Read out: "3.6 kWh a day, about 194 a year, 48.6 kg of CO₂ a month, and about 28 trees would be needed to absorb a year of it." Then scroll to <em>Compare efficient alternatives</em> and press <strong>Add the efficient version</strong> on the LED bulb: "An LED saves about 85% of the power."</li>
+<li><strong>AI &amp; Credits (15 s).</strong> Menu → AI &amp; Credits: "And everything about how it was made is documented openly here."</li>
+</ol>
+
+<h2>5.5 Questions the jury may ask — and simple answers</h2>
+<table>
+<thead><tr><th>Question</th><th>A good, simple, honest answer</th></tr></thead>
+<tbody>
+<tr><td>Who made it, and how?</td><td>"stefaniat2 created it as a solo project. The programming was done by an AI assistant, Claude Code, following the author's written instructions; the author reviewed, tested and published it."</td></tr>
+<tr><td>What is original about it?</td><td>"It is not just information: you can play a strategy game where a limited budget forces real choices, and a calculator connects your own appliances to money, CO₂ and trees. And it's in three languages."</td></tr>
+<tr><td>How does the game work?</td><td>"You run a city over 10 levels. Each decision has a cost and changes five measures, like pollution and happiness. You earn +20 budget per level, so you can't afford every good option. Points reward improvements, mostly sustainability."</td></tr>
+<tr><td>Is the calculator accurate?</td><td>"The formulas are simple and checked: watts ÷ 1000 × hours gives kWh, times the price gives the cost. For example 150 W for 24 hours is 3.6 kWh. The CO₂ figure is a clearly labelled estimate."</td></tr>
+<tr><td>What technologies did it use?</td><td>"Think of a restaurant: React builds the dining room, which is the pages you see; Node.js and Express are the kitchen; a database on Turso is the pantry. They are hosted free on Vercel, Render and Turso." (If they ask for more, use the quick-answers card in 3.12.)</td></tr>
+<tr><td>Where is the data stored?</td><td>"In an online database called Turso, so scores and messages are kept permanently. Your language and progress stay in your own browser."</td></tr>
+<tr><td>Is it safe? What about privacy?</td><td>"It checks everything that is sent to it, limits spam, only accepts requests from its own website, and has no accounts, no cookies and no tracking." (Don't say "100% secure".)</td></tr>
+<tr><td>Are the facts correct?</td><td>"They come from UN, IRENA and Ember sources, and each claim was checked and recorded in a fact-check file. The numbers are rounded and the site shows the year."</td></tr>
+<tr><td>Who checked the translations?</td><td>"They were drafted by AI and reviewed in a second AI pass, which found and fixed real errors. A human proofreading is still recommended, and the site says so." (Only say more if the author tells you a human has proofread them.)</td></tr>
+<tr><td>Is it accessible?</td><td>"Yes — it scored 100 out of 100 in Google's accessibility audit; it works with a keyboard and screen readers and has good colour contrast."</td></tr>
+<tr><td>Why does it sometimes load slowly?</td><td>"It uses free hosting, and the free server sleeps when nobody visits. The first visit wakes it up."</td></tr>
+<tr><td>What would you improve next?</td><td>"More game levels using real national energy data, a teacher mode for classrooms, and accounts so students can keep their progress."</td></tr>
+<tr><td>Could someone else run it?</td><td>"Yes — the whole project is public on GitHub with step-by-step instructions."</td></tr>
+</tbody></table>
+
+<div class="box tip"><div class="t">When you don't know an answer</div><p>It is much better to be honest than to guess. Useful sentences:</p>
+<ul style="margin:0">
+<li>"That's a detailed technical question. In simple terms it works like this: … and the author documented the details in the project."</li>
+<li>"I'm presenting this for the author, so I don't want to guess — I can find out and tell you."</li>
+<li>"Everything about that is written down in the project's documentation — the code walkthrough explains it step by step."</li>
+</ul></div>
+
+<h2>5.6 Things not to say</h2>
+<table>
+<thead><tr><th>Don't say…</th><th>Because…</th><th>Say instead</th></tr></thead>
+<tbody>
+<tr><td>"I programmed / wrote / built this"</td><td>It isn't true and the jury may ask follow-up questions.</td><td>"The author created it with an AI assistant; I'm presenting it."</td></tr>
+<tr><td>"The AI did everything by itself"</td><td>The author decided, directed, reviewed, tested and published.</td><td>"The AI wrote the code under the author's instructions."</td></tr>
+<tr><td>"Native speakers checked the translations"</td><td>Only an AI second review has been done so far.</td><td>"Drafted by AI and reviewed in a second pass."</td></tr>
+<tr><td>"It is completely secure / bug-free"</td><td>No software is — and it invites tough questions.</td><td>"It has many protections and 29 passing tests."</td></tr>
+<tr><td>Exact statistics without "about"</td><td>They are rounded and change every year.</td><td>"About 655 million people (UN, 2024)."</td></tr>
+<tr><td>"It has accounts / saves everything online"</td><td>Only scores, ideas and messages go online; settings stay in the browser.</td><td>"No accounts; your progress is kept in your own browser."</td></tr>
+</tbody></table>
+
+<h2>5.7 If something goes wrong</h2>
+<table>
+<thead><tr><th>Problem</th><th>What to do</th></tr></thead>
+<tbody>
+<tr><td>Pages say "Something went wrong" or load for a long time</td><td>The free server is waking up. Say so calmly, wait up to a minute, then press <strong>Try again</strong>. (That's why you open the site before presenting.)</td></tr>
+<tr><td>No internet at the venue</td><td>Use your phone's hotspot. If that fails, show the screenshots in this guide and the poster, and describe the demo. The author can also run the project on a laptop without internet.</td></tr>
+<tr><td>The leaderboard is empty</td><td>Normal — nobody has submitted a score yet. Say "be the first!"</td></tr>
+<tr><td>You made a mistake in the demo</td><td>Smile, say "let me show that again", and continue. Juries care about calm, not perfection.</td></tr>
+<tr><td>A very technical question you can't answer</td><td>Use the honest sentences in 5.5. Offer to follow up with the author.</td></tr>
+</tbody></table>
+
+<h2 style="break-before: page">5.8 One-page cheat sheet</h2>
+<table>
+<thead><tr><th>Remember</th><th>The answer</th></tr></thead>
+<tbody>
+<tr><td>Name / address</td><td><strong>Energize the Future</strong> — energize-the-future.vercel.app (QR code on the poster)</td></tr>
+<tr><td>Topic</td><td>UN Sustainable Development Goal 7: Affordable and Clean Energy, by 2030</td></tr>
+<tr><td>Why it matters</td><td>~655 million people without electricity (2024) · ~2.1 billion without clean cooking (2023) · ~30% of world electricity is renewable (2024)</td></tr>
+<tr><td>Creator</td><td>stefaniat2 — solo project, built with the AI assistant Claude Code</td></tr>
+<tr><td>Three things you can do</td><td>Understand · Play · Measure (and act)</td></tr>
+<tr><td>Pages / languages</td><td>10 pages · English, Romanian, Russian</td></tr>
+<tr><td>Content</td><td>35 facts · 20 tips · 6 energy sources · 10 game levels · 5 achievements</td></tr>
+<tr><td>Game</td><td>Budget 120 (+20 per level) · 25 s per decision · 5 city stats · max score 2,436 · best realistic ~2,090</td></tr>
+<tr><td>Calculator</td><td>150 W · 24 h · 30 days · 0.15 → 3.6 kWh/day · 108 kWh/month · 16.20/month · 194.40/year · 48.6 kg CO₂ · ≈ 28 trees</td></tr>
+<tr><td>Technology in one line</td><td>React (what you see) + Node.js/Express (does the work) + SQLite on Turso (stores data); hosted free on Vercel, Render, Turso</td></tr>
+<tr><td>Quality</td><td>29 automated tests · Lighthouse 100 / 100 / 100 (accessibility, best practices, SEO) · performance 95–98</td></tr>
+<tr><td>Cost</td><td>Free to run and free to use</td></tr>
+<tr><td>Honest limits</td><td>Free server may be slow at first · CO₂ is an estimate · statistics are rounded · translations: AI-reviewed, human proofread recommended</td></tr>
+</tbody></table>
+
+<h2>Appendix: where to find things</h2>
+<table>
+<thead><tr><th>What</th><th>Where</th></tr></thead>
+<tbody>
+<tr><td>The website</td><td>https://energize-the-future.vercel.app</td></tr>
+<tr><td>Server health check</td><td>https://energize-the-future-wuln.onrender.com/api/health</td></tr>
+<tr><td>Source code</td><td>https://github.com/stefaniat2/energize-the-future</td></tr>
+<tr><td>Main description of the project</td><td><code>README.md</code> (in the repository)</td></tr>
+<tr><td>How AI was used</td><td><code>AI_USAGE.md</code> · the "AI &amp; Credits" page on the site</td></tr>
+<tr><td>Where each fact comes from</td><td><code>docs/FACT_CHECK.md</code></td></tr>
+<tr><td>How the code works (for the curious)</td><td><code>docs/CODE_WALKTHROUGH.md</code> · <code>docs/ARCHITECTURE.md</code></td></tr>
+<tr><td>Talk script and stand ideas</td><td><code>docs/PRESENTATION.md</code> · <code>docs/STAND.md</code> · the A3 poster</td></tr>
+</tbody></table>
+<p style="text-align:center;color:#64748b;margin-top:8mm;font-size:9pt">Good luck — you've got this. ⚡</p>
+
+</body>
+</html>

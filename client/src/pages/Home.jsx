@@ -203,6 +203,10 @@ export default function Home() {
               {t("home.ctaButtonCalculator")}
               <ArrowRight size={18} aria-hidden="true" />
             </Link>
+            <Link to="/optimizer" className="btn-secondary bg-transparent text-white border-white hover:bg-white hover:text-slate-900">
+              {t("home.ctaButtonScheduler")}
+              <ArrowRight size={18} aria-hidden="true" />
+            </Link>
           </div>
         </div>
       </section>

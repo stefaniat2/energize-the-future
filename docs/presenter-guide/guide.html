@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Energize the Future — Presenter's Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  @page { size: A4; margin: 13mm 15mm 15mm 15mm;
+    @bottom-center { content: "Energize the Future — Presenter's Guide · page " counter(page); font: 8pt Poppins, sans-serif; color: #64748b; } }
+  @page :first { @bottom-center { content: none; } }
+  * { box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { font-family: Poppins, system-ui, sans-serif; font-size: 10.3pt; line-height: 1.5; color: #1e293b; margin: 0; }
+  p { margin: 0 0 2.4mm; } strong { color: #0f172a; } em { color: #334155; }
+  code { font-family: "SF Mono", Menlo, monospace; font-size: 8.8pt; background: #eef2f7; padding: .3mm 1.2mm; border-radius: 1mm; color: #0b3d5c; }
+  .pg { break-after: page; } .pg:last-child { break-after: auto; }
+
+  .title { background: linear-gradient(135deg,#124e89,#1971c2 60%,#237a36); color: #fff; border-radius: 3mm; padding: 4.5mm 7mm; margin: 0 0 4mm; }
+  .title .n { font-size: 8.5pt; letter-spacing: 2pt; text-transform: uppercase; opacity: .85; font-weight: 600; }
+  .title h1 { margin: .5mm 0 0; font-size: 19pt; line-height: 1.15; font-weight: 800; }
+  h2 { font-size: 12.3pt; color: #124e89; margin: 4.2mm 0 1.8mm; font-weight: 700; break-after: avoid; }
+
+  .cover { height: 262mm; border-radius: 6mm; position: relative; overflow: hidden; color: #fff; padding: 20mm 15mm; background: linear-gradient(150deg,#124e89,#1971c2 55%,#237a36); }
+  .cover::after { content: ""; position: absolute; right: -24mm; top: -28mm; width: 88mm; height: 88mm; border-radius: 50%; background: #f5c518; box-shadow: 0 0 40mm rgba(245,197,24,.5); }
+  .cover > * { position: relative; z-index: 1; }
+  .cover .tag { display: inline-block; background: rgba(255,255,255,.18); padding: 2mm 5mm; border-radius: 50mm; font-weight: 600; font-size: 10.5pt; margin: 22mm 0 8mm; }
+  .cover h1 { font-size: 50pt; line-height: 1; margin: 0 0 6mm; font-weight: 800; }
+  .cover .sub { font-size: 16pt; max-width: 120mm; margin-bottom: 9mm; }
+  .cover .what { display: flex; gap: 3mm; flex-wrap: wrap; max-width: 120mm; }
+  .cover .what span { background: rgba(255,255,255,.16); border-radius: 50mm; padding: 1.8mm 4.5mm; font-size: 10pt; font-weight: 600; }
+  .cover .qr { position: absolute; right: 15mm; bottom: 24mm; background: #fff; border-radius: 5mm; padding: 4mm; width: 50mm; color: #0f172a; text-align: center; }
+  .cover .qr svg { width: 100%; height: auto; display: block; } .cover .qr b { display: block; font-size: 9pt; margin-top: 1.5mm; }
+  .cover .foot { position: absolute; left: 15mm; bottom: 18mm; font-size: 9.5pt; line-height: 1.7; max-width: 100mm; }
+
+  .box { border-radius: 3mm; padding: 3mm 4.5mm; margin: 3mm 0; border-left: 1.5mm solid; break-inside: avoid; }
+  .box > :last-child { margin-bottom: 0; } .box .t { font-weight: 700; font-size: 8.4pt; letter-spacing: .8pt; text-transform: uppercase; margin-bottom: 1mm; }
+  .say { background: #e8f3ff; border-color: #1971c2; } .say .t { color: #124e89; }
+  .tip { background: #e9f7ee; border-color: #237a36; } .tip .t { color: #1e6b30; }
+  .warn { background: #fdeceb; border-color: #c92a2a; } .warn .t { color: #a61e1e; }
+  .ana { background: #fff8db; border-color: #f5c518; } .ana .t { color: #8a6d00; }
+  .one { background: #124e89; color: #fff; border-radius: 3mm; padding: 3mm 5mm; margin: 0 0 3.5mm; font-weight: 600; font-size: 11pt; }
+
+  table { border-collapse: collapse; width: 100%; font-size: 9.2pt; margin: 2mm 0 3mm; }
+  th { background: #124e89; color: #fff; text-align: left; padding: 1.6mm 2.6mm; font-weight: 600; }
+  td { padding: 1.6mm 2.6mm; border-bottom: .3mm solid #dbe3ec; vertical-align: top; } tr { break-inside: avoid; }
+  tbody tr:nth-child(even) td { background: #f6f9fc; } td:first-child { font-weight: 600; color: #0f172a; }
+
+  .grid4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 2.6mm; margin: 3mm 0; }
+  .grid3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 3mm; margin: 3mm 0; }
+  .grid2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 3mm; margin: 3mm 0; }
+  .card { border: .35mm solid #cfdbe8; border-radius: 3mm; padding: 3mm 3.4mm; background: #fff; break-inside: avoid; font-size: 9.4pt; line-height: 1.42; }
+  .card .ic { font-size: 16pt; display: block; margin-bottom: .6mm; } .card h3 { margin: 0 0 1mm; font-size: 10.6pt; color: #124e89; }
+  .card.b { background: #e8f3ff; border-color: #1971c2; } .card.y { background: #fff8db; border-color: #f5c518; } .card.g { background: #e9f7ee; border-color: #237a36; } .card.p { background: #f1ecff; border-color: #6741d9; }
+  .flow { display: flex; align-items: stretch; margin: 3mm 0; }
+  .flow .node { flex: 1; border-radius: 3mm; padding: 3mm; text-align: center; font-size: 9pt; line-height: 1.35; border: .4mm solid; }
+  .flow .node b { display: block; font-size: 10.2pt; margin-bottom: .8mm; } .flow .arrow { width: 7mm; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #64748b; flex: none; }
+  .nb { background: #e8f3ff; border-color: #1971c2; } .ng { background: #e9f7ee; border-color: #237a36; } .ny { background: #fff8db; border-color: #f5c518; }
+  .steps { counter-reset: s; list-style: none; padding: 0; margin: 2mm 0 3mm; } .steps li { counter-increment: s; position: relative; padding: 0 0 1.8mm 8.5mm; break-inside: avoid; }
+  .steps li::before { content: counter(s); position: absolute; left: 0; top: .2mm; width: 5.8mm; height: 5.8mm; border-radius: 50%; background: #f5c518; color: #0f172a; font-weight: 800; font-size: 8.4pt; display: grid; place-items: center; }
+  ul { margin: 0 0 2.6mm; padding-left: 5mm; } li { margin-bottom: 1mm; }
+  .figs { display: flex; gap: 4mm; margin: 3mm 0; } .figs figure { flex: 1; margin: 0; text-align: center; }
+  .figs img { width: 100%; border: .3mm solid #cbd5e1; border-radius: 2mm; } .figs figcaption { font-size: 8.2pt; color: #64748b; font-style: italic; margin-top: 1mm; }
+
+  .demo { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6mm; break-inside: avoid; }
+  .demo .src { background: #0f172a; color: #e2e8f0; border-radius: 2mm; padding: 2mm 2.6mm; font: 7.8pt/1.45 "SF Mono", Menlo, monospace; white-space: pre-wrap; }
+  .demo .res { border: .35mm dashed #94a3b8; border-radius: 2mm; background: #f8fafc; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 1.5mm; gap: 1mm; }
+  .b1 { font: 600 8.6pt Poppins, sans-serif; padding: 1.4mm 4mm; border: .3mm solid #888; background: #eee; border-radius: 1mm; color: #000; }
+  .b2 { font: 600 8.6pt Poppins, sans-serif; padding: 1.6mm 4.5mm; background: #237a36; color: #fff; border-radius: 5mm; }
+  .bubble { max-width: 82%; padding: 1.8mm 3.4mm; border-radius: 3.5mm; margin: 0 0 1.6mm; font-size: 9pt; } .bubble small { display: block; font-weight: 700; font-size: 7.4pt; letter-spacing: .7pt; text-transform: uppercase; }
+  .bubble.me { background: #e8f3ff; border: .3mm solid #1971c2; } .bubble.srv { background: #fff8db; border: .3mm solid #f5c518; margin-left: auto; }
+  .story { display: grid; grid-template-columns: repeat(6,1fr); gap: 2mm; margin: 3mm 0; }
+  .story div { border: .35mm solid #cfdbe8; border-radius: 2.5mm; padding: 2mm 2mm; font-size: 8pt; line-height: 1.35; text-align: center; background: #fff; }
+  .story div span { display: block; font-size: 15pt; } .story b { display: block; color: #124e89; font-size: 8pt; }
+  /* tiny schedule picture for the scheduling puzzle */
+  .sched { display: grid; grid-template-columns: 22mm repeat(12, 1fr); gap: 0; font-size: 7.6pt; margin: 2mm 0 1mm; align-items: center; }
+  .sched .h { text-align: center; color: #64748b; } .sched .lab { font-weight: 600; }
+  .sched .c { height: 5.2mm; border-left: .2mm solid #e2e8f0; background: #fffbeb; } .sched .c.n { background: #eff6ff; }
+  .sched .hab { background: #fff; border: .4mm dashed #475569; border-radius: 1mm; height: 3.4mm; margin: .8mm 0; }
+  .sched .opt { background: #237a36; border-radius: 1mm; height: 3.4mm; margin: .8mm 0; }
+</style>
+</head>
+<body>
+
+<!-- ================================================= 1 COVER -->
+<section class="pg">
+<div class="cover">
+  <div class="tag">UN Sustainable Development Goal 7</div>
+  <h1>Energize<br>the Future</h1>
+  <div class="sub">A simple guide for the presenter: what it is, how to use it, how it was made, and what to say.</div>
+  <div class="what"><span>📚 Learn</span><span>🎮 Play</span><span>🧮 Measure</span><span>🗓️ Plan</span><span>🌍 3 languages</span></div>
+  <div class="qr"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 31 31" shape-rendering="crispEdges"><path fill="#ffffff" d="M0 0h31v31H0z"/><path stroke="#0b3d2e" d="M1 1.5h7m5 0h1m2 0h1m3 0h1m2 0h7M1 2.5h1m5 0h1m1 0h4m1 0h1m1 0h5m2 0h1m5 0h1M1 3.5h1m1 0h3m1 0h1m2 0h1m1 0h1m2 0h1m1 0h1m2 0h1m2 0h1m1 0h3m1 0h1M1 4.5h1m1 0h3m1 0h1m5 0h1m1 0h2m2 0h2m2 0h1m1 0h3m1 0h1M1 5.5h1m1 0h3m1 0h1m1 0h2m1 0h2m2 0h1m3 0h1m2 0h1m1 0h3m1 0h1M1 6.5h1m5 0h1m2 0h5m1 0h1m1 0h4m1 0h1m5 0h1M1 7.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M10 8.5h1m1 0h3m2 0h2m1 0h2M1 9.5h1m1 0h1m1 0h1m1 0h1m3 0h1m3 0h4m1 0h2m3 0h1m2 0h1M2 10.5h3m1 0h1m1 0h2m1 0h3m4 0h2m2 0h2m2 0h1m2 0h1M2 11.5h7m5 0h1m2 0h1m4 0h2m3 0h3M2 12.5h2m1 0h2m1 0h1m7 0h6m1 0h2m3 0h1M2 13.5h4m1 0h4m1 0h2m2 0h3m2 0h4m1 0h1m1 0h2M3 14.5h4m1 0h3m2 0h2m2 0h3m1 0h3m2 0h1m2 0h1M1 15.5h3m2 0h3m4 0h1m1 0h1m2 0h2m1 0h1m2 0h3m1 0h2M2 16.5h2m1 0h1m2 0h1m1 0h1m2 0h6m1 0h1m5 0h1m1 0h1M3 17.5h2m2 0h2m2 0h1m1 0h1m1 0h1m1 0h2m1 0h4m2 0h1m1 0h2M2 18.5h4m7 0h1m1 0h1m1 0h2m2 0h1m1 0h1m2 0h2m1 0h1M1 19.5h1m2 0h2m1 0h1m1 0h1m2 0h3m6 0h1m6 0h2M2 20.5h5m3 0h2m6 0h6m1 0h2m1 0h1M1 21.5h1m2 0h1m1 0h4m1 0h2m4 0h3m1 0h5M9 22.5h2m1 0h1m1 0h1m2 0h1m3 0h1m3 0h1m1 0h3M1 23.5h7m3 0h3m1 0h1m1 0h2m1 0h2m1 0h1m1 0h2m1 0h2M1 24.5h1m5 0h1m2 0h3m1 0h2m2 0h1m2 0h1m3 0h2m1 0h2M1 25.5h1m1 0h3m1 0h1m1 0h1m3 0h1m1 0h1m2 0h1m2 0h5m2 0h2M1 26.5h1m1 0h3m1 0h1m3 0h1m1 0h1m1 0h1m1 0h3m4 0h2m1 0h3M1 27.5h1m1 0h3m1 0h1m1 0h2m2 0h1m4 0h1m1 0h1m3 0h3m2 0h1M1 28.5h1m5 0h1m2 0h2m2 0h5m1 0h2m6 0h1M1 29.5h7m1 0h4m4 0h2m2 0h5m2 0h2"/></svg><b>Scan to open the site</b></div>
+  <div class="foot">Created by <b>stefaniat2</b> (a solo project)<br>energize-the-future.vercel.app<br>Updated November 2026</div>
+</div>
+</section>
+
+<!-- ================================================= 2 WHAT IS IT -->
+<section class="pg">
+<div class="title"><div class="n">Part 1</div><h1>What is this project?</h1></div>
+<div class="one">A website that helps young people understand clean energy — and do something about it.</div>
+
+<h2>Why does it exist?</h2>
+<p>About <strong>655 million people</strong> in the world still have no electricity. And the energy we do use — from coal, oil and gas — is warming the planet. The United Nations (a group of 193 countries) set a target called <strong>"Goal 7"</strong>: clean and affordable energy for everyone by 2030. This website is a small, fun way to learn about that goal — and to try to save money with it.</p>
+
+<h2>What can you do on the website?</h2>
+<div class="grid4">
+ <div class="card b"><span class="ic">📚</span><h3>Learn</h3>Simple pages on clean energy: 6 types of renewable energy, 35 fun facts, 20 saving tips.</div>
+ <div class="card g"><span class="ic">🎮</span><h3>Play</h3>"Energy Hero": clean up a polluted city in 10 levels, on a small budget.</div>
+ <div class="card y"><span class="ic">🧮</span><h3>Measure</h3>A calculator: type an appliance, see its cost, its CO₂ and the trees needed to absorb it.</div>
+ <div class="card p"><span class="ic">🗓️</span><h3>Plan</h3>The <strong>Smart Scheduler</strong>: finds the cheapest hours to run your washing machine and other appliances.</div>
+</div>
+<p>It speaks <strong>three languages</strong> (English, Romanian, Russian), works on phones and computers, is <strong>free</strong> and needs no account. It has <strong>12 pages</strong>.</p>
+
+<h2>Who made it?</h2>
+<p><strong>stefaniat2</strong> created it alone. The author wrote the plan and decided what it should do. An <strong>AI assistant</strong> called <strong>Claude Code</strong> wrote the computer code from the author's instructions. The author checked the results and put the site on the internet. (More on page 5.)</p>
+
+<div class="box say"><div class="t">Say this at the very start</div>
+<p>"This project, <em>Energize the Future</em>, was created by stefaniat2 as a solo project, using an AI assistant for the programming under their direction. I'm presenting it on their behalf."</p></div>
+<div class="box warn"><div class="t">Important</div>
+<p>You are presenting someone else's work. <strong>Never say "I programmed it" or "I made it."</strong> Before the event, ask the author (1) whether the competition rules allow this, and (2) whether they can be reached if the jury asks a very technical question.</p></div>
+</section>
+
+<!-- ================================================= 3 HOW TO USE -->
+<section class="pg" style="zoom:0.84">
+<div class="title"><div class="n">Part 2</div><h1>How to use the website</h1></div>
+
+<div class="grid2">
+ <div class="card"><h3>🌐 Open it</h3>Type <strong>energize-the-future.vercel.app</strong> in any browser, or scan the QR code. No account, no download.</div>
+ <div class="card"><h3>⏳ The first visit can be slow</h3>The free server "falls asleep" when nobody visits. Waking it can take <strong>up to a minute</strong>. <strong>Open the site once before you present.</strong></div>
+</div>
+<p><strong>Two buttons at the top right:</strong> 🌐 changes the language (everything changes instantly) and ☰ opens the list of all pages.</p>
+
+<h2>The pages in one line each</h2>
+<table>
+<tbody>
+<tr><td>Home · About SDG 7</td><td>The idea, key numbers, and the UN goal explained simply</td></tr>
+<tr><td>Renewable Energy · Tips · Fun Facts</td><td>6 energy types to click open · 20 tips to tick off · 35 facts with ❤ and Share</td></tr>
+<tr><td>Mini Game</td><td><strong>Energy Hero</strong>: a strategy game with a leaderboard</td></tr>
+<tr><td>Energy Calculator</td><td>Cost, CO₂ and trees for your appliances; compares old and efficient ones</td></tr>
+<tr><td>Smart Scheduler</td><td>The cheapest hours to run your appliances, found by four methods in milliseconds</td></tr>
+<tr><td>Research &amp; Economics</td><td>The scientific test of the Scheduler: hypotheses, results, money saved</td></tr>
+<tr><td>Community · Contact · AI &amp; Credits</td><td>Two forms (private) · and an honest page about how AI was used</td></tr>
+</tbody></table>
+
+<div class="figs">
+ <figure><img src="img/scheduler.jpg" alt=""><figcaption>The Smart Scheduler: your habit versus five methods; the best is highlighted.</figcaption></figure>
+ <figure><img src="img/game-consequences.jpg" alt=""><figcaption>The game: after each choice you see what changed (green = good, red = bad).</figcaption></figure>
+</div>
+
+<div class="box tip"><div class="t">Smart Scheduler in 3 steps</div><ul style="margin:0"><li>Keep the default tariff and appliances, press <strong>Find the cheapest schedule</strong>.</li><li>Dashed boxes = your habit. Green bars = the cheaper plan. The red line = the fuse, never crossed.</li><li>Game: 10 levels, 2 choices each, a padlock shows what you can't afford. Calculator: type <em>Refrigerator · 150 · 24 · 30 · 0.15</em> → about 194 a year, about 28 trees.</li></ul></div>
+<div class="box warn"><div class="t">Careful when practising</div><p>Scores can't be deleted. <strong>Don't press "Submit to Leaderboard"</strong> while practising, and don't type silly names in front of the jury.</p></div>
+</section>
+
+<!-- ================================================= 4 HOW IT WAS MADE (A) -->
+<section class="pg" style="zoom:0.9">
+<div class="title"><div class="n">Part 3 · how it was made — told simply</div><h1>1. Code is a recipe, and a website is a restaurant</h1></div>
+
+<h2>A computer only follows instructions</h2>
+<p>A computer cannot think or guess. It does <strong>exactly</strong> what it is told, step by step — like a cook following a recipe. The written instructions are called <strong>code</strong>. A website is made of three kinds of instructions:</p>
+<div class="grid3" style="margin-top:2mm">
+ <div><div class="demo"><div class="src">&lt;button&gt;
+ Play
+&lt;/button&gt;</div><div class="res"><span class="b1">Play</span></div></div><p style="font-size:9pt;margin-top:1.5mm"><strong>HTML</strong> says <em>what is on the page</em>. (A button.)</p></div>
+ <div><div class="demo"><div class="src">button {
+ color: white;
+ background: green;
+}</div><div class="res"><span class="b2">Play</span></div></div><p style="font-size:9pt;margin-top:1.5mm"><strong>CSS</strong> says <em>how it looks</em>. (Green, white writing.)</p></div>
+ <div><div class="demo"><div class="src">when clicked:
+ add 1 to the
+ number</div><div class="res"><span class="b2">Clicks: 0</span><span style="font-size:7pt">⬇ one click</span><span class="b2">Clicks: 1</span></div></div><p style="font-size:9pt;margin-top:1.5mm"><strong>JavaScript</strong> says <em>what happens</em>. (Simplified.)</p></div>
+</div>
+<div class="box ana"><div class="t">Think of a person</div><p>HTML is the <strong>skeleton</strong>, CSS is the <strong>clothes</strong>, JavaScript is the <strong>muscles</strong>. The whole project is written in these.</p></div>
+
+<h2>A website has three parts — like a restaurant</h2>
+<div class="flow">
+ <div class="node nb"><b>🍽️ Dining room</b>What you see and click<br><em>(the "frontend")</em></div><div class="arrow">⇄</div>
+ <div class="node ny"><b>🛎️ Waiter + 🍳 Kitchen</b>Takes the order and does the work<br><em>(the "backend")</em></div><div class="arrow">⇄</div>
+ <div class="node ng"><b>🥫 Pantry</b>Stores everything safely<br><em>(the "database")</em></div>
+</div>
+<div class="box say"><div class="t">If you remember only one table, remember this one</div>
+<table style="margin:1mm 0 0">
+<thead><tr><th>In a restaurant</th><th>In a website</th><th>The real tool used here</th></tr></thead>
+<tbody>
+<tr><td>🍽️ Dining room</td><td>What you see</td><td><strong>React</strong> (+ HTML, CSS, JavaScript)</td></tr>
+<tr><td>🍳 Kitchen</td><td>Does the work</td><td><strong>Node.js</strong> and <strong>Express</strong></td></tr>
+<tr><td>🛎️ Waiter</td><td>Carries requests</td><td>An <strong>API</strong> (a fixed menu of orders)</td></tr>
+<tr><td>🥫 Pantry</td><td>Stores information</td><td>A <strong>database</strong> (SQLite, kept at <strong>Turso</strong>)</td></tr>
+<tr><td>🏠 The building</td><td>Always-on computers</td><td><strong>Vercel</strong>, <strong>Render</strong>, <strong>Turso</strong> (rented, free)</td></tr>
+<tr><td>📒 Notebook of changes</td><td>History of the project</td><td><strong>Git</strong> and <strong>GitHub</strong></td></tr>
+<tr><td>✅ Morning checklist</td><td>Checks it works</td><td><strong>50 automatic tests</strong></td></tr>
+</tbody></table></div>
+<div class="box say"><div class="t">Say it like this</div><p>"Think of a restaurant. The dining room is what you see — built with React. The kitchen does the work — Node.js and Express. The pantry stores everything — a database. Each part lives on a free online service."</p></div>
+</section>
+
+<!-- ================================================= 5 HOW IT WAS MADE (B) -->
+<section class="pg">
+<div class="title"><div class="n">Part 3 · continued</div><h1>2. Meet each part</h1></div>
+
+<div class="card b" style="margin-bottom:3mm"><h3>🍽️ The dining room — what you see</h3>
+Runs inside your own phone or computer. Four ready-made tools built it:
+<ul style="margin:1mm 0 0"><li><strong>React</strong> — <em>Lego bricks.</em> Pages are built from small pieces (a menu, a button, a card) used again and again.</li>
+<li><strong>Vite</strong> — <em>a packing machine</em> that packs the code small so the site loads fast.</li>
+<li><strong>Tailwind</strong> — <em>ready-made paints</em> for the colours and style (green, blue, yellow).</li>
+<li><strong>i18next</strong> — <em>a three-language dictionary.</em> Every sentence has a label; three notebooks (English, Romanian, Russian) say what each label means. Press the language button and the site reads another notebook.</li></ul></div>
+
+<div class="grid2">
+ <div class="card y"><h3>🍳 The kitchen — does the work</h3>A computer that is <strong>always on</strong> (a "server"), shared by everyone — it keeps the leaderboard and the messages.<br><strong>Node.js</strong> lets it use the same language as the dining room. <strong>Express</strong> is a ready-made kitchen layout.</div>
+ <div class="card y"><h3>🛎️ The waiter — the "API"</h3>The website can't walk into the kitchen. It places an <strong>order</strong> from a fixed menu and waits for the answer.
+ <div style="margin-top:1.5mm"><div class="bubble me"><small>Website</small>"All the facts, please."</div><div class="bubble srv"><small>Server</small>"Here are 35 facts."</div></div></div>
+</div>
+<div class="grid2">
+ <div class="card p"><h3>🛡️ Guards at the kitchen door</h3>Does the order make sense? Too many orders (limit: 20 a minute)? From our own restaurant? Anything a visitor types is treated as <strong>plain text</strong>, never as an instruction.</div>
+ <div class="card g"><h3>🥫 The pantry — the database</h3>A <strong>super-organised spreadsheet that never forgets</strong>: the facts, the game levels, the leaderboard, the messages. <strong>Turso</strong> rents one online so nothing disappears when the kitchen restarts.</div>
+</div>
+<div class="box ana"><div class="t">Good to know</div><p>The <strong>Smart Scheduler needs no kitchen at all</strong> — it runs entirely inside your own browser, so nothing you type leaves your device. And the first visit can be slow only because the free kitchen naps after 15 minutes without visitors.</p></div>
+
+<h2>One click, step by step: opening "Fun Facts"</h2>
+<div class="story">
+ <div><span>👆</span><b>1</b>You click "Fun Facts"</div>
+ <div><span>🛎️</span><b>2</b>The waiter takes the order to the kitchen</div>
+ <div><span>🛡️</span><b>3</b>The guards check it</div>
+ <div><span>🍳</span><b>4</b>The cook asks the pantry</div>
+ <div><span>📝</span><b>5</b>The cook writes the answer</div>
+ <div><span>🍽️</span><b>6</b>The page shows the fact</div>
+</div>
+</section>
+
+<!-- ================================================= 6 THE CLEVER PART + ONLINE + AI -->
+<section class="pg" style="zoom:0.84">
+<div class="title"><div class="n">Part 3 · continued</div><h1>3. The clever part: a scheduling puzzle</h1></div>
+
+<p><strong>The idea.</strong> In Moldova, electricity at night (23:00–07:00) is cheaper — about <strong>22%</strong> less (Premier Energy's official prices: 3.75 lei by day, 2.94 by night). So you save money by running the washing machine at night. But every home has a <strong>fuse</strong>: like a power strip that can only take so much at once. If everything starts together, the fuse trips.</p>
+<div class="sched">
+ <div></div><div class="h">0</div><div class="h">2</div><div class="h">4</div><div class="h">6</div><div class="h">8</div><div class="h">10</div><div class="h">12</div><div class="h">14</div><div class="h">16</div><div class="h">18</div><div class="h">20</div><div class="h">22</div>
+ <div class="lab">Washer</div><div class="c n"></div><div class="c n"><div class="opt"></div></div><div class="c n"></div><div class="c n"></div><div class="c"></div><div class="c"></div><div class="c"></div><div class="c"></div><div class="c"></div><div class="c"><div class="hab"></div></div><div class="c"></div><div class="c"></div>
+</div>
+<p style="font-size:8.5pt;color:#64748b;margin-bottom:3mm">Dashed box = when the family runs it out of habit (evening). Green = the cheaper hour found by the Scheduler (night).</p>
+<p>The puzzle: <strong>choose a start hour for every appliance</strong> so the day costs the least <em>and</em> the fuse never trips. With six machines there are about <strong>191 million</strong> combinations. A person can't check them all — so we use <strong>algorithms</strong> (step-by-step methods for solving a problem). The site compares four:</p>
+<div class="grid2">
+ <div class="card"><h3>1. Greedy — "cheapest seat first"</h3>Biggest machine first, put each in the cheapest hour that fits. Very fast, but never rethinks.</div>
+ <div class="card"><h3>2. Simulated annealing — "shake the box"</h3>Try random changes. Early on it even accepts worse ones (to escape dead ends), then gets strict — like metal cooling slowly.</div>
+ <div class="card"><h3>3. Genetic — "breeding plans"</h3>Keep 40 plans, mix the best ones together, add small random changes, repeat.</div>
+ <div class="card"><h3>4. Exact — "check everything, cleverly"</h3>Cuts off hopeless branches. Guaranteed best answer — but too slow for very big problems.</div>
+</div>
+<div class="box tip"><div class="t">How we know it works — a real experiment</div>
+<p>393 random families were simulated, with the same effort for each method. Results: the best plans save about <strong>10%</strong> (comfortable fuse) or <strong>6%</strong> (tight fuse) compared with the family's habit. With a tight fuse, annealing ends within <strong>0.4%</strong> of the proven best plan; greedy within <strong>1.1%</strong>. Exact search is perfect for one family, but with 40 appliances it can prove its answer only <strong>8%</strong> of the time. Four predictions were written down <em>before</em> the test; the data supported all four. The numbers come from one script anyone can re-run.</p></div>
+<div class="box ana"><div class="t">The honest part — say it, it earns trust</div>
+<p>For a typical family that is about <strong>27 euros (≈ 540 lei) a year</strong> — real but modest, and free if you use the timer already in your washing machine. A 1,000-euro energy system would <strong>never</strong> pay for itself. No CO₂ saving is claimed (moving use to night changes the price, not the amount of energy). The families are simulated, and the tariff, though taken from the operator's official page, may change (and the page doesn't say if VAT is included), so the site lets you type your own prices.</p></div>
+
+<h2>Online, checked, and built with AI</h2>
+<div class="grid3">
+ <div class="card"><h3>🏠 Online</h3>Three rented rooms, all free: <strong>Vercel</strong> (dining room), <strong>Render</strong> (kitchen), <strong>Turso</strong> (pantry). <strong>Git/GitHub</strong> keep a dated notebook of every change.</div>
+ <div class="card g"><h3>✅ Checked</h3><strong>50 robot checks</strong> run by themselves. Google's report card, <strong>Lighthouse</strong>, gave <strong>100/100/100</strong> for accessibility, best practices and search readiness.</div>
+ <div class="card y"><h3>🧑‍🏫 AI = fast builder</h3>The author is the <strong>manager</strong> (decides, inspects every wall); <strong>Claude Code</strong> is the <strong>builder</strong> (writes the code). The builder made mistakes — checks and reviews found them. All logged openly.</div>
+</div>
+</section>
+
+<!-- ================================================= 7 PRESENTING -->
+<section class="pg" style="zoom:0.86">
+<div class="title"><div class="n">Part 4</div><h1>Presenting it: 3-minute pitch, then 7 minutes of questions</h1></div>
+
+<div class="grid2">
+<div>
+<h2 style="margin-top:0">The pitch, in simple words</h2>
+<div class="box say" style="margin-top:1mm"><p style="font-size:9.4pt">"About 655 million people still have no electricity — and where night electricity is cheaper, most of us still run the washing machine at seven in the evening. The author asked: <em>can a computer choose the start times of a family's appliances so the bill falls, without tripping the fuse — and which method does it best?</em> Four predictions were written down before any test.</p>
+<p style="font-size:9.4pt"><em>[Show the Smart Scheduler: press the button. Dashed = habit, green = cheaper plan, red line = the fuse.]</em></p>
+<p style="font-size:9.4pt">393 simulated families: the best plans save about 10% or 6%. Exact search is perfect for one home but can't cope with very large ones, where the smarter methods shine. For a typical family it is about 27 euros a year — free with the timer in the washer. An expensive system would never pay back, and no CO₂ saving is claimed. The AI assistant Claude Code wrote the code under the author's direction; its mistakes are in the public logbook. Scan the QR code and try it."</p></div>
+
+<p style="font-size:9pt"><strong>Demo (40 s):</strong> open Smart Scheduler → press the button → point at the table, timeline and red fuse line. Open the site once beforehand to wake the server.</p>
+</div>
+<div>
+<h2 style="margin-top:0">Questions you may get</h2>
+<table style="font-size:8.6pt">
+<tbody>
+<tr><td>Who made it?</td><td>"stefaniat2, alone, with an AI assistant writing the code under their direction. I'm presenting for them."</td></tr>
+<tr><td>What is new here?</td><td>"It solves a real puzzle — cheapest hours without tripping the fuse — with four methods, in your browser, and measures them honestly."</td></tr>
+<tr><td>How do you know it isn't luck?</td><td>"393 simulated families, fixed seeds so anyone can repeat it, and statistical tests."</td></tr>
+<tr><td>Is the comparison fair?</td><td>"Same effort for every method. One caveat: the smart methods start from the greedy plan, so part of their edge is built in. The fair test is against the proven best plan."</td></tr>
+<tr><td>Are the tariffs right?</td><td>"Premier Energy's official page, in force since April 2026: 3.75 lei by day, 2.94 by night. VAT isn't stated, and the site lets you type your own prices."</td></tr>
+<tr><td>What does it save?</td><td>"About 27 euros a year for a typical family — modest but free."</td></tr>
+
+<tr><td>What did the AI do?</td><td>"Wrote code and drafts; the author set the questions, checked the results and decides what is claimed. It made mistakes — all in the logbook."</td></tr>
+<tr><td>Is it safe?</td><td>"It checks everything sent to the server, limits spam, no accounts or tracking. The Scheduler runs in your browser." <em>(Not "100% safe".)</em></td></tr>
+
+
+</tbody></table>
+<p style="font-size:8.8pt;color:#475569">The Romanian pitch and 18 questions with English <em>and</em> Romanian answers are in <code>docs/PRESENTATION.md</code>.</p>
+</div>
+</div>
+
+<div class="grid2">
+ <div class="box warn"><div class="t">Never say</div><ul style="margin:0"><li>"I programmed / built this"</li><li>"The AI did everything alone"</li><li>"Native speakers checked the translations"</li><li>"It's completely secure"</li><li>"It cuts CO₂" or "it saves a lot"</li><li>A statistic without "about"</li></ul></div>
+ <div class="box tip"><div class="t">If something goes wrong</div><ul style="margin:0"><li><strong>Slow or error:</strong> "the free server is waking up" — wait, press <em>Try again</em>.</li><li><strong>No internet:</strong> phone hotspot, or show the pictures in this guide.</li><li><strong>Don't know:</strong> "I'm presenting for the author, so I won't guess — it's documented, and I'll find out."</li></ul></div>
+</div>
+</section>
+
+<!-- ================================================= 8 CHEAT SHEET -->
+<section class="pg" style="zoom:0.88">
+<div class="title"><div class="n">Keep this page with you</div><h1>Quick answers and key numbers</h1></div>
+<h2 style="margin-top:0">If someone asks "what is…?"</h2>
+<table>
+<thead><tr><th>Word</th><th>One simple sentence</th><th>Like…</th></tr></thead>
+<tbody>
+<tr><td>Code / JavaScript</td><td>Written instructions a computer follows exactly; JavaScript is the language used here</td><td>A recipe</td></tr>
+<tr><td>Frontend · React</td><td>The part you see and click; React is a toolbox of reusable pieces</td><td>Dining room · Lego bricks</td></tr>
+<tr><td>Backend · Node.js · Express</td><td>The always-on computer that does the work for everyone, and its tools</td><td>The kitchen</td></tr>
+<tr><td>API</td><td>The fixed list of orders the website may send to the server</td><td>The menu and the waiter</td></tr>
+<tr><td>Database (SQLite, Turso)</td><td>An organised spreadsheet that never forgets; Turso keeps it online</td><td>The pantry</td></tr>
+
+
+<tr><td>Algorithm</td><td>A step-by-step method for solving a problem</td><td>A recipe for a puzzle</td></tr>
+<tr><td>Simulated annealing · genetic · greedy · exact</td><td>Four ways to search for the cheapest plan (see page 6)</td><td>Shake the box · breeding · cheapest seat first · check everything</td></tr>
+<tr><td>Hypothesis · benchmark</td><td>A prediction written before a test · a fair, repeatable test of many cases</td><td>A bet made in advance · a school exam for algorithms</td></tr>
+<tr><td>Automatic tests · Lighthouse</td><td>50 yes/no checks that run by themselves · Google's free report card for websites</td><td>Morning checklist · school report</td></tr>
+<tr><td>AI assistant</td><td>A program you talk to that writes and tests code</td><td>A fast builder with the author as manager</td></tr>
+</tbody></table>
+
+<h2>Key numbers</h2>
+<div class="grid3">
+ <div class="card"><strong>655 million</strong><br>people without electricity (UN, 2024)</div>
+ <div class="card"><strong>12 pages · 3 languages</strong><br>35 facts · 20 tips · 6 energy types</div>
+ 
+ <div class="card"><strong>393 simulated families</strong><br>4 methods · 4 predictions, all supported</div>
+ <div class="card"><strong>about 10% / 6%</strong><br>saved vs habit (comfortable / tight fuse)</div>
+ <div class="card"><strong>about 27 € a year</strong><br>≈ 540 lei, typical family; free to apply</div>
+ 
+ <div class="card"><strong>Report card 100/100/100</strong><br>accessibility, best practices, search</div>
+ 
+</div>
+<div class="box ana"><div class="t">Honest limits — say them before they are asked</div><p>Simulated families, not real meter data · the tariff may change and its VAT basis isn't stated · the smart methods start from the greedy plan · the free server can be slow at first · translations were checked by AI, not yet by a person</p></div>
+<p style="font-size:9pt;color:#475569;margin-top:2mm">Everything is public: github.com/stefaniat2/energize-the-future. For the curious: <code>README.md</code>, <code>AI_USAGE.md</code>, <code>docs/research/</code> (abstract, annex, logbook, economics), <code>docs/PRESENTATION.md</code>.</p>
+</section>
+
+</body>
+</html>

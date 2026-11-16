@@ -154,11 +154,43 @@ fridge, 200 W → 60 W TV, 1500 W → 900 W air conditioner), the visitor's pric
 `efficiencySavings()` to show percent, kWh, money and CO₂ saved per year; one click adds the
 efficient version to the list.
 
-## 6. Testing strategy
+## 6. Smart Scheduler and research module
+
+**Problem.** Choose one start hour per shiftable appliance so that the daily cost under a 24-hour tariff is minimal
+and the household's fuse limit is never exceeded. Search space for six unrestricted appliances: 24⁶ ≈ 191 million.
+
+**Code (all pure functions, no React, unit-tested):**
+
+| File | Role |
+|---|---|
+| `client/src/utils/optimizer.js` | model (`evaluate`, `loadProfile`), tariffs, seeded random households, and five solvers: `solvePreferred` (habit with waiting), `solveGreedy`, `solveAnneal`, `solveGenetic`, `solveExact` (branch and bound) |
+| `client/src/utils/stats.js` | mean, standard deviation, 95 % interval, paired test and effect size |
+| `client/src/utils/economics.js` | reference household, payback of the ways to apply a schedule |
+| `client/scripts/benchmark.mjs` | seeded experiments → `client/src/data/benchmark.json` and `docs/research/benchmark-instances.csv` |
+| `client/scripts/build-research-docs.mjs` | abstract, visual annex, A0 poster and figures generated from `benchmark.json` |
+| `client/src/pages/Optimizer.jsx`, `Research.jsx`, `components/charts.jsx` | the two pages and dependency-free SVG charts (each with a text alternative and a table) |
+
+**Decisions and reasons**
+
+- *Fitness = cost + penalty × overload (kWh above the fuse).* One number lets every method be compared; the penalty is
+  ten times the highest price per kWh so an infeasible schedule never wins.
+- *Equal budget (2,400 evaluations).* Comparing methods that are allowed different effort would be meaningless.
+- *Exact branch and bound as the reference.* It proves the optimum for small problems, so every other method's gap is
+  measured against truth, not against another heuristic.
+- *Warm start.* Annealing and the genetic algorithm start from the greedy schedule: random starts rarely reached a
+  feasible schedule on tight fuses (43 of 100 hard-case runs failed) — see `docs/research/LOGBOOK.md`. The trade-off
+  (part of their edge over greedy is built in) is stated everywhere the comparison is shown.
+- *Everything runs in the browser.* No server call, no data leaves the device; the two pages are code-split so the
+  home page stays small.
+- *The Research page renders `benchmark.json` directly* and computes the hypothesis verdicts from it, so the page cannot
+  disagree with the experiment. The abstract, annex and poster are generated from the same file.
+
+## 7. Testing strategy
 
 | Level | What | How |
 |---|---|---|
 | Unit | Calculator, game rules, translation files | `client/tests/logic.test.js` (13 tests) |
+| Unit | Optimiser (exact solver vs exhaustive search, seeds, budget, warm start), statistics, economics, consistency of the published benchmark | `client/tests/optimizer.test.js` (21 tests) |
 | Integration | Every API endpoint on a real Express app with an in-memory database | `server/tests/` — `api.test.js` (15) and `seed.test.js` (1) |
 | Manual (browser) | See checklist below | Done before each release |
 | Deployment | Live site against the live API | After each deploy |

@@ -8,14 +8,15 @@ to try.** Everything here supports that.
 | File | Use |
 |---|---|
 | `docs/stand/poster.html` | Editable source of the A3 poster (open in Chrome) |
-| `docs/stand/poster-A3.pdf` | Print-ready A3 poster (portrait) with QR code to the live site |
+| `docs/stand/poster-A3.pdf` | Print-ready A3 poster (portrait) with QR code to the live site — the friendly *Try Energy Hero* version |
+| `docs/stand/poster-A0.pdf` / `poster-A0.html` | **A0 research poster** (841 × 1189 mm, portrait): research question and hypotheses, system, four figures, key results, economic case, limits, responsible AI, QR. **This is the competition poster.** Generated from the benchmark data by `client/scripts/build-research-docs.mjs` |
 
 The poster uses the same colours and typeface as the website (SDG 7 green `#2F9E44`, blue
 `#1971C2`, yellow `#F5C518`; Poppins), so the stand and the product look like one thing.
 
 ## 2. Printing
 
-1. Print `poster-A3.pdf` at **A3, 100 % scale, no margins**. For a bigger poster, print the PDF at
+1. Print **`poster-A0.pdf`** at **A0 (841 × 1189 mm), 100 % scale, no margins** at a print shop (it is vector, 135 kB; fill the yellow placeholders for author and school first — see `docs/research/README.md`). Keep `poster-A3.pdf` as a handout. For the A3 version: print at **A3, 100 % scale, no margins**. For a bigger poster, print the PDF at
    A2 (it scales cleanly; the QR code is vector).
 2. From `poster.html` instead: Chrome → Print → paper **A3**, margins **None**, **Background graphics ON**.
 3. Test the QR code with two different phones from 1.5 m away **before** printing many copies.
@@ -55,13 +56,14 @@ Then, depending on the visitor:
 - **Student:** hand over the tablet → game.
 - **Teacher / parent:** show the calculator → "enter your fridge, see what it costs and how many
   trees its CO₂ needs."
-- **Jury:** the 3-minute demo route in [PRESENTATION.md](PRESENTATION.md#3-live-demo-route-3-minutes).
+- **Jury:** the 3-minute pitch and demo routes in [PRESENTATION.md](PRESENTATION.md#4-demo-routes). Ask them to change the **fuse limit** or the **tariff** in the Smart Scheduler and watch the schedule react.
 
 ## 5. Engagement ideas (optional)
 
 - **Top-score challenge:** keep the best name of the day on the poster with a marker; small
   reward (a sticker).
 - **"Fridge test":** ask a visitor for their fridge's wattage and show their yearly cost.
+- **"Beat the algorithm":** let a visitor type start times by hand for the family's appliances, then press the button and compare their cost with the optimised one.
 - **Language game:** let visitors switch to a language they know.
 
 ## 6. Setup checklist (arrive 30 minutes early)

@@ -47,22 +47,25 @@ The prompts that shaped the project are kept in the repository so the process is
    - *"make this project eligible for 45 points based on the graph above"* (competition rubric) → this round of work: automated tests, security hardening, game consequences and enforced budget, efficiency comparison tool, accessibility, documentation, this document.
    - *"i need to migrate the project to a new git hub account , and changing the person doing the commits"* → history re-authored and pushed to the new repository (a backup was made first).
    - *"do everything you can"* (to finish the remaining improvements) → optional permanent database (Turso), Lighthouse audit and fixes, licence, CI, screenshots and documentation updates.
+   - *"update the project to get the best grade possible"* (sent with screenshots of a written evaluation: 6.2 / 10, missing a testable hypothesis, algorithmic depth, benchmarks, economic analysis, abstract, annex, logbook, A0 poster) → the **research module** (§9). The evaluation text is summarised in [docs/prompts/02-evaluation-feedback.md](docs/prompts/02-evaluation-feedback.md).
 
 ## 4. How the AI's output was verified
 
 The AI was not trusted blindly. Every feature was checked in several ways:
 
-1. **Automated tests — 29 tests** (`npm test` in `server/` and `client/`):
+1. **Automated tests — 50 tests** (16 in `server/`, 34 in `client/`; `npm test` in each):
    API behaviour, validation, CORS, rate limiting, SQL-injection text, calculator formulas,
-   game rules, and a guard that Romanian and Russian have the same keys as English.
+   game rules, the optimiser (exact solver checked against exhaustive search), statistics, the economic model,
+   consistency of the published benchmark, and a guard that Romanian and Russian have the same keys as English.
 2. **Hand calculation.** For example, a 150 W refrigerator running 24 h/day for 30 days at
    0.15 per kWh must give 3.6 kWh/day, 108 kWh/month, 16.20/month, 194.40/year and 48.6 kg CO₂ —
    the app was checked against these numbers, not just "looks plausible".
 3. **Real browser testing** of every page, the whole game from level 1 to the leaderboard,
    language switching, and phone-width layout.
-4. **Lighthouse audit** (Chrome's accessibility / performance / SEO checker) on all 10 pages of the production
-   build: it initially reported accessibility 89–92 and, after fixes, **100 for Accessibility, Best Practices
-   and SEO on every page** (Performance 95–98 on throttled mobile).
+4. **Lighthouse audit** (Chrome's accessibility / performance / SEO checker) on the production build: it
+   initially reported accessibility 89–92 and, after fixes, **100 for Accessibility, Best Practices and SEO on
+   the 10 original pages** (Performance 95–98 on throttled mobile; measured 21 Oct 2026). On 12 Nov 2026 Home and the
+   two new pages were measured again: Home 97/100/100/100, Smart Scheduler 95/100/100/100, Research 98/100/100/100.
 5. **Real deployment testing**, which found problems that local testing could not (below).
 
 ### Mistakes made by the AI that testing caught
@@ -80,6 +83,10 @@ Being transparent about errors is part of using AI responsibly:
 | 404 page and some ARIA labels were only in English | Automated scan for hard-coded strings | All translated; scan found nothing left |
 | Calculator lacked the "compare efficient appliances" feature required by the brief | Checking the result against the brief | Real comparison tool built |
 | A blanket "make grey text darker" change made the **footer** text *less* readable (3.75:1 on the dark background) | Lighthouse colour-contrast audit | Footer text lightened; every badge/chip colour pair now measured, not guessed |
+| *Research module:* the "habit" baseline broke the fuse limit in 19 of 20 sample households, so comparing it with feasible schedules was unfair | Sanity run on 20 households, then reading the numbers | Baseline now waits until the fuse allows; raw overload reported separately |
+| *Research module:* infeasible schedules were counted in the cost gaps, which can flatter a method | Re-reading the analysis code before trusting the table | Gaps use only feasible schedules; feasibility rate reported separately |
+| *Research module:* the stability test used a fuse limit that was far too tight for 10 appliances (an experiment bug) | Implausible result (most runs "failed") | Fuse scaled with the number of appliances; corrected numbers in the logbook |
+| *Research module:* after changing the algorithms, the chart caption and alt text still described the old curves | Looking at the rendered chart | Text now filled from the data |
 | Logo link had no accessible name on phones; footer headings skipped a level; `robots.txt` was invalid; pages jumped ~0.7 layout-shift units while data loaded | Lighthouse | `aria-label`, heading levels fixed, real `robots.txt`, page header rendered immediately with data loading inside it |
 
 ## 5. Data, privacy and licensing
@@ -125,7 +132,10 @@ matters more than a long list of ticks:
 | Repository free of secrets | ✅ checked | Working tree **and** full git history scanned for tokens, keys, `.env` and database files: none |
 | Proofreading of RO/RU texts by a human | ☐ author | Recommended: read the pages in each language once and report anything odd |
 | Author can explain the code | ☐ author | Study guide: [docs/CODE_WALKTHROUGH.md](docs/CODE_WALKTHROUGH.md) |
-| Use on a real phone and laptop | ☐ author | Phone layout was tested with browser mobile emulation and Lighthouse mobile only |
+| Use on a real phone and laptop | ✅ phone confirmed by the author (16 Nov 2026) | Phone layout was tested with browser mobile emulation and Lighthouse mobile only (no horizontal overflow in EN/RO/RU on a 375 px emulation) |
+| Romanian and Russian text of the Scheduler and Research pages | ✅ read by the author | AI first draft (about 150 strings); the author reports it reads well. No second AI pass and no native-speaker review |
+| Benchmark reproducible and consistent | ✅ done | `npm run benchmark` is seeded; a test checks the published file (no method beats the proven optimum, savings never exceed the tariff ceiling) |
+| Tariff and price inputs of the economic case study | ✅ done 16 Nov 2026 | Premier Energy's official page (3.75 / 2.94 lei/kWh since 2 Apr 2026) was read; VAT basis not stated and the ANRE decision PDF was not read; commercial prices are indicative. Levels in [docs/research/ECONOMICS.md](docs/research/ECONOMICS.md) |
 | Claude Code was the only AI tool used | ✅ confirmed by the author, 21 October 2026 | No other AI assistant, image generator or code generator was used |
 
 ### Second-pass translation review (21 October 2026)
@@ -154,3 +164,26 @@ The review was done by an AI, so it is a second opinion, not proof of perfection
 - CO₂ results are estimates based on one average emission factor.
 - The project teaches energy awareness; running AI itself also uses energy, which is one reason
   the work was done in a few focused iterations rather than by regenerating everything repeatedly.
+
+## 9. The research module (November 2026)
+
+A written evaluation asked for a testable hypothesis, algorithmic depth, benchmarks with at least 100 runs, an
+economic analysis and extra documents. What was done, and by whom:
+
+| Decision or step | Who |
+|---|---|
+| Chose the problem (load shifting under a two-zone tariff with a fuse limit), the four hypotheses, the success criteria, and to keep honest results even where a hypothesis is only partly supported | author's brief and review, proposed and implemented by Claude Code |
+| Wrote the optimiser, statistics, economics, benchmark script, tests, Scheduler and Research pages, translations, abstract, annex, poster, logbook | Claude Code |
+| Ran the experiments and recorded real numbers (nothing in the logbook or documents was invented) | Claude Code ran them; numbers come from `benchmark.json` |
+| Looked up tariffs, exchange rate and prices (search summaries; conflicts are shown, not hidden) | Claude Code, levels in `docs/research/ECONOMICS.md` |
+| Reviewing the results, filling in name / school / mentor, copying into the official templates, confirming the solo-author rule, presenting, and writing future weekly log entries | **author** (listed in `docs/research/README.md`) |
+
+Algorithms used (all standard, from the literature, implemented from scratch): simulated annealing
+(Kirkpatrick, Gelatt and Vecchi, *Science*, 1983), a genetic algorithm (Holland, 1975), and branch and bound
+(Land and Doig, *Econometrica*, 1960). No third-party optimisation library was used.
+
+**Honest caveats:** the two search methods start from the greedy schedule, so part of their advantage over greedy is
+built in; the households are synthetic; the Premier Energy tariff comes from its official page but its VAT basis is
+not stated and the FEE Nord two-zone prices are an older report; the new RO/RU text was read by the author but not by a
+native-speaker proofreader.
+

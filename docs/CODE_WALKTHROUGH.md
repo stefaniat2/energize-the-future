@@ -106,7 +106,24 @@ tests check directly. Appliances are saved in `localStorage` through the `useLoc
 (`node server.js`). The API uses **Turso** for permanent data when its two environment variables are set. If
 Render's free server sleeps, the first visitor waits ~50 s (an optional GitHub workflow pings it to keep it awake).
 
-## 10. Questions to answer out loud (with where to look)
+## 10. Smart Scheduler — `utils/optimizer.js` (the algorithmic part)
+
+- **Model:** `evaluate(problem, genes)` — a schedule is one *gene* per appliance (an offset inside its allowed window).
+  Cost = Σ power × price over the hours it runs (hours wrap around midnight). Overload = kWh above `capKw`.
+  Fitness = cost + penalty × overload, with penalty = 10 × the highest price, so breaking the fuse never pays.
+- **Greedy:** sort appliances by energy (descending); put each at the cheapest hour that still fits. One pass.
+- **Simulated annealing:** start from greedy; repeat 2,400 times: change one appliance's hour (small shift or jump);
+  always keep an improvement, keep a worse schedule with probability `exp(−Δ/T)`; `T` falls geometrically from
+  2 × the highest price to 0.005.
+- **Genetic algorithm:** population of 40 (one member is the greedy schedule); tournament selection (3), uniform
+  crossover (90 %), mutation (12 % per gene), the 2 best survive each generation; stops at 2,400 evaluations.
+- **Exact:** branch and bound — place appliances biggest-first, prune when the fuse is exceeded or when cost so far +
+  the cheapest possible cost of the remaining appliances cannot beat the best found; proves the optimum when it ends.
+- **Reproducibility:** `mulberry32(seed)` replaces `Math.random`, so every experiment is repeatable.
+- **Benchmark:** `scripts/benchmark.mjs` — see the logbook for what each experiment found and what went wrong first.
+- **Statistics:** `utils/stats.js` — paired test on identical households; the 95 % interval uses 1.96 (n ≥ 100).
+
+## 11. Questions to answer out loud (with where to look)
 
 1. What happens between clicking a link and seeing data? → §2
 2. How is the game score calculated, and why does sustainability pay most? → §3
@@ -119,3 +136,8 @@ Render's free server sleeps, the first visitor waits ~50 s (an optional GitHub w
 9. Why did the site break after the first deployment, and how was it fixed? (`localhost` baked in at build time;
    production default added) → `client/src/services/api.js`, `docs/DEPLOYMENT.md`
 10. What did the AI do, what did you do, and what did you check yourself? → `AI_USAGE.md`
+11. Why is the penalty ten times the highest price? What happens if it is too small? → §10, `makeProblem`
+12. Why do the searches start from the greedy schedule, and what does that do to the comparison with greedy? → §10, `docs/research/LOGBOOK.md` E4
+13. Why can't exact search solve 40 appliances, and why does it still win at 6? → §10, scalability table on the Research page
+14. How is the hypothesis verdict on the Research page computed, and why not typed in? → `pages/Research.jsx`
+15. What would change if the night price were only 5% lower? → sensitivity chart; `economics.js`
