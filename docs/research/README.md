@@ -66,7 +66,7 @@ regulation (order no. 1697/2021). **The 2021 text was not read**; confirm it sti
 
 - [x] Author name, school and mentor are filled in (Stefania Tabarcea · Orizont, Durlești · mentor Azamat Jauysh).
 - [x] **Templates:** no downloadable "Template A / B" exists in the public rules. The MoldSEF regulation (Annex 2) only fixes the content and format of the abstract, and the abstract here follows it (see below). The logbook is "if needed" and has no template.
-- [ ] **Add your grade (clasa)** where the abstract shows `[grade]` — the regulation requires it. Then re-run `node scripts/build-research-docs.mjs` (or ask for it) and re-export the PDF.
+- [x] Grade (clasa) added: 12 C.
 - [ ] Check with the organisers/teacher that the **2026 edition** (rules of MEC order no. 1697/2021) still matches the 2014 text read here.
 - [x] Solo entry: the author reports that the teacher confirmed it is allowed.
 - [x] Weekly entries: the author reports that the teacher said they are not required.

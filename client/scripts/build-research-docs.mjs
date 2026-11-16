@@ -148,7 +148,7 @@ table.t { border-collapse: collapse; width: 100%; font-size: 10.5pt; margin: 3pt
 .ph { background: #fff3b0; }
 </style></head><body>
 <h1>Cost-optimal load shifting for Moldovan households under a two-zone electricity tariff: a benchmark of greedy, simulated-annealing, genetic and exact schedulers</h1>
-<div class="meta"><b>Thematic category:</b> III. Information technology (algorithms, software applications) · <b>Author:</b> Stefania Tabarcea · <b>Grade:</b> <span class="ph">[grade]</span><br>Orizont, Durlești · mentor: Azamat Jauysh<br>Project “Energize the Future” (UN SDG 7) · ${SITE} · ${REPO}</div>
+<div class="meta"><b>Thematic category:</b> III. Information technology (algorithms, software applications) · <b>Author:</b> Stefania Tabarcea · <b>Grade:</b> 12 C<br>Orizont, Durlești · mentor: Azamat Jauysh<br>Project “Energize the Future” (UN SDG 7) · ${SITE} · ${REPO}</div>
 
 <h2>1. Aim and relevance of the research</h2>
 <p>Moldovan households can opt for a two-zone tariff in which night electricity (23:00–07:00) is cheaper than day electricity; Premier Energy’s official page gives ${fmt(day, 2)} and ${fmt(night, 2)} lei/kWh since 2 April 2026, a night discount of ${fmt(100 * (1 - night / day), 0)}%. A household can lower its bill by moving flexible appliances (washing machine, dishwasher, dryer, electric water heater, EV charger) to the cheap zone, but the main fuse (about 3.7 kW for 16 A, 5.75 kW for 25 A) limits the total power at any hour. “Use the washer at night” therefore becomes a constrained scheduling problem: choose one start hour per appliance so that the daily cost is minimal and the fuse limit is never exceeded. For six unrestricted appliances there are 24<sup>6</sup> ≈ 1.9·10<sup>8</sup> combinations.</p>
@@ -307,7 +307,7 @@ table.t { border-collapse: collapse; width: 100%; font-size: 10.5pt; margin: 3pt
 .small { font-size: 10.5pt; } .ref { font-size: 10.5pt; margin: 0 0 1.5pt; padding-left: 14pt; text-indent: -14pt; text-align: left; } .ph { background: #fff3b0; }
 </style></head><body>
 <h1>Programarea optimă a consumului casnic de energie electrică în Republica Moldova cu tarif pe două zone: compararea metodelor greedy, a călirii simulate, a algoritmului genetic și a căutării exacte</h1>
-<div class="meta"><b>Categoria tematică:</b> III. Tehnologia informației (algoritmi, aplicații software) · <b>Autor:</b> Ștefania Tabarcea · <b>Clasa:</b> <span class="ph">[clasa]</span><br>Orizont, Durlești · coordonator: Azamat Jauysh<br>Proiectul „Energize the Future” (ODD 7 al ONU) · ${SITE} · ${REPO}</div>
+<div class="meta"><b>Categoria tematică:</b> III. Tehnologia informației (algoritmi, aplicații software) · <b>Autor:</b> Ștefania Tabarcea · <b>Clasa:</b> a XII-a C<br>Orizont, Durlești · coordonator: Azamat Jauysh<br>Proiectul „Energize the Future” (ODD 7 al ONU) · ${SITE} · ${REPO}</div>
 
 <h2>1. Scopul și actualitatea cercetării</h2>
 <p>Gospodăriile din Republica Moldova pot alege un tarif pe două zone, în care energia electrică de noapte (23:00–07:00) este mai ieftină decât cea de zi; pagina oficială Premier Energy indică ${fr(day, 2)} și ${fr(night, 2)} lei/kWh din 2 aprilie 2026, adică o reducere nocturnă de ${fr(100 * (1 - night / day), 0)}%. O familie poate reduce factura mutând aparatele flexibile (mașina de spălat, mașina de spălat vase, uscătorul, boilerul electric, încărcătorul pentru mașina electrică) în zona ieftină, dar siguranța principală (circa 3,7 kW la 16 A, 5,75 kW la 25 A) limitează puterea totală la fiecare oră. „Pornește mașina noaptea” devine astfel o problemă de planificare cu restricții: se alege o oră de pornire pentru fiecare aparat astfel încât costul zilnic să fie minim, iar siguranța să nu fie depășită. Pentru șase aparate fără restricții există 24<sup>6</sup> ≈ 1,9·10<sup>8</sup> combinații. Scopul este să măsurăm cât se poate economisi și care algoritm este cel mai potrivit.</p>
@@ -354,7 +354,7 @@ table { border-collapse: collapse; width: 100%; font-size: 10pt; margin: 3pt 0; 
 .ph { background: #fff3b0; }
 </style></head><body>
 <h1>Research plan — “Energize the Future”: cost-optimal appliance scheduling under a two-zone tariff</h1>
-<div class="meta">Stefania Tabarcea · Orizont, Durlești · grade <span class="ph">[grade]</span> · mentor: Azamat Jauysh · category III (algorithms, software applications)</div>
+<div class="meta">Stefania Tabarcea · Orizont, Durlești · grade 12 C · mentor: Azamat Jauysh · category III (algorithms, software applications)</div>
 <h2>1. Question and goal</h2>
 <p>Can a computer choose start times for a household’s appliances so that the electricity bill falls under Moldova’s two-zone tariff without exceeding the main fuse, and which algorithm does this best? Goal: measure the saving, compare four methods fairly, and deliver a free, multilingual tool (EN/RO/RU) that anyone can use in a browser.</p>
 <h2>2. Hypotheses (fixed before the full benchmark)</h2>
@@ -396,7 +396,7 @@ figure { margin: 6pt 0 8pt; break-inside: avoid; } figure svg { width: 100%; hei
 .ref { font-size: 11pt; margin: 0 0 3pt; padding-left: 14pt; text-indent: -14pt; text-align: left; }
 </style></head><body>
 <h1>Cost-optimal load shifting for Moldovan households under a two-zone electricity tariff: a benchmark of greedy, simulated-annealing, genetic and exact schedulers</h1>
-<div class="meta">Stefania Tabarcea · grade <span class="ph">[grade]</span> · Orizont, Durlești · mentor: Azamat Jauysh<br>Category III — Information technology (algorithms, software applications) · MoldSEF 2026<br>Project “Energize the Future” (UN SDG 7) · ${SITE} · ${REPO}</div>
+<div class="meta">Stefania Tabarcea · grade 12 C · Orizont, Durlești · mentor: Azamat Jauysh<br>Category III — Information technology (algorithms, software applications) · MoldSEF 2026<br>Project “Energize the Future” (UN SDG 7) · ${SITE} · ${REPO}</div>
 <div class="abs"><b>Abstract.</b> Moldova’s two-zone household tariff makes night electricity about ${fmt(100 * (1 - night / day), 0)}% cheaper, but the main fuse limits how much can run at once. We model the choice of start hours for flexible appliances as a constrained scheduling problem and compare a habit baseline, greedy placement, simulated annealing, a genetic algorithm and exact branch and bound on ${A.instances + B.instances} seeded random households. Optimised schedules save ${fmt(A.methods.anneal.meanSavingPct)}% (5.5 kW fuse) and ${fmt(B.methods.anneal.meanSavingPct)}% (4.0 kW fuse) against habit (p &lt; 0.001); for a reference household this is about ${fmt(econ.central.savingEur, 0)} EUR a year. Exact search is instant at household size but proves optimality in only ${fmt(lastScale.exactProvedPct, 0)}% of ${lastScale.appliances}-appliance cases, where annealing is best. The method is implemented as a free browser tool in English, Romanian and Russian.</div>
 
 <h2>1. Introduction</h2>
